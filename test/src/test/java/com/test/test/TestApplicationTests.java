@@ -1,10 +1,10 @@
-package com.elevate.ecommercebackend;
+package com.test.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EcommerceBackendApplicationTests {
+class TestApplicationTests {
 
 	@Test
 	void contextLoads() {
