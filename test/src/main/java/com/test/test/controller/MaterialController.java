@@ -2,11 +2,9 @@ package com.test.test.controller;
 
 import com.test.test.model.Material;
 import com.test.test.service.MaterialService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +32,23 @@ public class MaterialController {
     @GetMapping("/type/{type}")
     public ResponseEntity<List<Material>> findByType(@PathVariable String type) {
         return ResponseEntity.ok(materialService.getMaterialByType(type));
+    }
+
+    @PutMapping
+    public ResponseEntity<Material> update(@RequestBody Material material) {
+        materialService.updateMaterial(material);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping
+    public ResponseEntity<Material> create(@RequestBody Material material) {
+        materialService.createMaterial(material);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Material> delete(@RequestBody Material material) {
+        materialService.deleteMaterial(material);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

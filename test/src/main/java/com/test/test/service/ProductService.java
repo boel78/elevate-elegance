@@ -16,7 +16,7 @@ public class ProductService {
     }
 
 
-    public void addProduct(Product product) {
+    public void createProduct(Product product) {
         productRepository.save(product);
     }
 

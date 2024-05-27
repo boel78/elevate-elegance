@@ -28,17 +28,17 @@ public class MaterialService {
                 .orElseThrow(() -> new RuntimeException("Material not found"));
     }
 
-    public Material createMaterial(Material material) {
-        return materialRepository.save(material);
+    public void createMaterial(Material material) {
+        materialRepository.save(material);
     }
 
-    public Material updateMaterial(Material material) {
+    public void updateMaterial(Material material) {
         Material oldMaterial = materialRepository.findById(material.getId())
                 .orElseThrow(()-> new RuntimeException("Material not found"));
         oldMaterial.setName(material.getName());
         oldMaterial.setDescription(material.getDescription());
         oldMaterial.setType(material.getType());
-        return materialRepository.save(oldMaterial);
+        materialRepository.save(oldMaterial);
     }
 
     public void deleteMaterial(Material material) {
