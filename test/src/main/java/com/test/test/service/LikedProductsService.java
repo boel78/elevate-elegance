@@ -26,6 +26,11 @@ public class LikedProductsService {
         return likedProductsRepository.findByProductId(productId);
     }
 
+    public LikedProducts getLikedProductsById(String productId) {
+        return likedProductsRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+
     public void updateLikedProducts(LikedProducts likedProducts) {
         LikedProducts foundObject = likedProductsRepository.findById(likedProducts.getId())
                 .orElseThrow(() -> new RuntimeException("No Liked products found"));
