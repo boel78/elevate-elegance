@@ -8,7 +8,7 @@ import { HomePage } from "../pages/Homepage/homePage";
 function App() {
   return (
     <>
-      <h1 className="text-3xl ">Hej</h1>
+      <h1 className="text-3xl font-bold underline">Hej</h1>
       <Router>
         <Navbar />
         <Routes>
@@ -18,6 +18,6 @@ function App() {
       </Router>
     </>
   );
-}
+}  
 
 export default App;
