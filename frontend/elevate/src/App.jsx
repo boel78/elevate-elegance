@@ -8,7 +8,6 @@ import { HomePage } from "../pages/Homepage/homePage";
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hej</h1>
       <Router>
         <Navbar />
         <Routes>
