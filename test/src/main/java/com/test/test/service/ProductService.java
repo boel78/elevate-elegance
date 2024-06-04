@@ -49,4 +49,7 @@ public class ProductService {
     public List<Product> getProductsByMaterial(String materialid) {
         return productRepository.findByMaterial(materialid);
     }
+    public List<Product> getProductsByIsTopSeller(){
+        return productRepository.findByIsTopSeller(true);
+    }
 }

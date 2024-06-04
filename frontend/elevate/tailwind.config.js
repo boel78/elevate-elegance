@@ -8,15 +8,22 @@ export default {
     "./pages/Homepage/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'darkBlue': '#102C57',
+        'lightTan': '#DAC0A3',
+        'superLightTan': '#FEFAF6'
+      },
+      backgroundImage: {
+        'hero': "url('images/Heropic.png')",
+      }
+    },
     fontFamily: {
       'inter': ['Inter', 'sans-serif', 'system-ui'],
     },
-    colors: {
-      'darkBlue': '#102C57',
-      'lightTan': '#DAC0A3',
-    }
+
   },
   plugins: [],
+  
 }
 

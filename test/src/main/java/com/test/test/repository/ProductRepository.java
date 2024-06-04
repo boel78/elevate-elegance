@@ -13,4 +13,6 @@ public interface ProductRepository extends MongoRepository<Product, String> {
 
     @Query("{'name' : ?0}")
     Product findByName(String name);
+
+    List<Product> findByIsTopSeller(boolean isTopSeller);
 }

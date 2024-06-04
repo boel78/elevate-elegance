@@ -12,6 +12,7 @@ public class Product {
     private String description;
     private double price;
     private Material material;
+    private boolean isTopSeller;
 
     public String getId() {
         return id;
@@ -51,5 +52,13 @@ public class Product {
 
     public void setMaterial(Material material) {
         this.material = material;
+    }
+
+    public boolean isTopSeller() {
+        return isTopSeller;
+    }
+
+    public void setTopSeller(boolean topSeller) {
+        isTopSeller = topSeller;
     }
 }

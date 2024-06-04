@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/product")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ProductController {
 
     private final ProductService productService;
@@ -36,6 +37,11 @@ public class ProductController {
     @GetMapping("/material/{materialid}")
     public ResponseEntity<List<Product>> getProductByMaterial(@PathVariable String materialid) {
         return ResponseEntity.ok(productService.getProductsByMaterial(materialid));
+    }
+    @GetMapping("/topSeller")
+    @CrossOrigin(origins = "http://localhost:5173")
+    public ResponseEntity<List<Product>> getProductByTopSeller() {
+        return ResponseEntity.ok(productService.getProductsByIsTopSeller());
     }
 
     @PostMapping

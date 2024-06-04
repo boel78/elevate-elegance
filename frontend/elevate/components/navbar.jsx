@@ -8,27 +8,27 @@ import {
 
 export const Navbar = () => {
   return (
-    <nav className="bg-white border-solid border-2 border-black">
-      <div className="flex h-16 items-center justify-between">
+    <nav className="bg-white fixed w-full drop-shadow-md">
+      <div className="flex h-12 items-center justify-between py-3">
         <div className="">
-          <p className="text-5xl/[56px] font-extralight font-inter">
+          <p className="text-3xl font-extralight font-inter">
             Elevate Elegance
           </p>
         </div>
         <div className="flex gap-2">
           <a>
-            <MagnifyingGlass size="61" />
+            <MagnifyingGlass size="40" />
           </a>
           <a>
-            <User size="61" />
+            <User size="40" />
           </a>
           <a>
-            <ShoppingCart size="61" />
+            <ShoppingCart size="40" />
           </a>
           <div className="flex items-center">
-          <p className="text-4xl font-extralight font-inter">Menu</p>
+          <p className="text-2xl font-extralight font-inter">Menu</p>
             <a>
-              <List size="61" />
+              <List size="40" />
             </a>
           </div>
         </div>
