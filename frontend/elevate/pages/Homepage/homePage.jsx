@@ -1,6 +1,7 @@
 import  Axios from "axios"
 import { useEffect, useState } from "react"
 import { HomePageProduct } from "../../components/homePageProduct"
+import { Footer } from "../../components/footer"
 
 export const HomePage = () => {
 
@@ -85,6 +86,8 @@ Experience unparalleled support with Elevate Elegance.</p>
         <input type="text" placeholder="Email" className="w-1/3 h-8 border-solid border-2 border-black rounded"/>
         <button type="submit" className="text-white bg-darkBlue font-inter px-7 py-3 rounded-md">Subscribe</button>
       </div>
+
+      <Footer />
     </div>
   )
 }
