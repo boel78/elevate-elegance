@@ -1,11 +1,14 @@
 import  Axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { HomePageProduct } from "../../components/homePageProduct"
 import { Footer } from "../../components/footer"
+import { Sidemenu } from "../../components/sidemenu"
 
 export const HomePage = () => {
 
   const [topProducts, setTopProducts] = useState([])
+  const sideMenuActive = useContext(appContext);
+
 
   useEffect(() => {
     Axios.get("http://localhost:8080/api/product/topSeller").then((res) => {
@@ -88,6 +91,7 @@ Experience unparalleled support with Elevate Elegance.</p>
       </div>
 
       <Footer />
+      <Sidemenu />
     </div>
   )
 }
