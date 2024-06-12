@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MenuContext } from "../src/menuContext";
 import {
   User,
   ShoppingCart,
@@ -6,7 +7,14 @@ import {
   List,
 } from "@phosphor-icons/react";
 
+
 export const Navbar = () => {
+const {sideMenuActive, setSideMenuActive} = useContext(MenuContext)
+
+const handleMenu = () => {
+  setSideMenuActive(!sideMenuActive) 
+}
+
   return (
     <nav className="bg-white fixed w-full drop-shadow-md">
       <div className="flex h-12 items-center justify-between py-3">
@@ -25,7 +33,7 @@ export const Navbar = () => {
           <a>
             <ShoppingCart size="40" />
           </a>
-          <div className="flex items-center">
+          <div className="flex items-center" onClick={() =>handleMenu()}>
           <p className="text-2xl font-extralight font-inter">Menu</p>
             <a>
               <List size="40" />

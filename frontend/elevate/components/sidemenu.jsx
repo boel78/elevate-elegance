@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { MenuContext } from '../src/menuContext'
 
 export const Sidemenu = () => {
+    const {setSideMenuActive, sideMenuActive } = useContext(MenuContext)
+
+    const handleMenu = () => {
+        setSideMenuActive(!sideMenuActive)
+    }
+
   return (
     <div className='fixed right-0 top-0 w-1/4 bg-white h-5/6 border-l-2 border-b-2 border-black font-inter'>
         <div className='flex flex-col'>
             <div className='self-end pt-3 pr-3'>
-                <button className='bg-black text-white rounded-full w-7 text-xl'>X</button>
+                <button className='bg-black text-white rounded-full w-7 text-xl' onClick={()=> handleMenu()}>X</button>
             </div>
             <div className='pl-12'>
                 <div className='pt-20 text-xl'>

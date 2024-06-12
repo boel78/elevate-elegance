@@ -3,11 +3,12 @@ import { useContext, useEffect, useState } from "react"
 import { HomePageProduct } from "../../components/homePageProduct"
 import { Footer } from "../../components/footer"
 import { Sidemenu } from "../../components/sidemenu"
+import { MenuContext } from "../../src/menuContext" 
 
 export const HomePage = () => {
 
   const [topProducts, setTopProducts] = useState([])
-  const sideMenuActive = useContext(appContext);
+  const {sideMenuActive, setSideMenuActive} = useContext(MenuContext);
 
 
   useEffect(() => {
@@ -91,7 +92,7 @@ Experience unparalleled support with Elevate Elegance.</p>
       </div>
 
       <Footer />
-      <Sidemenu />
+      {sideMenuActive && <Sidemenu/>}
     </div>
   )
 }
