@@ -4,10 +4,12 @@ import com.test.test.model.Product;
 import com.test.test.service.MaterialService;
 import com.test.test.service.ProductService;
 import org.apache.coyote.Response;
+import org.bson.types.Binary;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -53,6 +55,11 @@ public class ProductController {
     @PutMapping
     public ResponseEntity updateProduct(@RequestBody Product product) {
         productService.updateProduct(product);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/updateImage/{name}")
+    public ResponseEntity updateProductImage(@PathVariable String name, @RequestBody String image) {
+        productService.updateProductImage(name, image);
         return ResponseEntity.ok().build();
     }
 

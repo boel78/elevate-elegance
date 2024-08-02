@@ -1,5 +1,6 @@
 package com.test.test.model;
 
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,8 +12,9 @@ public class Product {
     private String name;
     private String description;
     private double price;
-    private Material material;
+    private String material;
     private boolean isTopSeller;
+    private String imageLink;
 
     public String getId() {
         return id;
@@ -46,11 +48,11 @@ public class Product {
         this.price = price;
     }
 
-    public Material getMaterial() {
+    public String getMaterial() {
         return material;
     }
 
-    public void setMaterial(Material material) {
+    public void setMaterial(String material) {
         this.material = material;
     }
 
@@ -60,5 +62,13 @@ public class Product {
 
     public void setTopSeller(boolean topSeller) {
         isTopSeller = topSeller;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 }

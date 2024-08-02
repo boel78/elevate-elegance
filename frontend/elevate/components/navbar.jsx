@@ -34,7 +34,6 @@ const handleMenu = () => {
             <ShoppingCart size="40" />
           </a>
           <div className="flex items-center" onClick={() =>handleMenu()}>
-          <p className="text-2xl font-extralight font-inter">Menu</p>
             <a>
               <List size="40" />
             </a>

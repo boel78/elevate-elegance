@@ -1,8 +1,8 @@
 package com.test.test.service;
 
 import com.test.test.model.Product;
-import com.test.test.repository.MaterialRepository;
 import com.test.test.repository.ProductRepository;
+import org.bson.types.Binary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +15,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    public void updateProductImage(String name, String file){
+    Product oldProduct = productRepository.findByName(name);
+        oldProduct.setImageLink(file);
+    }
 
     public void createProduct(Product product) {
         productRepository.save(product);
