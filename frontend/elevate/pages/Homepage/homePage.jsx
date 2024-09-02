@@ -5,6 +5,7 @@ import { Footer } from "../../components/footer"
 import { Sidemenu } from "../../components/sidemenu"
 import { MenuContext } from "../../src/menuContext" 
 import { PRODUCTS } from "../../products"
+import { Link } from "react-router-dom"
 
 export const HomePage = () => {
 
@@ -24,7 +25,7 @@ export const HomePage = () => {
             <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
             <h3 className="text-3xl">"Sophistication Redefined,</h3>
             <h3 className="text-3xl mb-12">Style Elevated"</h3>
-            <button type="button" className="z-200 bottom-1/3 left-12 bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white">To Products</button>
+            <Link to="/cataloge"><button type="button" className="z-200 bottom-1/3 left-12 bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white">To Products</button></Link>
          </div>
       </div>
       <div className="flex-col pb-[284px]">

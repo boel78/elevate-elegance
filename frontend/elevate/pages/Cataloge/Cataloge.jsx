@@ -5,15 +5,17 @@ import { MenuContext } from '../../src/menuContext'
 import Axios from 'axios'
 import { HomePageProduct } from '../../components/homePageProduct'
 import { Sidemenu } from '../../components/sidemenu'
+import { PRODUCTS } from '../../products'
 
 export const Cataloge = () => {
     const {filteredProducts, sideMenuActive, setSideMenuActive} = useContext(MenuContext)
-    const [products, setProducts] = useState([{}])
+    const [products, setProducts] = useState([])
 
     useEffect(() => {
-        Axios.get("http://localhost:8080/api/product").then((res) => {
+        /*Axios.get("http://localhost:8080/api/product").then((res) => {
             setProducts(res.data)
-        })
+        })*/
+       setProducts(PRODUCTS)
     }, [])
 
   return (
@@ -29,7 +31,7 @@ export const Cataloge = () => {
     </div>
     <div>
         {products.map((element) => (
-            <HomePageProduct key={element._id} data={element}/>
+            <HomePageProduct key={element.id} data={element}/>
         )
         )}
     </div>

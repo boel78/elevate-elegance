@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { PRODUCTS } from '../../products';
 import { MenuContext } from '../../src/menuContext';
 import { HomePageProduct } from '../../components/homePageProduct';
+import { Sidemenu } from '../../components/sidemenu';
 
 export const ProductPage = () => {
 
@@ -10,7 +11,7 @@ export const ProductPage = () => {
 
     const [product, setProduct] = useState()
 
-    const {cart, setCart} = useContext(MenuContext)
+    const {cart, setCart, sideMenuActive} = useContext(MenuContext)
     
     useEffect(() =>{
         const product = PRODUCTS.find((product) => product.id === parseInt(id));
@@ -52,6 +53,7 @@ export const ProductPage = () => {
                 ))}
             </div>
         </div>
+        {sideMenuActive && <Sidemenu/>}
     </>
   )
 }

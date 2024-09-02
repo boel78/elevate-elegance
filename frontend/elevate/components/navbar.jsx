@@ -20,7 +20,7 @@ const handleMenu = () => {
     <nav className="bg-white fixed w-full drop-shadow-md">
       <div className="flex h-12 items-center justify-between py-3">
         <div className="">
-          <Link to={""}>
+          <Link to={"/"}>
             <p className="text-3xl font-extralight font-inter pl-2">
               Elevate Elegance
             </p>

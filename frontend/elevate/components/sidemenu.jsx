@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { MenuContext } from '../src/menuContext'
+import { Link } from 'react-router-dom'
 
 export const Sidemenu = () => {
     const {setSideMenuActive, sideMenuActive } = useContext(MenuContext)
@@ -23,7 +24,7 @@ export const Sidemenu = () => {
                     <p>Clothing</p>
                 </div >
                 <div className='underline pt-8 text-md'>
-                    <p>Sign in</p>
+                    <Link to={"/Login"}><p>Sign in</p></Link>
                     <p>My Orders</p>
                     <p>Contact Us</p>
                 </div>
