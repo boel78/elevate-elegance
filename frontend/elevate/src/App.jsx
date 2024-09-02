@@ -11,6 +11,7 @@ import { Login } from "../pages/Login/Login";
 
 function App() {
   const [sideMenuActive, setSideMenuActive] = useState(false);
+  const [cartMenuActive, setCartMenuActive] = useState(false);
   const appContext = createContext();
   return (
     <>

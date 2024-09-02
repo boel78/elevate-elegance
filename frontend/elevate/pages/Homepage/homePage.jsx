@@ -6,11 +6,12 @@ import { Sidemenu } from "../../components/sidemenu"
 import { MenuContext } from "../../src/menuContext" 
 import { PRODUCTS } from "../../products"
 import { Link } from "react-router-dom"
+import { Cart } from "../../components/cart"
 
 export const HomePage = () => {
 
   const [topProducts, setTopProducts] = useState([])
-  const {sideMenuActive, setSideMenuActive} = useContext(MenuContext);
+  const {sideMenuActive, setSideMenuActive, cartMenuActive} = useContext(MenuContext);
 
 
   useEffect(() => {
@@ -95,6 +96,7 @@ Experience unparalleled support with Elevate Elegance.</p>
 
       <Footer />
       {sideMenuActive && <Sidemenu/>}
+      {cartMenuActive && <Cart/>}
     </div>
   )
 }

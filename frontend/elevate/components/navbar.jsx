@@ -10,10 +10,17 @@ import {
 
 
 export const Navbar = () => {
-const {sideMenuActive, setSideMenuActive, cart} = useContext(MenuContext)
+const {sideMenuActive, setSideMenuActive, cart, setCartMenuActive, cartMenuActive} = useContext(MenuContext)
 
 const handleMenu = () => {
+  setCartMenuActive(false)
   setSideMenuActive(!sideMenuActive) 
+}
+
+const handleCartMenu = () => {
+  console.log(cartMenuActive)
+  setSideMenuActive(false)
+  setCartMenuActive(!cartMenuActive)
 }
 
   return (
@@ -33,7 +40,7 @@ const handleMenu = () => {
           <a>
             <User size="40" />
           </a>
-          <a className="flex">
+          <a className="flex" onClick={handleCartMenu}>
             <ShoppingCart size="40" />
             {cart.length > 0 && 
             <div className='flex justify-center bg-red-600 rounded-full h-5 w-5 '>
