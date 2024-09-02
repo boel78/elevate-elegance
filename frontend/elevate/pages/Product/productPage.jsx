@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom';
 import { PRODUCTS } from '../../products';
 import { MenuContext } from '../../src/menuContext';
+import { HomePageProduct } from '../../components/homePageProduct';
 
 export const ProductPage = () => {
 
@@ -40,7 +41,15 @@ export const ProductPage = () => {
                 <button onClick={addToCart} className='bg-slate-500'>Add to cart</button>
                 <p>Description and fitting</p>
                 <p>Material</p>
-                <p>Care Advice</p>
+                <p>Care advice</p>
+            </div>
+        </div>
+        <div className='flex flex-col items-center'>
+            <p>You may also like</p>
+            <div className='flex justify-center'>
+                {PRODUCTS.map((element) => (
+                    <HomePageProduct key={element.id} data={element}/>
+                ))}
             </div>
         </div>
     </>
