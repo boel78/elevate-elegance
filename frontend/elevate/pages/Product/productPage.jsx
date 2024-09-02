@@ -27,7 +27,7 @@ export const ProductPage = () => {
 
   return (
     <>
-        <div className='flex pt-20'>
+        <div className='flex pt-20 justify-between'>
             <div className='flex-col'>
                 <h2>breadcrumb</h2>
                 <img src={product.image}/>
@@ -37,7 +37,10 @@ export const ProductPage = () => {
                 <p>Price: {product.price}</p>
                 <p>Size</p>
                 <p>SizeGuide</p>
-                <button onClick={addToCart}>Add to cart</button>
+                <button onClick={addToCart} className='bg-slate-500'>Add to cart</button>
+                <p>Description and fitting</p>
+                <p>Material</p>
+                <p>Care Advice</p>
             </div>
         </div>
     </>
