@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom';
 import { PRODUCTS } from '../../products';
+import { MenuContext } from '../../src/menuContext';
 
 export const ProductPage = () => {
 
     const { id } = useParams();
 
     const [product, setProduct] = useState()
+
+    const {cart, setCart} = useContext(MenuContext)
     
     useEffect(() =>{
         const product = PRODUCTS.find((product) => product.id === parseInt(id));
         setProduct(product)
         console.log(product)
     }, [id])
+
+    const addToCart = () => {
+        setCart([...cart, product])
+    }
 
     if (!product) {
         return <p>Laddar produkt...</p>;
@@ -30,7 +37,7 @@ export const ProductPage = () => {
                 <p>Price: {product.price}</p>
                 <p>Size</p>
                 <p>SizeGuide</p>
-                <button>Add to cart</button>
+                <button onClick={addToCart}>Add to cart</button>
             </div>
         </div>
     </>
