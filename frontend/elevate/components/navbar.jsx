@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MenuContext } from "../src/menuContext";
+import { Link } from "react-router-dom";
 import {
   User,
   ShoppingCart,
@@ -19,9 +20,11 @@ const handleMenu = () => {
     <nav className="bg-white fixed w-full drop-shadow-md">
       <div className="flex h-12 items-center justify-between py-3">
         <div className="">
-          <p className="text-3xl font-extralight font-inter pl-2">
-            Elevate Elegance
-          </p>
+          <Link to={""}>
+            <p className="text-3xl font-extralight font-inter pl-2">
+              Elevate Elegance
+            </p>
+          </Link>
         </div>
         <div className="flex gap-2">
           <a>
