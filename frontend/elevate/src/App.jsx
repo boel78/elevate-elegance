@@ -6,6 +6,7 @@ import { Navbar } from "../components/navbar";
 import { HomePage } from "../pages/Homepage/homePage";
 import { MenuContextProvider } from "./menuContext";
 import { Cataloge } from "../pages/Cataloge/Cataloge";
+import { ProductPage } from "../pages/Product/productPage";
 
 function App() {
   const [sideMenuActive, setSideMenuActive] = useState(false);
@@ -19,6 +20,7 @@ function App() {
               <Route path="/" element = {<HomePage/>} />
               <Route path="/cart" />
               <Route path="/cataloge" element = {<Cataloge />} />
+              <Route path="/Product/:id" element = {<ProductPage />} />
             </Routes>
           </Router>
         </MenuContextProvider>

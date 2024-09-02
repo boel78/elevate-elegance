@@ -4,6 +4,7 @@ import { HomePageProduct } from "../../components/homePageProduct"
 import { Footer } from "../../components/footer"
 import { Sidemenu } from "../../components/sidemenu"
 import { MenuContext } from "../../src/menuContext" 
+import { PRODUCTS } from "../../products"
 
 export const HomePage = () => {
 
@@ -12,9 +13,7 @@ export const HomePage = () => {
 
 
   useEffect(() => {
-    Axios.get("http://localhost:8080/api/product/topSeller").then((res) => {
-      setTopProducts(res.data)
-    })
+      setTopProducts(PRODUCTS)
   }, [])
 
 
@@ -32,7 +31,9 @@ export const HomePage = () => {
         <p className="text-[80px] underline text-darkBlue text-center pb-[131px] pt-[54px]">Best Sellers</p>
         <div className="flex justify-center gap-3 w-full">
           {topProducts.map((element) => (
-            <HomePageProduct key={element._id} data={element}/>
+            element.isTopSeller &&
+            <HomePageProduct key={element.id} data={element}/>
+
           ))}
           {/*<img src="/images/ClassicSophistication.jpeg" className="w-1/5 h-auto rounded-xl border-solid border-2 border-black"/>
           <img src="/images/EternalGrace.jpeg" className="w-1/5 h-auto rounded-xl border-solid border-2 border-black"/>

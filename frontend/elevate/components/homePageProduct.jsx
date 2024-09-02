@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 export const HomePageProduct = (props) => {
-    const [img, setImg] = useState("")
-    const product = props.data
-    console.log(product)
-
-    let imgLink = "https://drive.usercontent.google.com/download?id=" + product.imageLink
-  
+    const [img, setImg] = useState()
+    
     useEffect(() => {
-      setImg(imgLink)
+      console.log(props)
+      setImg(props.data.image)
     }, [])
 
   return (
@@ -17,11 +14,11 @@ export const HomePageProduct = (props) => {
         <div>
             <img />
             <div>
-                <h2>{product.name}</h2>
-                <p>{product.description}</p>
-                <p>{product.price}</p>
+                <h2>{props.data.name}</h2>
+                <p>{props.data.description}</p>
+                <p>{props.data.price} SEK</p>
                 <img src={img}/>
-                <button>To Product</button>
+                <button className='text-white bg-blue-950'>To Product</button>
                 <button>Add to cart</button>
             </div>
         </div>

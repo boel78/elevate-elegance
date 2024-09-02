@@ -30,8 +30,11 @@ const handleMenu = () => {
           <a>
             <User size="40" />
           </a>
-          <a>
+          <a className="flex">
             <ShoppingCart size="40" />
+            <div className='flex justify-center bg-red-600 rounded-full h-5 w-5 '>
+              <p className='text-yellow-100'>1</p>
+            </div>
           </a>
           <div className="flex items-center" onClick={() =>handleMenu()}>
             <a>
