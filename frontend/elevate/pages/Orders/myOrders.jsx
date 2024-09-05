@@ -31,6 +31,7 @@ export const MyOrders = () => {
                   )
                 );
               })}
+              <p>Arriving: {order.eta}</p>
             </div>
             <div className="flex flex-col">
               <button className="bg-slate-600">Track order</button>
