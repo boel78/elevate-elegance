@@ -10,17 +10,25 @@ import {
 
 
 export const Navbar = () => {
-const {sideMenuActive, setSideMenuActive, cart, setCartMenuActive, cartMenuActive} = useContext(MenuContext)
+const {sideMenuActive, setSideMenuActive, cart, setCartMenuActive, cartMenuActive, profileMenuActive, setProfileMenuActive} = useContext(MenuContext)
 
 const handleMenu = () => {
   setCartMenuActive(false)
+  setProfileMenuActive(false)
   setSideMenuActive(!sideMenuActive) 
 }
 
 const handleCartMenu = () => {
   console.log(cartMenuActive)
   setSideMenuActive(false)
+  setProfileMenuActive(false)
   setCartMenuActive(!cartMenuActive)
+}
+
+const handleProfileMenu = () => {
+  setCartMenuActive(false)
+  setSideMenuActive(false)
+  setProfileMenuActive(!profileMenuActive)
 }
 
   return (
@@ -37,7 +45,7 @@ const handleCartMenu = () => {
           <a>
             <MagnifyingGlass size="40" />
           </a>
-          <a>
+          <a onClick={handleProfileMenu}>
             <User size="40" />
           </a>
           <a className="flex" onClick={handleCartMenu}>

@@ -7,11 +7,12 @@ import { MenuContext } from "../../src/menuContext"
 import { PRODUCTS } from "../../products"
 import { Link } from "react-router-dom"
 import { Cart } from "../../components/cart"
+import { Profile } from "../../components/profile"
 
 export const HomePage = () => {
 
   const [topProducts, setTopProducts] = useState([])
-  const {sideMenuActive, setSideMenuActive, cartMenuActive} = useContext(MenuContext);
+  const {sideMenuActive, setSideMenuActive, cartMenuActive, profileMenuActive} = useContext(MenuContext);
 
 
   useEffect(() => {
@@ -97,6 +98,7 @@ Experience unparalleled support with Elevate Elegance.</p>
       <Footer />
       {sideMenuActive && <Sidemenu/>}
       {cartMenuActive && <Cart/>}
+      {profileMenuActive && <Profile />}
     </div>
   )
 }
