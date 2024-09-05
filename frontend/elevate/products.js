@@ -18,6 +18,6 @@ export const PRODUCTS = [
         price: 34.5,
         isTopSeller: true,
         image: product2,
-        category: "Clothing"
+        category: "Jewellery"
     }
 ]
