@@ -12,7 +12,7 @@ import { ArrowDown } from "@phosphor-icons/react";
 export const Cataloge = () => {
   const { Category } = useParams();
 
-  const { filteredProducts, sideMenuActive } = useContext(MenuContext);
+  const { sideMenuActive } = useContext(MenuContext);
   const [products, setProducts] = useState([]);
   const [showCategory, setShowCategory] = useState(false);
 
@@ -38,6 +38,9 @@ export const Cataloge = () => {
   };
 
   const handleSetCategory = (category) => {
+    Category == category ?
+    navigate(`/cataloge/`)
+    :
     navigate(`/cataloge/${category}`)
     setShowCategory(false)
   }
@@ -70,13 +73,13 @@ export const Cataloge = () => {
                   <li onClick={() => handleSetCategory("Clothing")}>
                     Clothing
                   </li>
-                  <li>
+                  <li onClick={() => handleSetCategory("Jewellery")}>
                     Jewellery
                   </li>
-                  <li>
+                  <li onClick={() => handleSetCategory("Bags")}>
                     Bags
                   </li>
-                  <li>
+                  <li onClick={() => handleSetCategory("Shoes")}>
                     Shoes
                   </li>
               </ul>

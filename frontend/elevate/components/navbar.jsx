@@ -20,6 +20,7 @@ export const Navbar = () => {
     currentUser,
     searchMenuActive,
     setSearchMenuActive,
+    noMenus
   } = useContext(MenuContext);
 
   const handleMenu = () => {
@@ -54,7 +55,7 @@ export const Navbar = () => {
   return (
     <nav className="bg-white fixed w-full drop-shadow-md">
       <div className="flex h-12 items-center justify-between py-3">
-        <div className="">
+        <div onClick={noMenus}>
           <Link to={"/"}>
             <p className="text-3xl font-extralight font-inter pl-2">
               Elevate Elegance
