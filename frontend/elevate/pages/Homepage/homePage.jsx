@@ -46,17 +46,21 @@ export const HomePage = () => {
         </div>
       </div>
       <div className="flex flex-wrap w-full">
-        <div className="w-1/2 h-1/4">
-          <img src="/images/Effortless Charm.jpeg" className="h-full w-full"/>
+        <div className="w-1/2 h-1/4 relative" >
+          <img src="/images/Effortless Charm.jpeg" className="h-full w-full object-cover"/>
+          <button className='absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center'>Shop Jewellery</button>
         </div>
-        <div className="w-1/2 h-1/4">
+        <div className="w-1/2 h-1/4 relative">
           <img src="/images/Modern Classic.jpeg" className="h-full w-full"/>
+          <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">Shop Bags</button>
         </div>
-        <div className="w-1/2 h-1/4">
+        <div className="w-1/2 h-1/4 relative">
           <img src="/images/Sculpted Sophistication.jpeg" className="h-full w-full"/>
+          <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">Shop Shoes</button>
         </div>
-        <div className="w-1/2 h-1/4">
+        <div className="w-1/2 h-1/4 relative">
           <img src="/images/Regal Splendor.jpeg" className="h-full w-full"/>
+          <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">Shop Clothing</button>
         </div>
       </div>
 

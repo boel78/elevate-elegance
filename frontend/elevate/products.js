@@ -8,7 +8,8 @@ export const PRODUCTS = [
         description: "Scarf venne riktigt",
         price: 25.5,
         isTopSeller: true,
-        image: product1
+        image: product1,
+        category: "Clothing"
     },
     {
         id: 2,
@@ -16,6 +17,7 @@ export const PRODUCTS = [
         description: "Hatt typ",
         price: 34.5,
         isTopSeller: true,
-        image: product2
+        image: product2,
+        category: "Clothing"
     }
 ]
