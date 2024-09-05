@@ -9,6 +9,7 @@ import { Cataloge } from "../pages/Cataloge/Cataloge";
 import { ProductPage } from "../pages/Product/productPage";
 import { Login } from "../pages/Login/Login";
 import { MyOrders } from "../pages/Orders/myOrders";
+import { SavedItems } from "../pages/savedItems/savedItems";
 
 function App() {
   const [sideMenuActive, setSideMenuActive] = useState(false);
@@ -27,6 +28,7 @@ function App() {
               <Route path="/Product/:id" element = {<ProductPage />} />
               <Route path="/Login" element = {<Login />}/>
               <Route path="/Orders" element = {<MyOrders />}/>
+              <Route path="SavedItems" element={<SavedItems />}/>
             </Routes>
           </Router>
         </MenuContextProvider>
