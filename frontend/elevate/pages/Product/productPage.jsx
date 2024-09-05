@@ -11,7 +11,11 @@ export const ProductPage = () => {
 
     const [product, setProduct] = useState()
 
-    const {cart, setCart, sideMenuActive} = useContext(MenuContext)
+    const {cart, setCart, sideMenuActive, noMenus} = useContext(MenuContext)
+
+    useEffect(() => {
+        noMenus()
+    },[])
     
     useEffect(() =>{
         const product = PRODUCTS.find((product) => product.id === parseInt(id));
@@ -26,6 +30,8 @@ export const ProductPage = () => {
     if (!product) {
         return <p>Laddar produkt...</p>;
       }
+
+      
 
   return (
     <>

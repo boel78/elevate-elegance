@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { USERS } from "../../users";
 import { MenuContext } from "../../src/menuContext";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,11 @@ export const Login = () => {
         alert("Check your login details");
       }
   };
+
+  useEffect(() => {
+    noMenus()
+  },[])
+
   return (
     <div className="pt-20">
       <div className="flex flex-col">

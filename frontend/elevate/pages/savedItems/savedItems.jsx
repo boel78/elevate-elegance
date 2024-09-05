@@ -5,7 +5,7 @@ import { PRODUCTS } from '../../products'
 
 export const SavedItems = () => {
 
-    const { currentUser } = useContext(MenuContext)
+    const { currentUser, noMenus } = useContext(MenuContext)
     const [likedProducts, setLikedProducts] = useState([])
 
     useEffect(() => {
@@ -17,7 +17,8 @@ export const SavedItems = () => {
     },[currentUser])
 
     useEffect(() => {
-    },[likedProducts])
+        noMenus()
+    },[])
   return (
     <div className='pt-20'>
         {likedProducts.map((likedProduct) => (

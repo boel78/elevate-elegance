@@ -4,13 +4,17 @@ import { MenuContext } from "../../src/menuContext";
 import { PRODUCTS } from "../../products";
 
 export const MyOrders = () => {
-  const { currentUser } = useContext(MenuContext);
+  const { currentUser, noMenus } = useContext(MenuContext);
   const [userOrders, setUserOrders] = useState([]);
 
   useEffect(() => {
     const orders = ORDERS.filter((order) => currentUser.id == order.u_id);
     setUserOrders(orders);
   }, [currentUser]);
+
+  useEffect(() => {
+    noMenus()
+  },[])
 
   return (
     <div>

@@ -12,14 +12,14 @@ export const Sidemenu = () => {
             <div className='pl-12'>
                 <div className='pt-20 text-xl'>
                     <p>New in</p>
-                    <p>Handbags</p>
-                    <p>Jewelry</p>
-                    <p>Shoes</p>
-                    <p>Clothing</p>
+                    <Link to='/cataloge/Bags'><p>Handbags</p></Link>
+                    <Link to='/cataloge/Jewellery'><p>Jewellery</p></Link>
+                    <Link to='/cataloge/Shoes'><p>Shoes</p></Link>
+                    <Link to='/cataloge/Clothing'><p>Clothing</p></Link>
                 </div >
                 <div className='underline pt-8 text-md'>
                     <Link to={"/Login"}><p>Sign in</p></Link>
-                    <p>My Orders</p>
+                    <Link to={"/Orders"}><p>My Orders</p></Link>
                     <p>Contact Us</p>
                 </div>
             </div>
