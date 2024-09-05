@@ -8,11 +8,12 @@ import { PRODUCTS } from "../../products"
 import { Link } from "react-router-dom"
 import { Cart } from "../../components/cart"
 import { Profile } from "../../components/profile"
+import { Search } from "../../components/search"
 
 export const HomePage = () => {
 
   const [topProducts, setTopProducts] = useState([])
-  const {sideMenuActive, cartMenuActive, profileMenuActive} = useContext(MenuContext);
+  const {sideMenuActive, cartMenuActive, profileMenuActive, searchMenuActive} = useContext(MenuContext);
 
 
   useEffect(() => {
@@ -99,6 +100,7 @@ Experience unparalleled support with Elevate Elegance.</p>
       {sideMenuActive && <Sidemenu/>}
       {cartMenuActive && <Cart/>}
       {profileMenuActive && <Profile />}
+      {searchMenuActive && <Search />}
     </div>
   )
 }

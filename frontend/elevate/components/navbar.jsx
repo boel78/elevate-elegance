@@ -8,29 +8,48 @@ import {
   List,
 } from "@phosphor-icons/react";
 
-
 export const Navbar = () => {
-const {sideMenuActive, setSideMenuActive, cart, setCartMenuActive, cartMenuActive, profileMenuActive, setProfileMenuActive, currentUser, noMenus} = useContext(MenuContext)
+  const {
+    sideMenuActive,
+    setSideMenuActive,
+    cart,
+    setCartMenuActive,
+    cartMenuActive,
+    profileMenuActive,
+    setProfileMenuActive,
+    currentUser,
+    searchMenuActive,
+    setSearchMenuActive,
+  } = useContext(MenuContext);
 
-const handleMenu = () => {
-  setCartMenuActive(false)
-  setProfileMenuActive(false)
-  setSideMenuActive(!sideMenuActive) 
-}
+  const handleMenu = () => {
+    setCartMenuActive(false);
+    setProfileMenuActive(false);
+    setSearchMenuActive(false);
+    setSideMenuActive(!sideMenuActive);
+  };
 
-const handleCartMenu = () => {
-  console.log(cartMenuActive)
-  setSideMenuActive(false)
-  setProfileMenuActive(false)
-  setCartMenuActive(!cartMenuActive)
-}
+  const handleCartMenu = () => {
+    console.log(cartMenuActive);
+    setSideMenuActive(false);
+    setProfileMenuActive(false);
+    setSearchMenuActive(false);
+    setCartMenuActive(!cartMenuActive);
+  };
 
-const handleProfileMenu = () => {
-  setCartMenuActive(false)
-  setSideMenuActive(false)
-  setProfileMenuActive(!profileMenuActive)
-  console.log(currentUser)
-}
+  const handleProfileMenu = () => {
+    setCartMenuActive(false);
+    setSideMenuActive(false);
+    setSearchMenuActive(false);
+    setProfileMenuActive(!profileMenuActive);
+    console.log(currentUser);
+  };
+  const handleSearchMenu = () => {
+    setCartMenuActive(false);
+    setSideMenuActive(false);
+    setProfileMenuActive(false);
+    setSearchMenuActive(!searchMenuActive);
+  };
 
   return (
     <nav className="bg-white fixed w-full drop-shadow-md">
@@ -43,7 +62,7 @@ const handleProfileMenu = () => {
           </Link>
         </div>
         <div className="flex gap-2">
-          <a>
+          <a onClick={handleSearchMenu}>
             <MagnifyingGlass size="40" />
           </a>
           <a onClick={handleProfileMenu}>
@@ -51,12 +70,13 @@ const handleProfileMenu = () => {
           </a>
           <a className="flex" onClick={handleCartMenu}>
             <ShoppingCart size="40" />
-            {cart.length > 0 && 
-            <div className='flex justify-center bg-red-600 rounded-full h-5 w-5 '>
-              <p className='text-yellow-100'>{cart.length}</p>
-            </div>}
+            {cart.length > 0 && (
+              <div className="flex justify-center bg-red-600 rounded-full h-5 w-5 ">
+                <p className="text-yellow-100">{cart.length}</p>
+              </div>
+            )}
           </a>
-          <div className="flex items-center" onClick={() =>handleMenu()}>
+          <div className="flex items-center" onClick={() => handleMenu()}>
             <a>
               <List size="40" />
             </a>
