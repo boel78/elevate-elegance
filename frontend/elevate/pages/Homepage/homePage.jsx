@@ -12,7 +12,7 @@ import { Profile } from "../../components/profile"
 export const HomePage = () => {
 
   const [topProducts, setTopProducts] = useState([])
-  const {sideMenuActive, setSideMenuActive, cartMenuActive, profileMenuActive} = useContext(MenuContext);
+  const {sideMenuActive, cartMenuActive, profileMenuActive} = useContext(MenuContext);
 
 
   useEffect(() => {

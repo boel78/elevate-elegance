@@ -1,23 +1,26 @@
 import React, { useContext, useState } from "react";
 import { USERS } from "../../users";
 import { MenuContext } from "../../src/menuContext";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [nameInput, setNameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const { setCurrentUser, currentUser } = useContext(MenuContext);
+  const { setCurrentUser, noMenus} = useContext(MenuContext);
+  const navigate = useNavigate()
 
   const handleLogin = () => {
+    let foundUser = false;
     USERS.map((user) => {
-      if (user.username == nameInput) {
-        if (user.password == passwordInput) {
+      if (user.username == nameInput && user.password == passwordInput) {
           setCurrentUser(user);
+          foundUser = true;
           alert("Welcome, " + user.username);
+          navigate('/')
+          noMenus()
         }
-      }
-      
-    });
-    if (currentUser === null) {
+      });
+    if (!foundUser) {
         alert("Check your login details");
       }
   };

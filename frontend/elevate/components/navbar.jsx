@@ -10,7 +10,7 @@ import {
 
 
 export const Navbar = () => {
-const {sideMenuActive, setSideMenuActive, cart, setCartMenuActive, cartMenuActive, profileMenuActive, setProfileMenuActive} = useContext(MenuContext)
+const {sideMenuActive, setSideMenuActive, cart, setCartMenuActive, cartMenuActive, profileMenuActive, setProfileMenuActive, currentUser, noMenus} = useContext(MenuContext)
 
 const handleMenu = () => {
   setCartMenuActive(false)
@@ -29,6 +29,7 @@ const handleProfileMenu = () => {
   setCartMenuActive(false)
   setSideMenuActive(false)
   setProfileMenuActive(!profileMenuActive)
+  console.log(currentUser)
 }
 
   return (
