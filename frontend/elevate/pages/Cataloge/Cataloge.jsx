@@ -8,11 +8,12 @@ import { Sidemenu } from "../../components/sidemenu";
 import { PRODUCTS } from "../../products";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowDown } from "@phosphor-icons/react";
+import { Layout } from "../../components/layout";
 
 export const Cataloge = () => {
   const { Category } = useParams();
 
-  const { sideMenuActive, noMenus } = useContext(MenuContext);
+  const { noMenus } = useContext(MenuContext);
   const [products, setProducts] = useState([]);
   const [showCategory, setShowCategory] = useState(false);
 
@@ -51,8 +52,7 @@ export const Cataloge = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="bg-lightTan flex flex-col gap-20">
+      <Layout>
         <div className="flex justify-end">
           <div className="flex pt-20 flex-col relative">
               <div className="flex"> 
@@ -93,12 +93,10 @@ export const Cataloge = () => {
         </div>
         <div>
           {products.map((element) => (
-            <HomePageProduct key={element.id} data={element} />
+            <img src={element.image} key={element.id}/>
           ))}
         </div>
-      </div>
-      <Footer />
-      {sideMenuActive && <Sidemenu />}
+      </Layout>
     </>
   );
 };

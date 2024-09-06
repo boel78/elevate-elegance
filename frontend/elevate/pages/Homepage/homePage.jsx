@@ -1,24 +1,15 @@
 import Axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { HomePageProduct } from "../../components/homePageProduct";
-import { Footer } from "../../components/footer";
-import { Sidemenu } from "../../components/sidemenu";
 import { MenuContext } from "../../src/menuContext";
 import { PRODUCTS } from "../../products";
 import { Link } from "react-router-dom";
-import { Cart } from "../../components/cart";
-import { Profile } from "../../components/profile";
-import { Search } from "../../components/search";
+import { Layout } from "../../components/layout";
 
 export const HomePage = () => {
   const [topProducts, setTopProducts] = useState([]);
-  const [focusedObject, setFocusedObject] = useState(null);
   const {
-    sideMenuActive,
-    cartMenuActive,
-    profileMenuActive,
-    searchMenuActive,
     focusingHomepageObject,
+    setFocusedObject,
     setFocusingHomepageObject,
   } = useContext(MenuContext);
 
@@ -32,7 +23,7 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="flex-col bg-superLightTan">
+    <Layout>
       <div className="z-200 flex  flex-col justify-center pb-60 text-white bg-hero w-full h-[790px]">
         <div className="pl-12">
           <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
@@ -185,13 +176,6 @@ export const HomePage = () => {
           Subscribe
         </button>
       </div>
-
-      <Footer />
-      {sideMenuActive && <Sidemenu />}
-      {cartMenuActive && <Cart />}
-      {profileMenuActive && <Profile />}
-      {searchMenuActive && <Search />}
-      {focusingHomepageObject && <HomePageProduct data={focusedObject} />}
-    </div>
+      </Layout>
   );
 };

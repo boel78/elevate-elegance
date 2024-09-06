@@ -1,16 +1,21 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import { MenuContext } from "../src/menuContext";
 
 export const HomePageProduct = (props) => {
   const [img, setImg] = useState();
-  const { cart, setCart, setFocusingHomepageObject, focusingHomepageObject } =
+  const { cart, setCart, setFocusingHomepageObject} =
     useContext(MenuContext);
+
 
   useEffect(() => {
     setImg(props.data.image);
-  }, []);
+  }, [props.data]);
+
+  
+
+
 
   const addToCart = () => {
     const product = props;
@@ -36,8 +41,10 @@ export const HomePageProduct = (props) => {
             <p className="text-lg">{props.data.price} SEK</p>
             <div className="flex flex-col items-center gap-10">
               <Link to={`/product/${props.data.id}`}>
-                <button className="text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white z-"
-                onClick={() => setFocusingHomepageObject(false)}>
+                <button
+                  className="text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white z-"
+                  onClick={() => setFocusingHomepageObject(false)}
+                >
                   To Product
                 </button>
               </Link>

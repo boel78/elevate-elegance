@@ -12,9 +12,6 @@ import { MyOrders } from "../pages/Orders/myOrders";
 import { SavedItems } from "../pages/savedItems/savedItems";
 
 function App() {
-  const [sideMenuActive, setSideMenuActive] = useState(false);
-  const [cartMenuActive, setCartMenuActive] = useState(false);
-  const appContext = createContext();
   return (
     <>
         <MenuContextProvider>

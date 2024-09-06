@@ -9,6 +9,7 @@ export const MenuContextProvider = (props) => {
   const [profileMenuActive, setProfileMenuActive] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState("Clothing");
   const [focusingHomepageObject, setFocusingHomepageObject] = useState(false)
+  const [focusedObject, setFocusedObject] = useState(null)
   const [currentUser, setCurrentUser] = useState(null);
   const [cart, setCart] = useState([]);
   const noMenus = () => {
@@ -33,7 +34,9 @@ export const MenuContextProvider = (props) => {
     setSearchMenuActive,
     searchMenuActive,
     focusingHomepageObject,
-    setFocusingHomepageObject
+    setFocusingHomepageObject,
+    focusedObject,
+    setFocusedObject
   };
   return (
     <MenuContext.Provider value={contextValue}>
