@@ -61,7 +61,7 @@ export const HomePage = () => {
           <img src="/images/Graceful Glamour.jpeg" className="w-1/5 h-auto rounded-xl border-solid border-2 border-black"/>*/}
         </div>
       </div>
-      <div className="flex flex-wrap w-full">
+      <div className="flex flex-wrap 2xl:flex-nowrap w-full h-1/2">
         <div className="w-1/2 h-1/4 relative">
           <img
             src="/images/Effortless Charm.jpeg"
