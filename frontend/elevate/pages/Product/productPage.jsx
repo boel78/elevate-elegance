@@ -4,6 +4,7 @@ import { PRODUCTS } from '../../products';
 import { MenuContext } from '../../src/menuContext';
 import { HomePageProduct } from '../../components/homePageProduct';
 import { Sidemenu } from '../../components/sidemenu';
+import { Layout } from '../../components/layout';
 
 export const ProductPage = () => {
 
@@ -11,7 +12,7 @@ export const ProductPage = () => {
 
     const [product, setProduct] = useState()
 
-    const {cart, setCart, sideMenuActive, noMenus} = useContext(MenuContext)
+    const {cart, setCart, sideMenuActive, noMenus, setFocusingHomepageObject, focusingHomepageObject, setFocusedObject} = useContext(MenuContext)
 
     useEffect(() => {
         noMenus()
@@ -20,7 +21,6 @@ export const ProductPage = () => {
     useEffect(() =>{
         const product = PRODUCTS.find((product) => product.id === parseInt(id));
         setProduct(product)
-        console.log(product)
     }, [id])
 
     const addToCart = () => {
@@ -31,10 +31,15 @@ export const ProductPage = () => {
         return <p>Laddar produkt...</p>;
       }
 
+      const handleFocusObject = (element) => {
+        setFocusingHomepageObject(!focusingHomepageObject);
+        setFocusedObject(element);
+      };
+
       
 
   return (
-    <>
+    <Layout>
         <div className='flex pt-20 justify-between'>
             <div className='flex-col'>
                 <h2>breadcrumb</h2>
@@ -54,12 +59,18 @@ export const ProductPage = () => {
         <div className='flex flex-col items-center'>
             <p>You may also like</p>
             <div className='flex justify-center'>
-                {PRODUCTS.map((element) => (
-                    <HomePageProduct key={element.id} data={element}/>
-                ))}
+                {PRODUCTS.map(
+            (element) =>
+              element.isTopSeller && (
+                <img
+                  src={element.image}
+                  key={element.id}
+                  className="rounded-lg max-w-64"
+                  onClick={() => handleFocusObject(element)}
+                />
+          ))}
             </div>
         </div>
-        {sideMenuActive && <Sidemenu/>}
-    </>
+    </Layout>
   )
 }
