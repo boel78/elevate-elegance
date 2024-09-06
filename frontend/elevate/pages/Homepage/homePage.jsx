@@ -50,7 +50,7 @@ export const HomePage = () => {
                 <img
                   src={element.image}
                   key={element.id}
-                  className="rounded-lg max-w-64"
+                  className="rounded-lg max-w-44 lg:max-w-64 "
                   onClick={() => handleFocusObject(element)}
                 />
               )
