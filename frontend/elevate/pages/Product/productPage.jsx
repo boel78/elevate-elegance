@@ -42,6 +42,7 @@ export const ProductPage = () => {
 
   const addToCart = () => {
     setCart([...cart, product]);
+    console.log(cart)
   };
 
   if (!product) {

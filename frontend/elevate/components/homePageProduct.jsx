@@ -1,28 +1,20 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Link, } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MenuContext } from "../src/menuContext";
 import { TanButton } from "./button";
 
 export const HomePageProduct = (props) => {
   const [img, setImg] = useState();
-  const { cart, setCart, setFocusingHomepageObject} =
-    useContext(MenuContext);
-
+  const { cart, setCart, setFocusingHomepageObject } = useContext(MenuContext);
 
   useEffect(() => {
     setImg(props.data.image);
   }, [props.data]);
 
-  
-
-
-
   const addToCart = () => {
     const product = props;
-
     setCart([...cart, product]);
-    console.log(cart);
   };
 
   return (
@@ -41,17 +33,15 @@ export const HomePageProduct = (props) => {
             <p className="text-lg">{props.data.description}</p>
             <p className="text-lg">{props.data.price} SEK</p>
             <div className="flex flex-col items-center gap-10">
-              <Link to={`/product/${props.data.id}`}>
-                <TanButton
-                  btnText={"To Product"}
-                  onClick={() => setFocusingHomepageObject(false)}
-                >
-                </TanButton>
+              <Link
+                to={`/product/${props.data.id}`}
+                onClick={() => setFocusingHomepageObject(false)}
+              >
+                <TanButton btnText={"To Product"}></TanButton>
               </Link>
-              <TanButton
-                onClick={addToCart}
-                btnText={"Add to Cart"}              >
-              </TanButton>
+              <span onClick={addToCart}>
+                <TanButton btnText={"Add to Cart"}></TanButton>
+              </span>
             </div>
           </div>
         </div>
