@@ -10,7 +10,10 @@ export const PRODUCTS = [
         isTopSeller: true,
         image: product1,
         category: "Clothing",
-        size: ["One fit"]
+        size: ["One fit"],
+        fitting: "Kind of loose",
+        material: "Silk",
+        careadvice: "Brush with a brush"
     },
     {
         id: 2,
@@ -24,6 +27,9 @@ export const PRODUCTS = [
             "small",
             "medium",
             "large"
-        ]
+        ],
+        fitting: "baggy",
+        material: "leatgher",
+        careadvice: "polish with oil"
     }
 ]
