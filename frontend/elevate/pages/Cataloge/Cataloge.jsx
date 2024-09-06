@@ -13,7 +13,7 @@ import { Layout } from "../../components/layout";
 export const Cataloge = () => {
   const { Category } = useParams();
 
-  const { noMenus } = useContext(MenuContext);
+  const { noMenus, setFocusingHomepageObject, focusingHomepageObject, setFocusedObject } = useContext(MenuContext);
   const [products, setProducts] = useState([]);
   const [showCategory, setShowCategory] = useState(false);
 
@@ -49,6 +49,11 @@ export const Cataloge = () => {
     navigate(`/cataloge/${category}`)
     setShowCategory(false)
   }
+
+  const handleFocusObject = (element) => {
+    setFocusingHomepageObject(!focusingHomepageObject);
+    setFocusedObject(element);
+  };
 
   return (
     <>
@@ -91,9 +96,16 @@ export const Cataloge = () => {
           </div>
 
         </div>
-        <div>
-          {products.map((element) => (
-            <img src={element.image} key={element.id}/>
+        <div className="flex gap-12">
+          {products.map(
+            (element) =>
+              element.isTopSeller && (
+                <img
+                  src={element.image}
+                  key={element.id}
+                  className="rounded-lg max-w-64"
+                  onClick={() => handleFocusObject(element)}
+                />
           ))}
         </div>
       </Layout>
