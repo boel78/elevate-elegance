@@ -24,7 +24,7 @@ export const HomePage = () => {
 
   return (
     <Layout>
-      <div className="z-200 flex  flex-col justify-center pb-60 text-white bg-hero w-full h-[790px]">
+      <div className="z-200 flex  flex-col justify-center pb-60 text-white bg-hero w-full h-[600px] xl:h-[950px] bg-cover">
         <div className="pl-12">
           <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
           <h3 className="text-3xl">"Sophistication Redefined,</h3>
