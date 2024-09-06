@@ -13,6 +13,10 @@ export const ProductPage = () => {
 
     const [product, setProduct] = useState()
 
+    const [sizeBarOpen, setSizeBarOpen] = useState(false)
+
+    const [selectedSize, setSelectedSize] = useState("")
+
     const {cart, setCart, sideMenuActive, noMenus, setFocusingHomepageObject, focusingHomepageObject, setFocusedObject} = useContext(MenuContext)
 
     useEffect(() => {
@@ -22,6 +26,8 @@ export const ProductPage = () => {
     useEffect(() =>{
         const product = PRODUCTS.find((product) => product.id === parseInt(id));
         setProduct(product)
+        setSelectedSize("")
+        setSizeBarOpen(false)
     }, [id])
 
     const addToCart = () => {
@@ -37,7 +43,14 @@ export const ProductPage = () => {
         setFocusedObject(element);
       };
 
-      
+      const handleSizeBarToggle = () => {
+        setSizeBarOpen(!sizeBarOpen)
+      }
+
+      const handleSetSize = (s) => {
+        setSelectedSize(s)
+        setSizeBarOpen(false)
+      }
 
   return (
     <Layout>
@@ -53,9 +66,19 @@ export const ProductPage = () => {
                       <h2 className='text-2xl font-medium'>{product.name}</h2>
                       <p>{product.price} SEK</p>
                     </div>
-                    <div>
-                      <p>Size</p>
-                      <p>SizeGuide</p>
+                    <div className='flex flex-col gap-3 '>
+                      <div className='flex gap-5'>
+                        
+                        <p>Size: {selectedSize && selectedSize}</p>
+                        {product.size.length === 1 ? <p>One size</p> : sizeBarOpen ? <ul>
+                          {product.size.map((s, index) => (
+                            <p key={index} onClick={() => handleSetSize(s)}>{s}</p>
+                          ))}
+                        </ul> 
+                        : <ArrowDown onClick={handleSizeBarToggle} className='self-center'/>
+                        }
+                      </div>
+                        <p className='pt-10'>SizeGuide</p>
                       <button onClick={addToCart} className='text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white'>Add to cart</button>
                     </div>
                     <ul>

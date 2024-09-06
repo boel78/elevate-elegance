@@ -9,7 +9,8 @@ export const PRODUCTS = [
         price: 25.5,
         isTopSeller: true,
         image: product1,
-        category: "Clothing"
+        category: "Clothing",
+        size: ["One fit"]
     },
     {
         id: 2,
@@ -18,6 +19,11 @@ export const PRODUCTS = [
         price: 34.5,
         isTopSeller: true,
         image: product2,
-        category: "Jewellery"
+        category: "Jewellery",
+        size: [
+            "small",
+            "medium",
+            "large"
+        ]
     }
 ]
