@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
 import { MenuContext } from "../src/menuContext";
+import { TanButton } from "./button";
 
 export const HomePageProduct = (props) => {
   const [img, setImg] = useState();
@@ -41,19 +42,16 @@ export const HomePageProduct = (props) => {
             <p className="text-lg">{props.data.price} SEK</p>
             <div className="flex flex-col items-center gap-10">
               <Link to={`/product/${props.data.id}`}>
-                <button
-                  className="text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white z-"
+                <TanButton
+                  btnText={"To Product"}
                   onClick={() => setFocusingHomepageObject(false)}
                 >
-                  To Product
-                </button>
+                </TanButton>
               </Link>
-              <button
+              <TanButton
                 onClick={addToCart}
-                className="text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white"
-              >
-                Add to cart
-              </button>
+                btnText={"Add to Cart"}              >
+              </TanButton>
             </div>
           </div>
         </div>

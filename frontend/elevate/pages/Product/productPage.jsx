@@ -2,8 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { PRODUCTS } from "../../products";
 import { MenuContext } from "../../src/menuContext";
-import { HomePageProduct } from "../../components/homePageProduct";
-import { Sidemenu } from "../../components/sidemenu";
 import { Layout } from "../../components/layout";
 import { ArrowDown, Heart, ArrowUp } from "@phosphor-icons/react";
 
@@ -25,7 +23,6 @@ export const ProductPage = () => {
   const {
     cart,
     setCart,
-    sideMenuActive,
     noMenus,
     setFocusingHomepageObject,
     focusingHomepageObject,
@@ -83,7 +80,6 @@ export const ProductPage = () => {
   }
 
 
-
   return (
     <Layout>
       <div className="flex flex-col gap-12 ">
@@ -94,6 +90,7 @@ export const ProductPage = () => {
           </div>
           <div className="flex">
             {showInfo ? (
+              /* Ifall show info är true */
               <div className="flex flex-col border-2 border-solid border-red-400 gap-16">
                 <div className="flex flex-col gap-3">
                   <h2 className="text-2xl font-medium">{product.name}</h2>
@@ -122,7 +119,7 @@ export const ProductPage = () => {
                   <p className="pt-10">SizeGuide</p>
                   <button
                     onClick={addToCart}
-                    className="text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white"
+                    className="text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white transition ease-in-out duration-200 shadow-xl"
                   >
                     Add to cart
                   </button>
@@ -143,7 +140,6 @@ export const ProductPage = () => {
                 </ul>
               </div>
             ) : 
-
             ( 
                         /* Ifall show info är false */
             <div className="flex flex-col border-2 border-solid border-red-400 gap-16">

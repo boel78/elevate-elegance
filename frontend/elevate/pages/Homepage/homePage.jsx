@@ -4,6 +4,8 @@ import { MenuContext } from "../../src/menuContext";
 import { PRODUCTS } from "../../products";
 import { Link } from "react-router-dom";
 import { Layout } from "../../components/layout";
+import { TanButton } from "../../components/button";
+import { BlueButton } from "../../components/blueButton";
 
 export const HomePage = () => {
   const [topProducts, setTopProducts] = useState([]);
@@ -24,18 +26,15 @@ export const HomePage = () => {
 
   return (
     <Layout>
-      <div className="z-200 flex  flex-col justify-center pb-60 text-white bg-hero w-full h-[600px] xl:h-[950px] bg-cover">
+      <div className="z-200 flex  flex-col justify-center pb-60 text-white bg-hero bg-fixed w-full h-[600px] xl:h-[950px] bg-cover">
         <div className="pl-12">
           <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
           <h3 className="text-3xl">"Sophistication Redefined,</h3>
           <h3 className="text-3xl mb-12">Style Elevated"</h3>
           <Link to="/cataloge">
-            <button
-              type="button"
-              className="z-200 bottom-1/3 left-12 bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white"
-            >
-              To Products
-            </button>
+            <TanButton btnText={"To products"}
+              className="z-200 bottom-1/3 left-12 "
+            />
           </Link>
         </div>
       </div>
@@ -68,17 +67,17 @@ export const HomePage = () => {
             className="h-full w-full object-cover"
           />
           <Link to="cataloge/Jewellery">
-            <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">
-              Shop Jewellery
-            </button>
+            <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
+              <TanButton btnText={"Shop Jewellery"}/>
+            </div>
           </Link>
         </div>
         <div className="w-1/2 h-1/4 relative">
           <img src="/images/Modern Classic.jpeg" className="h-full w-full" />
           <Link to="cataloge/Bags">
-            <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">
-              Shop Bags
-            </button>
+          <div className="absolute inset-0 w-40 h-12 m-auto flex justify-center items-center">
+              <TanButton btnText={"Shop Bags"}/>
+            </div>
           </Link>
         </div>
         <div className="w-1/2 h-1/4 relative">
@@ -87,17 +86,17 @@ export const HomePage = () => {
             className="h-full w-full"
           />
           <Link to="cataloge/Shoes">
-            <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">
-              Shop Shoes
-            </button>
+          <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
+              <TanButton btnText={"Shop Shoes"}/>
+            </div>
           </Link>
         </div>
         <div className="w-1/2 h-1/4 relative">
           <img src="/images/Regal Splendor.jpeg" className="h-full w-full" />
           <Link to="cataloge/Clothing">
-            <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">
-              Shop Clothing
-            </button>
+          <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
+              <TanButton btnText={"Shop Clothing"}/>
+            </div>
           </Link>
         </div>
       </div>
@@ -169,12 +168,7 @@ export const HomePage = () => {
           placeholder="Email"
           className="w-1/3 h-8 border-solid border-2 border-black rounded"
         />
-        <button
-          type="submit"
-          className="text-white bg-darkBlue font-inter px-7 py-3 rounded-md"
-        >
-          Subscribe
-        </button>
+        <BlueButton btnText={"Subscribe"}/>
       </div>
       </Layout>
   );
