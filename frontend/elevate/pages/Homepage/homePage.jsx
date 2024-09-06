@@ -40,7 +40,7 @@ export const HomePage = () => {
         </div>
       </div>
       <div className="flex-col pb-[284px]">
-        <p className="text-[80px] underline text-darkBlue text-center pb-[131px] pt-[54px]">
+        <p className="text-5xl underline text-darkBlue text-center pb-[131px] pt-[54px]">
           Best Sellers
         </p>
         <div className="flex justify-center gap-7">
@@ -103,12 +103,12 @@ export const HomePage = () => {
       </div>
 
       <div className="flex-col items-center pb-[220px]">
-        <p className="text-[80px] underline text-darkBlue text-center pb-[111px] pt-[54px] font-inter">
+        <p className="text-5xl underline text-darkBlue text-center pb-[111px] pt-[54px] font-inter">
           Services
         </p>
         <div className="flex justify-center gap-[80px]">
           <div className="flex flex-col items-center w-1/4 gap-4">
-            <p className="text-5xl text-darkBlue font-inter text-nowrap">
+            <p className="text-3xl text-darkBlue font-inter text-nowrap">
               Premium Quality
             </p>
             <img
@@ -125,7 +125,7 @@ export const HomePage = () => {
             </p>
           </div>
           <div className="flex flex-col items-center w-1/4 gap-4">
-            <p className="text-5xl text-darkBlue font-inter text-nowrap">
+            <p className="text-3xl text-darkBlue font-inter text-nowrap">
               Customer Service
             </p>
             <img
@@ -140,7 +140,7 @@ export const HomePage = () => {
             </p>
           </div>
           <div className="flex flex-col items-center w-1/4 gap-4">
-            <p className="text-5xl text-darkBlue font-inter text-nowrap">
+            <p className="text-3xl text-darkBlue font-inter text-nowrap">
               Gift Wrapping
             </p>
             <img
