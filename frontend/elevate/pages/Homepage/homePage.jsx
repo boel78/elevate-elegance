@@ -12,16 +12,24 @@ import { Search } from "../../components/search";
 
 export const HomePage = () => {
   const [topProducts, setTopProducts] = useState([]);
+  const [focusedObject, setFocusedObject] = useState(null);
   const {
     sideMenuActive,
     cartMenuActive,
     profileMenuActive,
     searchMenuActive,
+    focusingHomepageObject,
+    setFocusingHomepageObject,
   } = useContext(MenuContext);
 
   useEffect(() => {
     setTopProducts(PRODUCTS);
   }, []);
+
+  const handleFocusObject = (element) => {
+    setFocusingHomepageObject(!focusingHomepageObject);
+    setFocusedObject(element);
+  };
 
   return (
     <div className="flex-col bg-superLightTan">
@@ -44,11 +52,16 @@ export const HomePage = () => {
         <p className="text-[80px] underline text-darkBlue text-center pb-[131px] pt-[54px]">
           Best Sellers
         </p>
-        <div className="flex justify-center gap-3 w-full">
+        <div className="flex justify-center gap-7">
           {topProducts.map(
             (element) =>
               element.isTopSeller && (
-                <HomePageProduct key={element.id} data={element} />
+                <img
+                  src={element.image}
+                  key={element.id}
+                  className="rounded-lg max-w-64"
+                  onClick={() => handleFocusObject(element)}
+                />
               )
           )}
           {/*<img src="/images/ClassicSophistication.jpeg" className="w-1/5 h-auto rounded-xl border-solid border-2 border-black"/>
@@ -63,7 +76,7 @@ export const HomePage = () => {
             src="/images/Effortless Charm.jpeg"
             className="h-full w-full object-cover"
           />
-          <Link to='cataloge/Jewellery'>
+          <Link to="cataloge/Jewellery">
             <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">
               Shop Jewellery
             </button>
@@ -71,7 +84,7 @@ export const HomePage = () => {
         </div>
         <div className="w-1/2 h-1/4 relative">
           <img src="/images/Modern Classic.jpeg" className="h-full w-full" />
-          <Link to='cataloge/Bags'>
+          <Link to="cataloge/Bags">
             <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">
               Shop Bags
             </button>
@@ -82,7 +95,7 @@ export const HomePage = () => {
             src="/images/Sculpted Sophistication.jpeg"
             className="h-full w-full"
           />
-          <Link to='cataloge/Shoes'>
+          <Link to="cataloge/Shoes">
             <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">
               Shop Shoes
             </button>
@@ -90,7 +103,7 @@ export const HomePage = () => {
         </div>
         <div className="w-1/2 h-1/4 relative">
           <img src="/images/Regal Splendor.jpeg" className="h-full w-full" />
-          <Link to='cataloge/Clothing'>
+          <Link to="cataloge/Clothing">
             <button className="absolute inset-0 w-40 h-12 m-auto bg-lightTan px-5 py-2 rounded text-black font-inter hover:bg-darkBlue hover:text-white flex items-center justify-center">
               Shop Clothing
             </button>
@@ -178,6 +191,7 @@ export const HomePage = () => {
       {cartMenuActive && <Cart />}
       {profileMenuActive && <Profile />}
       {searchMenuActive && <Search />}
+      {focusingHomepageObject && <HomePageProduct data={focusedObject} />}
     </div>
   );
 };
