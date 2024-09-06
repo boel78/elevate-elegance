@@ -5,7 +5,6 @@ import { Cart } from "./cart";
 import { Profile } from "./profile";
 import { Search } from "./search";
 import { HomePageProduct } from "./homePageProduct";
-import { Footer } from "./footer";
 
 
 export const Layout = ({children}) => {
@@ -23,10 +22,9 @@ export const Layout = ({children}) => {
  
 
   return (
-    <div className="flex-col bg-superLightTan">
+    <div className="flex-col bg-superLightTan min-h-screen">
         {children}
-        <Footer/>
-      {sideMenuActive && <Sidemenu />}
+        {sideMenuActive && <Sidemenu />}
       {cartMenuActive && <Cart />}
       {profileMenuActive && <Profile />}
       {searchMenuActive && <Search />}

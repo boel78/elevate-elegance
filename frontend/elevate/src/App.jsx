@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import "./App.css";
+import "./global.css"
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "../components/navbar";
@@ -10,6 +11,7 @@ import { ProductPage } from "../pages/Product/productPage";
 import { Login } from "../pages/Login/Login";
 import { MyOrders } from "../pages/Orders/myOrders";
 import { SavedItems } from "../pages/savedItems/savedItems";
+import { Footer } from "../components/footer";
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
               <Route path="/Orders" element = {<MyOrders />}/>
               <Route path="SavedItems" element={<SavedItems />}/>
             </Routes>
+            <Footer />
           </Router>
         </MenuContextProvider>
     </>

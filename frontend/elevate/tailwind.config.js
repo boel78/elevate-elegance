@@ -17,11 +17,12 @@ export default {
       backgroundImage: {
         'hero': "url('images/Heropic.png')",
       },
+      fontFamily: {
+        inter: ['Inter', 'sans-serif', 'system-ui'],
+      },
 
     },
-    fontFamily: {
-      'inter': ['Inter', 'sans-serif', 'system-ui'],
-    },
+    
 
   },
   plugins: [],
