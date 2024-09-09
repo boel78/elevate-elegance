@@ -11,24 +11,6 @@ export const Cart = () => {
     console.log(cart)
   },[cart])
 
-  /*const renderItems = () => {
-    const items = []
-    for(const [key, value] of cart){
-      console.log(key + value)
-      items.push(
-      <div key={key.id}>
-          <img src={key.image}/>
-          <div>
-              <h3>{key.name}</h3>
-              <p>{key.price} SEK</p>
-              <p>Size</p>
-              <p>Quantity: {value}</p>
-          </div>
-      </div>)
-
-    }
-    return items
-  }*/
 
   return (
     <div className='flex flex-col fixed right-0 top-12 w-1/3 bg-white border-l-2 border-b-2 border-black font-inter max-h-[400px] overflow-y-scroll gap-4'>
@@ -48,8 +30,6 @@ export const Cart = () => {
         </div>
           ))}
         </div>
-
-        {/*renderItems()*/}
         
         <div className='w-1/2 self-center flex flex-col gap-4'>
           <TanButton btnText={"Checkout"}/>

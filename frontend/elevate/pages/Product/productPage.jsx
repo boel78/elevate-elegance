@@ -116,7 +116,7 @@ export const ProductPage = () => {
           <div className="flex">
             {showInfo ? (
               /* Ifall show info är true */
-              <div className="flex flex-col border-2 border-solid border-red-400 gap-16">
+              <div className="flex flex-col border-2 border-solid border-red-400 gap-16 min-w-72">
                 <div className="flex flex-col gap-3">
                   <h2 className="text-2xl font-medium">{product.name}</h2>
                   <p>{product.price} SEK</p>
@@ -177,7 +177,7 @@ export const ProductPage = () => {
               </div>
             ) : (
               /* Ifall show info är false */
-              <div className="flex flex-col border-2 border-solid border-red-400 gap-16">
+              <div className="flex flex-col border-2 border-solid border-red-400 gap-16 min-w-72">
                 <li className="flex items-center flex-col gap-7">
                   <span
                     className="flex items-center text-2xl font-medium"
