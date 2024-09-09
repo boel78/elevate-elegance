@@ -8,6 +8,7 @@ import { ArrowDown, Heart, ArrowUp } from "@phosphor-icons/react";
 export const ProductPage = () => {
   const { id } = useParams();
 
+
   const [product, setProduct] = useState();
 
   const [sizeBarOpen, setSizeBarOpen] = useState(false);
@@ -19,6 +20,9 @@ export const ProductPage = () => {
   const [extraInfo, setExtraInfo] = useState([])
 
   const [extraInfoTitle, setExtraInfoTitle] = useState("")
+
+  
+
 
   const {
     cart,
@@ -40,10 +44,25 @@ export const ProductPage = () => {
     setSizeBarOpen(false);
   }, [id]);
 
-  const addToCart = () => {
-    setCart([...cart, product]);
-    console.log(cart)
-  };
+
+  const addToCart = (p) => {
+    const tempCart = cart
+    if(tempCart.length != 0){
+    tempCart.map((produkt) => {
+      produkt.product.id == p.id &&
+      produkt.quantity++
+    })}
+    else{
+    tempCart.push({
+      product: p,
+      size: selectedSize,
+      quantity: 1
+    })}
+
+    setCart(tempCart)
+  }
+
+  
 
   if (!product) {
     return <p>Laddar produkt...</p>;
@@ -79,6 +98,8 @@ export const ProductPage = () => {
     setShowInfo(false)
     console.log(extraInfo)
   }
+
+  
 
 
   return (
@@ -119,7 +140,7 @@ export const ProductPage = () => {
                   </div>
                   <p className="pt-10">SizeGuide</p>
                   <button
-                    onClick={addToCart}
+                    onClick={() => addToCart(product)}
                     className="text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white transition ease-in-out duration-200 shadow-xl"
                   >
                     Add to cart

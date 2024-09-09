@@ -16,9 +16,18 @@ export const HomePageProduct = (props) => {
     setImg(product.image);
   }, [product]);
 
-  const addToCart = () => {
-    setCart([...cart, product]);
-  };
+  const addToCart = (p) => {
+    const tempCart = cart
+    if(tempCart.has(p)){
+      let a = tempCart.get(p)
+    tempCart.set(p, a+1)
+    }
+    else {
+      tempCart.set(p, 1)
+    }
+    setCart(tempCart)
+    console.log(cart)
+  }
 
   const handleSetSize = (s) => {
     setSizeBarOpen(false)
@@ -71,7 +80,7 @@ export const HomePageProduct = (props) => {
               >
                 <TanButton btnText={"To Product"}></TanButton>
               </Link>
-              <span onClick={addToCart}>
+              <span onClick={addToCart(product)}>
                 <TanButton btnText={"Add to Cart"}></TanButton>
               </span>
             </div>
