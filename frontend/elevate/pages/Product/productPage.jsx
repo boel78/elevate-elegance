@@ -8,7 +8,6 @@ import { ArrowDown, Heart, ArrowUp } from "@phosphor-icons/react";
 export const ProductPage = () => {
   const { id } = useParams();
 
-
   const [product, setProduct] = useState();
 
   const [sizeBarOpen, setSizeBarOpen] = useState(false);
@@ -17,12 +16,9 @@ export const ProductPage = () => {
 
   const [showInfo, setShowInfo] = useState(true);
 
-  const [extraInfo, setExtraInfo] = useState([])
+  const [extraInfo, setExtraInfo] = useState([]);
 
-  const [extraInfoTitle, setExtraInfoTitle] = useState("")
-
-  
-
+  const [extraInfoTitle, setExtraInfoTitle] = useState("");
 
   const {
     cart,
@@ -44,25 +40,37 @@ export const ProductPage = () => {
     setSizeBarOpen(false);
   }, [id]);
 
-
   const addToCart = (p) => {
-    const tempCart = cart
-    if(tempCart.length != 0){
-    tempCart.map((produkt) => {
-      produkt.product.id == p.id &&
-      produkt.quantity++
-    })}
-    else{
-    tempCart.push({
-      product: p,
-      size: selectedSize,
-      quantity: 1
-    })}
+    const tempCart = [...cart];
 
-    setCart(tempCart)
-  }
+    if (tempCart.length !== 0) {
+      console.log("HEJ");
+      tempCart.map((produkt) => {
+        if (produkt.product.id == p.id) {
+          console.log(produkt.size + "  " + selectedSize)
+          if (produkt.size === selectedSize) {
+            console.log("OJ")
+            produkt.quantity++;
+          }
+          else{
+            tempCart.push({
+              product: p,
+              size: selectedSize,
+              quantity: 1,
+            });
+          }
+        }
+      });
+    } else {
+      tempCart.push({
+        product: p,
+        size: selectedSize,
+        quantity: 1,
+      });
+    }
 
-  
+    setCart(tempCart);
+  };
 
   if (!product) {
     return <p>Laddar produkt...</p>;
@@ -83,24 +91,19 @@ export const ProductPage = () => {
   };
 
   const handleShowExtraInfo = (type) => {
-    if(type === "Description and Fitting"){
-    setExtraInfo([product.description, product.fitting])
-    setExtraInfoTitle("Description and Fitting")
+    if (type === "Description and Fitting") {
+      setExtraInfo([product.description, product.fitting]);
+      setExtraInfoTitle("Description and Fitting");
+    } else if (type === "Material") {
+      setExtraInfo(product.material);
+      setExtraInfoTitle("Material");
+    } else {
+      setExtraInfo(product.careadvice);
+      setExtraInfoTitle("Care Advice");
     }
-    else if(type === "Material"){
-      setExtraInfo(product.material)
-      setExtraInfoTitle("Material")
-    }
-    else{
-      setExtraInfo(product.careadvice)
-      setExtraInfoTitle("Care Advice")
-    }
-    setShowInfo(false)
-    console.log(extraInfo)
-  }
-
-  
-
+    setShowInfo(false);
+    console.log(extraInfo);
+  };
 
   return (
     <Layout>
@@ -120,7 +123,7 @@ export const ProductPage = () => {
                 </div>
                 <div className="flex flex-col gap-3 ">
                   <div className="flex gap-5">
-                    <p>Size: {(selectedSize && !sizeBarOpen) && selectedSize}</p>
+                    <p>Size: {selectedSize && !sizeBarOpen && selectedSize}</p>
                     {product.size.length === 1 ? (
                       <p>One size</p>
                     ) : sizeBarOpen ? (
@@ -147,36 +150,50 @@ export const ProductPage = () => {
                   </button>
                 </div>
                 <ul>
-                  <li className="flex items-center" onClick={() => handleShowExtraInfo("Description and Fitting")}>
+                  <li
+                    className="flex items-center"
+                    onClick={() =>
+                      handleShowExtraInfo("Description and Fitting")
+                    }
+                  >
                     <p>Description and fitting</p>
                     <ArrowUp />
                   </li>
-                  <li className="flex items-center" onClick={() => handleShowExtraInfo("Material")}>
+                  <li
+                    className="flex items-center"
+                    onClick={() => handleShowExtraInfo("Material")}
+                  >
                     <p>Material</p>
                     <ArrowUp />
                   </li>
-                  <li className="flex items-center" onClick={() => handleShowExtraInfo("Care Advice")}>
+                  <li
+                    className="flex items-center"
+                    onClick={() => handleShowExtraInfo("Care Advice")}
+                  >
                     <p>Care Advice</p>
                     <ArrowUp />
                   </li>
                 </ul>
               </div>
-            ) : 
-            ( 
-                        /* Ifall show info är false */
-            <div className="flex flex-col border-2 border-solid border-red-400 gap-16">
-                <li className='flex items-center flex-col gap-7'>
-                <span className="flex items-center text-2xl font-medium" onClick={() => setShowInfo(true)}><p>{extraInfoTitle}</p><ArrowDown /></span>
+            ) : (
+              /* Ifall show info är false */
+              <div className="flex flex-col border-2 border-solid border-red-400 gap-16">
+                <li className="flex items-center flex-col gap-7">
+                  <span
+                    className="flex items-center text-2xl font-medium"
+                    onClick={() => setShowInfo(true)}
+                  >
+                    <p>{extraInfoTitle}</p>
+                    <ArrowDown />
+                  </span>
                   <div className="flex flex-col gap-4">
-                    {extraInfoTitle === "Description and Fitting" ?
-                   extraInfo.map((s, index) => (
-                    <p key={index}>{s}</p>
-                   ))
-                   : <p>{extraInfo}</p>
-
-                  }
+                    {extraInfoTitle === "Description and Fitting" ? (
+                      extraInfo.map((s, index) => <p key={index}>{s}</p>)
+                    ) : (
+                      <p>{extraInfo}</p>
+                    )}
                   </div>
-                 </li>
+                </li>
               </div>
             )}
             <Heart size="45" />

@@ -11,7 +11,7 @@ export const MenuContextProvider = (props) => {
   const [focusingHomepageObject, setFocusingHomepageObject] = useState(false)
   const [focusedObject, setFocusedObject] = useState(null)
   const [currentUser, setCurrentUser] = useState(null);
-  const [cart, setCart] = useState([{}]);
+  const [cart, setCart] = useState([]);
   const noMenus = () => {
     setSideMenuActive(false);
     setCartMenuActive(false);
