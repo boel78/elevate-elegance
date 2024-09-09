@@ -17,17 +17,36 @@ export const HomePageProduct = (props) => {
   }, [product]);
 
   const addToCart = (p) => {
-    const tempCart = cart
-    if(tempCart.has(p)){
-      let a = tempCart.get(p)
-    tempCart.set(p, a+1)
+    const tempCart = [...cart];
+
+    if (tempCart.length !== 0) {
+      console.log("HEJ");
+      tempCart.map((produkt) => {
+        if (produkt.product.id == p.id) {
+          console.log(produkt.size + "  " + selectedSize)
+          if (produkt.size === selectedSize) {
+            console.log("OJ")
+            produkt.quantity++;
+          }
+          else{
+            tempCart.push({
+              product: p,
+              size: selectedSize,
+              quantity: 1,
+            });
+          }
+        }
+      });
+    } else {
+      tempCart.push({
+        product: p,
+        size: selectedSize,
+        quantity: 1,
+      });
     }
-    else {
-      tempCart.set(p, 1)
-    }
-    setCart(tempCart)
-    console.log(cart)
-  }
+
+    setCart(tempCart);
+  };
 
   const handleSetSize = (s) => {
     setSizeBarOpen(false)
@@ -60,7 +79,6 @@ export const HomePageProduct = (props) => {
                     ) : sizeBarOpen ? (
                       <ul>
                         {product.size.map((s, index) => (
-                          
                           <p key={index} onClick={() => handleSetSize(s)}>
                             {s}
                           </p>
@@ -80,7 +98,7 @@ export const HomePageProduct = (props) => {
               >
                 <TanButton btnText={"To Product"}></TanButton>
               </Link>
-              <span onClick={addToCart(product)}>
+              <span onClick={() => addToCart(product)}>
                 <TanButton btnText={"Add to Cart"}></TanButton>
               </span>
             </div>

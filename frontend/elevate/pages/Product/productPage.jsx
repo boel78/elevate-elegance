@@ -30,8 +30,15 @@ export const ProductPage = () => {
   } = useContext(MenuContext);
 
   useEffect(() => {
+    console.log(cart)
+
     noMenus();
   }, []);
+
+  useEffect(() => {
+    console.log(cart)
+
+  }, [cart]);
 
   useEffect(() => {
     const product = PRODUCTS.find((product) => product.id === parseInt(id));
@@ -41,33 +48,26 @@ export const ProductPage = () => {
   }, [id]);
 
   const addToCart = (p) => {
+    console.log(cart)
+    let foundMatchingProduct = false
+
     const tempCart = [...cart];
 
-    if (tempCart.length !== 0) {
       console.log("HEJ");
-      tempCart.map((produkt) => {
-        if (produkt.product.id == p.id) {
-          console.log(produkt.size + "  " + selectedSize)
-          if (produkt.size === selectedSize) {
-            console.log("OJ")
-            produkt.quantity++;
+      tempCart.forEach((produkt) => {
+        if (produkt.product.id === p.id && produkt.size === selectedSize) {
+            produkt.quantity++
+            foundMatchingProduct = true
           }
-          else{
-            tempCart.push({
-              product: p,
-              size: selectedSize,
-              quantity: 1,
-            });
-          }
-        }
-      });
-    } else {
-      tempCart.push({
-        product: p,
-        size: selectedSize,
-        quantity: 1,
-      });
-    }
+        
+      })
+      if (!foundMatchingProduct) {
+        tempCart.push({
+          product: p,
+          size: selectedSize,
+          quantity: 1,
+        });
+      }
 
     setCart(tempCart);
   };

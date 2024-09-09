@@ -11,6 +11,14 @@ export const Cart = () => {
     console.log(cart)
   },[cart])
 
+  const calculateTotal = () => {
+    let total = 0
+    cart.map((prodcut) => {
+      total += prodcut.product.price
+    })
+    return total
+  }
+
 
   return (
     <div className='flex flex-col fixed right-0 top-12 w-1/3 bg-white border-l-2 border-b-2 border-black font-inter max-h-[400px] overflow-y-scroll gap-4'>
