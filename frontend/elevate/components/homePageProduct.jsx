@@ -3,19 +3,31 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { MenuContext } from "../src/menuContext";
 import { TanButton } from "./button";
+import { ArrowDown } from "@phosphor-icons/react";
 
 export const HomePageProduct = (props) => {
   const [img, setImg] = useState();
+  const [selectedSize, setSelectedSize] = useState("")
+  const [sizeBarOpen, setSizeBarOpen] = useState(false)
   const { cart, setCart, setFocusingHomepageObject } = useContext(MenuContext);
+  const product = props.data
 
   useEffect(() => {
-    setImg(props.data.image);
-  }, [props.data]);
+    setImg(product.image);
+  }, [product]);
 
   const addToCart = () => {
-    const product = props;
     setCart([...cart, product]);
   };
+
+  const handleSetSize = (s) => {
+    setSizeBarOpen(false)
+    setSelectedSize(s)
+  }
+
+  const handleSizeBarToggle = () => {
+    setSizeBarOpen(!sizeBarOpen)
+  }
 
   return (
     <div
@@ -28,13 +40,33 @@ export const HomePageProduct = (props) => {
       >
         <img src={img} className="rounded-l-lg" />
         <div className="flex flex-col gap-12 mx-24 w-56">
-          <h2 className="font-medium text-3xl ">{props.data.name}</h2>
+          <h2 className="font-medium text-3xl ">{product.name}</h2>
           <div className="flex flex-col items-center gap-10">
-            <p className="text-lg">{props.data.description}</p>
-            <p className="text-lg">{props.data.price} SEK</p>
+            <p className="text-lg">{product.description}</p>
+            <p className="text-lg">{product.price} SEK</p>
+            <div className="flex gap-5">
+                    <p>Size: {(selectedSize && !sizeBarOpen) && selectedSize}</p>
+                    {product.size.length === 1 ? (
+                      <p>One size</p>
+                    ) : sizeBarOpen ? (
+                      <ul>
+                        {product.size.map((s, index) => (
+                          
+                          <p key={index} onClick={() => handleSetSize(s)}>
+                            {s}
+                          </p>
+                        ))}
+                      </ul>
+                    ) : (
+                      <ArrowDown
+                        onClick={handleSizeBarToggle}
+                        className="self-center"
+                      />
+                    )}
+                  </div>
             <div className="flex flex-col items-center gap-10">
               <Link
-                to={`/product/${props.data.id}`}
+                to={`/product/${product.id}`}
                 onClick={() => setFocusingHomepageObject(false)}
               >
                 <TanButton btnText={"To Product"}></TanButton>

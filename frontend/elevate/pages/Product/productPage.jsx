@@ -99,7 +99,7 @@ export const ProductPage = () => {
                 </div>
                 <div className="flex flex-col gap-3 ">
                   <div className="flex gap-5">
-                    <p>Size: {selectedSize && selectedSize}</p>
+                    <p>Size: {(selectedSize && !sizeBarOpen) && selectedSize}</p>
                     {product.size.length === 1 ? (
                       <p>One size</p>
                     ) : sizeBarOpen ? (
