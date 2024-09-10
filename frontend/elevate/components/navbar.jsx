@@ -83,7 +83,7 @@ export const Navbar = () => {
           </a>
           <a className="flex" onClick={handleCartMenu}>
             <ShoppingCart size="40" />
-            {cart.length > 0 && (
+            {totalAmount > 0 && (
               <div className="flex justify-center bg-red-600 rounded-full h-5 w-5 ">
                 <p className="text-yellow-100">{totalAmount}</p>
               </div>

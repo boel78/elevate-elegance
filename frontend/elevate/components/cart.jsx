@@ -37,13 +37,24 @@ export const Cart = () => {
   };
 
   const handleChangeQuantity = (val, item) => {
-      const updatedCart = cart.map((product) => {
-        if(product.id === item.id){
-          return {...product, quantity: val}
-        }
-        return product
-      })
+   if(Number(val) === 0 ){
+    const updatedCart = cart.filter((product) => !(product.id === item.id))
     setCart(updatedCart)
+   }
+   else{
+    const updatedCart = cart.map((product) => {
+      if (product.id === item.id) {
+          let index = updatedCart.indexOf(product);
+          updatedCart.splice(index, 1);
+          return { ...product, quantity: val };
+        
+      }
+      return product;
+    });
+    
+    setCart(updatedCart);
+  }
+    console.log(cart)
   };
 
   return (
@@ -79,7 +90,12 @@ export const Cart = () => {
               </div>
               <span className="flex gap-2">
                 <p>Quantity:</p>
-                <input type="number" value={item.quantity} className="w-8" onChange={(e) => handleChangeQuantity(e.target.value, item)}/>
+                <input
+                  type="number"
+                  value={item.quantity}
+                  className="w-8"
+                  onChange={(e) => handleChangeQuantity(e.target.value, item)}
+                />
               </span>
             </div>
           </div>
