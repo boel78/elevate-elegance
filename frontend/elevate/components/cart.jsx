@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { MenuContext } from '../src/menuContext'
 import { TanButton } from './button'
+import { ArrowDown } from '@phosphor-icons/react'
 
 export const Cart = () => {
 
-  const {cart} = useContext(MenuContext)
+  const {cart, setCart} = useContext(MenuContext)
   const [totalCost, setTotalCost] = useState(0)
+  const [sizeBarOpen, setSizeBarOpen] = useState(false)
   
 
   useEffect(() => {
@@ -22,6 +24,23 @@ export const Cart = () => {
     setTotalCost(total)
   },[cart])
 
+  const handleSizeBarToggle = () => {
+    setSizeBarOpen(!sizeBarOpen)
+  }
+
+  const handleSetSize = (item, s) => {
+    const updatedCart = cart.map((p) => {
+      if(p.product.id === item.product.id) {
+        return {...p, size: s}
+      }
+      return p
+    })
+    setCart(updatedCart)
+    console.log(cart)
+    setSizeBarOpen(false)
+  }
+
+  
 
 
   return (
@@ -36,8 +55,27 @@ export const Cart = () => {
             <div>
                 <h3 className='font-medium text-xl'>{item.product.name}</h3>
                 <p>{item.product.price} SEK</p>
-                <p>{item.size}</p>
-                <p>{item.quantity}</p>
+                <div className='flex'>
+                <p>Size: {(!sizeBarOpen) && item.size}</p>
+                    {item.product.size.length === 1 ? (
+                      <p>One size</p>
+                    ) : sizeBarOpen ? (
+                      <ul className='pl-2'>
+                        {item.product.size.map((s, index) => (
+                          <p key={index} onClick={() => handleSetSize(item, s)}>
+                            {s}
+                          </p>
+                        ))}
+                      </ul>
+                    ) : (
+                      <ArrowDown
+                        onClick={handleSizeBarToggle}
+                        className="self-center"
+                      />
+                    )}
+                    
+                </div>
+                <p>Quantity: {item.quantity}</p>
             </div>
         </div>
           ))}
