@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../src/menuContext";
 import { Link } from "react-router-dom";
 import {
@@ -52,6 +52,17 @@ export const Navbar = () => {
     setSearchMenuActive(!searchMenuActive);
   };
 
+  const [totalAmount, setTotalAmount] = useState(0)
+
+  useEffect(() => {
+    let calc = 0
+    cart.map((produc) => {
+      calc += produc.quantity
+    })
+    setTotalAmount(calc)
+
+  },[cart])
+
   return (
     <nav className="bg-white fixed w-full drop-shadow-md">
       <div className="flex h-12 items-center justify-between py-3">
@@ -73,7 +84,7 @@ export const Navbar = () => {
             <ShoppingCart size="40" />
             {cart.length > 0 && (
               <div className="flex justify-center bg-red-600 rounded-full h-5 w-5 ">
-                <p className="text-yellow-100">{cart.length}</p>
+                <p className="text-yellow-100">{totalAmount}</p>
               </div>
             )}
           </a>
