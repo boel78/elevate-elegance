@@ -12,6 +12,7 @@ import { Login } from "../pages/Login/Login";
 import { MyOrders } from "../pages/Orders/myOrders";
 import { SavedItems } from "../pages/savedItems/savedItems";
 import { Footer } from "../components/footer";
+import { AccountSettings } from "../pages/AccountSettings/accountSettings";
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
               <Route path="/Product/:id" element = {<ProductPage />} />
               <Route path="/Login" element = {<Login />}/>
               <Route path="/Orders" element = {<MyOrders />}/>
-              <Route path="SavedItems" element={<SavedItems />}/>
+              <Route path="/SavedItems" element={<SavedItems />}/>
+              <Route path="/Settings" element={<AccountSettings/>}/>
             </Routes>
             <Footer />
           </Router>
