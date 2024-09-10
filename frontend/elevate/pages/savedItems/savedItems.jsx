@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { MenuContext } from '../../src/menuContext'
 import { SAVEDITEMS } from '../../savedItems'
 import { PRODUCTS } from '../../products'
+import { Layout } from '../../components/layout'
 
 export const SavedItems = () => {
 
@@ -20,12 +21,14 @@ export const SavedItems = () => {
         noMenus()
     },[])
   return (
-    <div className='pt-20'>
-        {likedProducts.map((likedProduct) => (
-            <div key={likedProduct.id}>
-                <img src={likedProduct.image}></img>
-            </div>
-        ))}
-    </div>
+    <Layout>
+        <div className='pt-20'>
+            {likedProducts.map((likedProduct) => (
+                <div key={likedProduct.id}>
+                    <img src={likedProduct.image}></img>
+                </div>
+            ))}
+        </div>
+    </Layout>
   )
 }

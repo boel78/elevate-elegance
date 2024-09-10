@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { USERS } from "../../users";
 import { MenuContext } from "../../src/menuContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Layout } from "../../components/layout"; 
+import { TanButton } from "../../components/button";
 
 export const Login = () => {
   const [nameInput, setNameInput] = useState("");
@@ -30,27 +32,31 @@ export const Login = () => {
   },[])
 
   return (
-    <div className="pt-20">
-      <div className="flex flex-col">
-        <h2>Login to your account</h2>
-        <input
-          type="text"
-          className="border-black border-2 border-solid"
-          onChange={(e) => setNameInput(e.target.value)}
-        ></input>
-        <input
-          type="password"
-          className="border-black border-2 border-solid"
-          onChange={(e) => setPasswordInput(e.target.value)}
-        ></input>
-        <button onClick={handleLogin}>Log in</button>
-        <p>Have you forgotten your password?</p>
+    <Layout>
+      <div className="pt-20 flex justify-between px-8">
+        <div className="flex flex-col gap-4">
+          <h2 className="font-medium text-xl">Login to your account</h2>
+          <input
+            type="text"
+            placeholder="Email"
+            className="border-black border-2 border-solid"
+            onChange={(e) => setNameInput(e.target.value)}
+          ></input>
+          <input
+            type="password"
+            placeholder="Password"
+            className="border-black border-2 border-solid"
+            onChange={(e) => setPasswordInput(e.target.value)}
+          ></input>
+          <TanButton btnText={"Log in"} onClick={handleLogin}/>
+          <p>Have you forgotten your password?</p>
+        </div>
+        <div className="flex flex-col gap-4 w-1/4">
+          <h2 className="font-medium text-xl">Need an account?</h2>
+          <TanButton btnText={"Register"}/>
+          <Link to={"/"}><p>Continue as guest</p></Link>
+        </div>
       </div>
-      <div>
-        <h2>Need an account?</h2>
-        <button>Register</button>
-        <p>Continue as guest</p>
-      </div>
-    </div>
+    </Layout>
   );
 };
