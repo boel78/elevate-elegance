@@ -5,19 +5,23 @@ import { TanButton } from './button'
 export const Cart = () => {
 
   const {cart} = useContext(MenuContext)
+  const [totalCost, setTotalCost] = useState(0)
   
 
   useEffect(() => {
-    console.log(cart)
-  },[cart])
-
-  const calculateTotal = () => {
     let total = 0
     cart.map((prodcut) => {
-      total += prodcut.product.price
+      if(prodcut.quantity > 1){
+        let sum = prodcut.product.price * prodcut.quantity
+        total += sum
+      }
+      else{
+        total += prodcut.product.price
+      }
     })
-    return total
-  }
+    setTotalCost(total)
+  },[cart])
+
 
 
   return (
@@ -37,6 +41,9 @@ export const Cart = () => {
             </div>
         </div>
           ))}
+        </div>
+        <div>
+          <p>Total Cost: {totalCost}</p>
         </div>
         
         <div className='w-1/2 self-center flex flex-col gap-4'>
