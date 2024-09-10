@@ -204,8 +204,8 @@ export const ProductPage = () => {
           </div>
         </div>
         <div className="flex flex-col items-center mt-44">
-          <p>You may also like</p>
-          <div className="flex justify-center">
+          <p className="font-medium text-lg">You may also like</p>
+          <div className="flex justify-center py-10 gap-11">
             {PRODUCTS.map(
               (element) =>
                 element.isTopSeller && (

@@ -13,6 +13,7 @@ export const Login = () => {
 
   const handleLogin = () => {
     let foundUser = false;
+    console.log(nameInput + passwordInput)
     USERS.map((user) => {
       if (user.username == nameInput && user.password == passwordInput) {
           setCurrentUser(user);
