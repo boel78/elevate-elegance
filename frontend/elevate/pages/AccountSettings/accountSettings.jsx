@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Layout } from "../../components/layout";
+import { MenuContext } from "../../src/menuContext";
 
 export const AccountSettings = () => {
+
+  const {noMenus} = useContext(MenuContext)
+
+  useEffect(() => {
+    noMenus()
+  },[])
+
   return (
     <Layout>
         <div className="pt-14">
