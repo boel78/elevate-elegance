@@ -30,14 +30,13 @@ export const ProductPage = () => {
   } = useContext(MenuContext);
 
   useEffect(() => {
-    console.log(cart)
+    console.log(cart);
 
     noMenus();
   }, []);
 
   useEffect(() => {
-    console.log(cart)
-
+    console.log(cart);
   }, [cart]);
 
   useEffect(() => {
@@ -48,26 +47,25 @@ export const ProductPage = () => {
   }, [id]);
 
   const addToCart = (p) => {
-    console.log(cart)
-    let foundMatchingProduct = false
+    console.log(cart);
+    let foundMatchingProduct = false;
 
     const tempCart = [...cart];
 
-      console.log("HEJ");
-      tempCart.forEach((produkt) => {
-        if (produkt.product.id === p.id && produkt.size === selectedSize) {
-            produkt.quantity++
-            foundMatchingProduct = true
-          }
-        
-      })
-      if (!foundMatchingProduct) {
-        tempCart.push({
-          product: p,
-          size: selectedSize,
-          quantity: 1,
-        });
+    console.log("HEJ");
+    tempCart.forEach((produkt) => {
+      if (produkt.product.id === p.id && produkt.size === selectedSize) {
+        produkt.quantity++;
+        foundMatchingProduct = true;
       }
+    });
+    if (!foundMatchingProduct) {
+      tempCart.push({
+        product: p,
+        size: selectedSize,
+        quantity: 1,
+      });
+    }
 
     setCart(tempCart);
   };
@@ -150,28 +148,34 @@ export const ProductPage = () => {
                   </button>
                 </div>
                 <ul>
-                  <li
-                    className="flex items-center"
-                    onClick={() =>
-                      handleShowExtraInfo("Description and Fitting")
-                    }
-                  >
-                    <p>Description and fitting</p>
-                    <ArrowUp />
+                  <li>
+                    <button
+                      className="flex items-center"
+                      onClick={() =>
+                        handleShowExtraInfo("Description and Fitting")
+                      }
+                    >
+                      <p>Description and fitting</p>
+                      <ArrowUp />
+                    </button>
                   </li>
-                  <li
-                    className="flex items-center"
-                    onClick={() => handleShowExtraInfo("Material")}
-                  >
-                    <p>Material</p>
-                    <ArrowUp />
+                  <li>
+                    <button
+                      className="flex items-center"
+                      onClick={() => handleShowExtraInfo("Material")}
+                    >
+                      <p>Material</p>
+                      <ArrowUp />
+                    </button>
                   </li>
-                  <li
-                    className="flex items-center"
-                    onClick={() => handleShowExtraInfo("Care Advice")}
-                  >
-                    <p>Care Advice</p>
-                    <ArrowUp />
+                  <li>
+                    <button
+                      onClick={() => handleShowExtraInfo("Care Advice")}
+                      className="flex items-center"
+                    >
+                      <p>Care Advice</p>
+                      <ArrowUp />
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -179,13 +183,13 @@ export const ProductPage = () => {
               /* Ifall show info är false */
               <div className="flex flex-col border-2 border-solid border-red-400 gap-16 min-w-72">
                 <li className="flex items-center flex-col gap-7">
-                  <span
+                  <button
                     className="flex items-center text-2xl font-medium"
                     onClick={() => setShowInfo(true)}
                   >
                     <p>{extraInfoTitle}</p>
                     <ArrowDown />
-                  </span>
+                  </button>
                   <div className="flex flex-col gap-4">
                     {extraInfoTitle === "Description and Fitting" ? (
                       extraInfo.map((s, index) => <p key={index}>{s}</p>)
