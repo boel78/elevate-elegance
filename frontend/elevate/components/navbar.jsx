@@ -59,7 +59,8 @@ export const Navbar = () => {
     cart.map((produc) => {
       calc += produc.quantity
     })
-    setTotalAmount(calc)
+    
+    setTotalAmount(parseInt(calc))
 
   },[cart])
 
