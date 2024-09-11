@@ -12,6 +12,9 @@ export const Cataloge = () => {
   const { noMenus, setFocusingHomepageObject, focusingHomepageObject, setFocusedObject } = useContext(MenuContext);
   const [products, setProducts] = useState([]);
   const [showCategory, setShowCategory] = useState(false);
+  const [currentFilter, setCurrentFilter] = useState("none")
+  const [showFilters, setShowFilters] = useState(false)
+  const [showMaterial, setShowMaterial] = useState(false)
 
   const navigate = useNavigate()
 
@@ -34,6 +37,10 @@ export const Cataloge = () => {
     noMenus()
   },[])
 
+  useEffect(() => {
+    console.log("CURRENT FILTEr " + currentFilter)
+  },[currentFilter])
+
   const handleSetShowCategory = () => {
     setShowCategory(!showCategory);
   };
@@ -51,9 +58,32 @@ export const Cataloge = () => {
     setFocusedObject(element);
   };
 
+  const handleSetShowFilters = () =>{
+    if(showFilters === false){
+      handleFilter("none")
+    }
+    setShowFilters(!showFilters)
+  }
+
+  const handleSetFilterProducts = (genre) => {
+    const filteredProducts = products.filter((product) => (product[currentFilter] === genre)
+    )
+    setProducts(filteredProducts)
+  }
+
+  const handleFilter = (f) => {
+    console.log("filter " + f)
+    setCurrentFilter(f)
+  }
+
+  const handleShowMaterial = () => {
+    setShowMaterial(!showMaterial)
+  }
+  
+
   return (
     <Layout>
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-20">
       <div className="flex justify-end">
         <div className="flex pt-20 flex-col relative">
             <div className="flex"> 
@@ -64,7 +94,7 @@ export const Cataloge = () => {
                 <p>Category</p>
                 <ArrowDown size="15" />
               </span>
-            <span className="flex items-center justify-center">
+            <span className="flex items-center justify-center" onClick={handleSetShowFilters}>
               <p>Filters</p>
               <ArrowDown size="15" />
             </span>
@@ -87,10 +117,39 @@ export const Cataloge = () => {
                 <li onClick={() => handleSetCategory("Shoes")}>
                   Shoes
                 </li>
-            </ul>
+            </ul>         
 }
+            {showFilters && (
+            <ul className='absolute top-full left-20 mt-2 z-10 bg-slate-100'>
+                {currentFilter !== "none" ? (
+                  <>
+                  {currentFilter === "material" && ( <ul >
+                    <li onClick={() => handleSetFilterProducts("leather")}>
+                    Leather
+                    </li>
+                    </ul>
+                  )}
+                    {currentFilter === "fitting" && 
+                    (<ul>
+                <li onClick={() => handleSetFilterProducts("baggy")}>
+                  Baggy
+                </li>
+                  </ul>)}
+                </>
+                    ):    
+                
+            (showFilters && <ul>
+              <li onClick={() => handleFilter("material")}>
+              Material
+              </li>
+              <li onClick={() => handleFilter("fitting")}>
+              Fitting
+              </li>
+            </ul>)
+}
+            </ul>
+            )}
         </div>
-
       </div>
       <div className="flex gap-12">
         {products.map(
@@ -106,6 +165,7 @@ export const Cataloge = () => {
         )}
       </div>
     </div>
+
   </Layout>
   );
 };

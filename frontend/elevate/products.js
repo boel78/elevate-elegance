@@ -29,7 +29,7 @@ export const PRODUCTS = [
             "large"
         ],
         fitting: "baggy",
-        material: "leatgher",
+        material: "leather",
         careadvice: "polish with oil"
     }
 ]
