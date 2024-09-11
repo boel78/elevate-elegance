@@ -14,7 +14,6 @@ export const Cataloge = () => {
   const [showCategory, setShowCategory] = useState(false);
   const [currentFilter, setCurrentFilter] = useState("none")
   const [showFilters, setShowFilters] = useState(false)
-  const [showMaterial, setShowMaterial] = useState(false)
 
   const navigate = useNavigate()
 
@@ -37,9 +36,6 @@ export const Cataloge = () => {
     noMenus()
   },[])
 
-  useEffect(() => {
-    console.log("CURRENT FILTEr " + currentFilter)
-  },[currentFilter])
 
   const handleSetShowCategory = () => {
     setShowCategory(!showCategory);
@@ -76,16 +72,12 @@ export const Cataloge = () => {
     setCurrentFilter(f)
   }
 
-  const handleShowMaterial = () => {
-    setShowMaterial(!showMaterial)
-  }
-  
-
   return (
     <Layout>
     <div className="flex flex-col gap-20">
       <div className="flex justify-end">
         <div className="flex pt-20 flex-col relative">
+          {/* SIDOMENY */}
             <div className="flex"> 
               <span
                 onClick={handleSetShowCategory}
@@ -103,7 +95,9 @@ export const Cataloge = () => {
               <ArrowDown size="15" />
             </span>
             </div>
-            { showCategory &&
+            { 
+            /* SHOW CATEGORY CODE */
+            showCategory &&
             <ul className='absolute top-full left-0 mt-2 z-10 bg-slate-100'>
                 <li onClick={() => handleSetCategory("Clothing")}>
                   Clothing
@@ -119,7 +113,9 @@ export const Cataloge = () => {
                 </li>
             </ul>         
 }
-            {showFilters && (
+            {
+            //FILTER CODE
+            showFilters && (
             <ul className='absolute top-full left-20 mt-2 z-10 bg-slate-100'>
                 {currentFilter !== "none" ? (
                   <>
@@ -138,7 +134,9 @@ export const Cataloge = () => {
                 </>
                     ):    
                 
-            (showFilters && <ul>
+            (
+              //SHOW FILTER OPTIONS
+              showFilters && <ul>
               <li onClick={() => handleFilter("material")}>
               Material
               </li>
