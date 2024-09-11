@@ -19,6 +19,7 @@ export const Login = () => {
           setCurrentUser(user);
           foundUser = true;
           alert("Welcome, " + user.username);
+            window.scroll(0,0)
           navigate('/')
           noMenus()
         }
@@ -31,6 +32,8 @@ export const Login = () => {
   useEffect(() => {
     noMenus()
   },[])
+
+  
 
   return (
     <Layout>
@@ -55,7 +58,9 @@ export const Login = () => {
         <div className="flex flex-col gap-4 w-1/4">
           <h2 className="font-medium text-xl">Need an account?</h2>
           <TanButton btnText={"Register"}/>
-          <Link to={"/"}><p>Continue as guest</p></Link>
+          <Link to={"/"} onClick={() => {
+            window.scroll(0,0)
+          }}><p>Continue as guest</p></Link>
         </div>
       </div>
     </Layout>

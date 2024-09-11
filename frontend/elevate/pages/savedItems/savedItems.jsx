@@ -20,6 +20,8 @@ export const SavedItems = () => {
     useEffect(() => {
         noMenus()
     },[])
+
+    
   return (
     <Layout>
         <div className='pt-20'>

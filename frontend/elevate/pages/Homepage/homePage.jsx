@@ -19,6 +19,8 @@ export const HomePage = () => {
     setTopProducts(PRODUCTS);
   }, []);
 
+  
+
   const handleFocusObject = (element) => {
     setFocusingHomepageObject(!focusingHomepageObject);
     setFocusedObject(element);
@@ -31,7 +33,9 @@ export const HomePage = () => {
           <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
           <h3 className="text-3xl">"Sophistication Redefined,</h3>
           <h3 className="text-3xl mb-12">Style Elevated"</h3>
-          <Link to="/cataloge">
+          <Link to="/cataloge" onClick={() => {
+            window.scroll(0,0)
+          }}>
             <TanButton btnText={"To products"}
               className="z-200 bottom-1/3 left-12 "
             />
@@ -49,7 +53,7 @@ export const HomePage = () => {
                 <img
                   src={element.image}
                   key={element.id}
-                  className="rounded-lg max-w-44 lg:max-w-64 "
+                  className="rounded-lg max-w-44 lg:max-w-64 shadow-md"
                   onClick={() => handleFocusObject(element)}
                 />
               )
@@ -66,7 +70,9 @@ export const HomePage = () => {
             src="/images/Effortless Charm.jpeg"
             className="h-full w-full object-cover"
           />
-          <Link to="cataloge/Jewellery">
+          <Link to="cataloge/Jewellery" onClick={() => {
+            window.scroll(0,0)
+          }}>
             <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
               <TanButton btnText={"Shop Jewellery"}/>
             </div>
@@ -74,7 +80,9 @@ export const HomePage = () => {
         </div>
         <div className="w-1/2 h-1/4 relative">
           <img src="/images/Modern Classic.jpeg" className="h-full w-full" />
-          <Link to="cataloge/Bags">
+          <Link to="cataloge/Bags" onClick={() => {
+            window.scroll(0,0)
+          }}>
           <div className="absolute inset-0 w-40 h-12 m-auto flex justify-center items-center">
               <TanButton btnText={"Shop Bags"}/>
             </div>
@@ -85,7 +93,9 @@ export const HomePage = () => {
             src="/images/Sculpted Sophistication.jpeg"
             className="h-full w-full"
           />
-          <Link to="cataloge/Shoes">
+          <Link to="cataloge/Shoes" onClick={() => {
+            window.scroll(0,0)
+          }}>
           <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
               <TanButton btnText={"Shop Shoes"}/>
             </div>
@@ -93,7 +103,9 @@ export const HomePage = () => {
         </div>
         <div className="w-1/2 h-1/4 relative">
           <img src="/images/Regal Splendor.jpeg" className="h-full w-full" />
-          <Link to="cataloge/Clothing">
+          <Link to="cataloge/Clothing" onClick={() => {
+            window.scroll(0,0)
+          }}>
           <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
               <TanButton btnText={"Shop Clothing"}/>
             </div>

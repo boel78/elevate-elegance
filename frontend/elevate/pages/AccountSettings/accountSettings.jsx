@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect} from "react";
 import { Layout } from "../../components/layout";
 import { MenuContext } from "../../src/menuContext";
 
@@ -9,6 +9,8 @@ export const AccountSettings = () => {
   useEffect(() => {
     noMenus()
   },[])
+
+
 
   return (
     <Layout>

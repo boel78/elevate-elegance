@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { MenuContext } from "../../src/menuContext";
 import Axios from "axios";
 import { PRODUCTS } from "../../products";
@@ -71,6 +71,7 @@ export const Cataloge = () => {
     console.log("filter " + f)
     setCurrentFilter(f)
   }
+
 
   return (
     <Layout>

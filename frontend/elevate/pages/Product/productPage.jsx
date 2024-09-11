@@ -38,6 +38,7 @@ export const ProductPage = () => {
   useEffect(() => {
     console.log(cart);
   }, [cart]);
+  
 
   useEffect(() => {
     const product = PRODUCTS.find((product) => product.id === parseInt(id));
