@@ -57,7 +57,7 @@ export const Navbar = () => {
   useEffect(() => {
     let calc = 0
     cart.map((produc) => {
-      calc += produc.quantity
+      calc += Number(produc.quantity)
     })
     
     setTotalAmount(parseInt(calc))
