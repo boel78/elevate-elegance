@@ -65,7 +65,7 @@ export const Navbar = () => {
   },[cart])
 
   return (
-    <nav className="bg-white fixed w-full drop-shadow-md">
+    <nav className="bg-white fixed w-full drop-shadow-md z-50">
       <div className="flex h-12 items-center justify-between py-3">
         <div onClick={noMenus}>
           <Link to={"/"}>

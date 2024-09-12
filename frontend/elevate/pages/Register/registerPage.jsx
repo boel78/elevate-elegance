@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BlueButton } from "../../components/blueButton";
+import { USERS } from "../../users";
 
 export const RegisterPage = () => {
 
@@ -17,6 +18,13 @@ export const RegisterPage = () => {
         if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(newUser.email)){
             errors.email = "Check your email input"
         }
+        else {USERS.map((user) => {
+            if(user.email === newUser.email){
+                errors.email = "Email already exists"
+            }
+        })}
+
+        
         
         if(Object.keys(errors).length > 0){
             setFormError(errors)
@@ -24,7 +32,7 @@ export const RegisterPage = () => {
             return
         }
         delete newUser.cnfpassword
-        
+        newUser.likedProducts = []
         //ERSÄTTA MED POST LOGIK SENARE
         console.log(newUser)
 
