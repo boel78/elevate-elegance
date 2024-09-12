@@ -13,6 +13,7 @@ import { MyOrders } from "../pages/Orders/myOrders";
 import { SavedItems } from "../pages/savedItems/savedItems";
 import { Footer } from "../components/footer";
 import { AccountSettings } from "../pages/AccountSettings/accountSettings";
+import { RegisterPage } from "../pages/Register/registerPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/Orders" element = {<MyOrders />}/>
               <Route path="/SavedItems" element={<SavedItems />}/>
               <Route path="/Settings" element={<AccountSettings/>}/>
+              <Route path="/Register" element={<RegisterPage/>}/>
             </Routes>
             <Footer />
           </Router>

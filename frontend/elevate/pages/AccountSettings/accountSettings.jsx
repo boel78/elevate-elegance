@@ -48,10 +48,6 @@ export const AccountSettings = () => {
                         <h3>Last name</h3>
                         <input type="text" />
                       </div>
-                      <div>
-                        <h3>Staff card</h3>
-                        <input type="text" />
-                      </div>
                   </div>
                   <div className="flex gap-16">
                       <div>
