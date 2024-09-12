@@ -69,22 +69,22 @@ export const RegisterPage = () => {
 
             <p>
               <label htmlFor="firstName">First name: </label>
-              <input type="text" id="firstName" name="firstName" required />
+              <input type="text" id="firstName" name="firstname" required />
             </p>
 
             <p>
               <label htmlFor="lastName">Last name: </label>
-              <input type="text" id="lastName" name="lastName" required />
+              <input type="text" id="lastName" name="lastname" required />
             </p>
 
             <p>
               <label htmlFor="dateOfBirth">Date of birth: </label>
-              <input type="date" id="dateOfBirth" name="dateOfBirth" required />
+              <input type="date" id="dateOfBirth" name="dateofbirth" required />
             </p>
 
             <p>
               <label htmlFor="zipCode">Zip code </label>
-              <input type="text" id="zipCode" name="zipCode" required />
+              <input type="text" id="zipCode" name="zipcode" required />
             </p>
 
             <p>
