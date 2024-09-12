@@ -1,12 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../../src/menuContext";
 import { BlueButton } from "../../components/blueButton";
 
 export const FinalCheckout = () => {
   const { currentUser, cart, filledOutOrderDetails } = useContext(MenuContext);
+    const [userInfo, setUserInfo] = useState()
 
   useEffect(() => {
-    console.log(cart);
+    const keysToPutIn = ["firstname", "lastname", "zipcode", "address", "town", "phone"]
+    if(currentUser){
+        const filteredInfo = Object.keys(currentUser).filter(key => keysToPutIn.includes(key)).reduce((obj, key) => {
+            obj[key] = currentUser[key]
+            return obj
+        },{})
+        setUserInfo(filteredInfo)
+        console.log(filteredInfo)
+    }
   }, []);
 
   return (
@@ -30,7 +39,13 @@ export const FinalCheckout = () => {
         <div className="bg-lightTan p-5 rounded-md shadow-md flex flex-col gap-6 ">
             <div className="flex flex-col gap-3">
               {currentUser !== null
-                ? currentUser.map((info, index) => <p key={index}>{info}</p>)
+                ? (Object.entries(userInfo).map(
+                    ([key, value], index) => (
+                      <p key={index}>
+                        {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
+                      </p>
+                    )
+                  ))
                 : Object.entries(filledOutOrderDetails).map(
                     ([key, value], index) => (
                       <p key={index}>

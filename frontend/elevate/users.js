@@ -1,8 +1,13 @@
 export const USERS = [
     {
         id: 1,
-        username: "Jimmy",
+        firstname: "Johnny",
+        lastname: "Bravo",
         password: "123",
+        address: "coolvägen 2",
+        town: "Staden",
+        zipcode: "70876",
+        phone: "019-108765",
         email: "cool@live.se",
         likedItems: ["1"]
     },

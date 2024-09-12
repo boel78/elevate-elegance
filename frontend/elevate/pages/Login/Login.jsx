@@ -15,10 +15,10 @@ export const Login = () => {
     let foundUser = false;
     console.log(nameInput + passwordInput);
     USERS.map((user) => {
-      if (user.username == nameInput && user.password == passwordInput) {
+      if (user.email == nameInput && user.password == passwordInput) {
         setCurrentUser(user);
         foundUser = true;
-        alert("Welcome, " + user.username);
+        alert("Welcome, " + user.firstname);
         window.scroll(0, 0);
         navigate("/");
         noMenus();
