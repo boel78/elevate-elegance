@@ -3,6 +3,7 @@ import { MenuContext } from "../src/menuContext";
 import { TanButton } from "./button";
 import { ArrowDown } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import { CartObject } from "./cartObject";
 
 export const Cart = () => {
   const { cart, setCart, currentUser } = useContext(MenuContext);
@@ -66,40 +67,8 @@ export const Cart = () => {
       </div>
       <div className="flex-col flex gap-2">
         {cart.map((item) => (
-          <div key={item.product.id + item.size} className="flex gap-12">
-            <img src={item.product.image} className="w-36 rounded-xl" />
-            <div>
-              <h3 className="font-medium text-xl">{item.product.name}</h3>
-              <p>{item.product.price} SEK</p>
-              <div className="flex">
-                <p>Size: {!sizeBarOpen && item.size}</p>
-                {item.product.size.length === 1 ? (
-                  <p>One size</p>
-                ) : sizeBarOpen ? (
-                  <ul className="pl-2">
-                    {item.product.size.map((s, index) => (
-                      <p key={index} onClick={() => handleSetSize(item, s)}>
-                        {s}
-                      </p>
-                    ))}
-                  </ul>
-                ) : (
-                  <ArrowDown
-                    onClick={handleSizeBarToggle}
-                    className="self-center"
-                  />
-                )}
-              </div>
-              <span className="flex gap-2">
-                <p>Quantity:</p>
-                <input
-                  type="number"
-                  value={item.quantity}
-                  className="w-8"
-                  onChange={(e) => handleChangeQuantity(e.target.value, item)}
-                />
-              </span>
-            </div>
+          <div key={item.id}>
+            <CartObject obj={item} />
           </div>
         ))}
       </div>

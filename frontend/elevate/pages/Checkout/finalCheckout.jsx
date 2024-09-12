@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../../src/menuContext";
 import { BlueButton } from "../../components/blueButton";
+import { CartObject } from "../../components/cartObject";
 
 export const FinalCheckout = () => {
   const { currentUser, cart, filledOutOrderDetails } = useContext(MenuContext);
     const [userInfo, setUserInfo] = useState()
+    const [totalCost, setTotalCost] = useState(0)
 
   useEffect(() => {
     const keysToPutIn = ["firstname", "lastname", "zipcode", "address", "town", "phone"]
@@ -14,9 +16,26 @@ export const FinalCheckout = () => {
             return obj
         },{})
         setUserInfo(filteredInfo)
-        console.log(filteredInfo)
     }
+    calculateTotal()
   }, []);
+
+  useEffect(() => {
+    calculateTotal()
+  },[cart])
+
+  const calculateTotal = () => {
+    let total = 0;
+    cart.map((prodcut) => {
+      if (prodcut.quantity > 1) {
+        let sum = prodcut.product.price * prodcut.quantity;
+        total += sum;
+      } else {
+        total += prodcut.product.price;
+      }
+    });
+    setTotalCost(total);
+  }
 
   return (
     <>
@@ -25,16 +44,12 @@ export const FinalCheckout = () => {
           {cart.map((object, index) => (
             <div
               key={index}
-              className="flex border-2 border-darkBlue rounded-lg shadow-md"
+              className="border-solid border-2 border-darkBlue"
             >
-              <img src={object.product.image} className="w-36 rounded-l-md" />
-              <div className="px-8">
-                <h3 className="font-medium text-xl">{object.product.name}</h3>
-                <p>Size: {object.size ? object.size : "One size"}</p>
-                <p>Quantity: {object.quantity}</p>
-              </div>
+                <CartObject obj={object} />
             </div>
           ))}
+          <p>Total cost: {totalCost}</p>
         </div>
         <div className="bg-lightTan p-5 rounded-md shadow-md flex flex-col gap-6 ">
             <div className="flex flex-col gap-3">
@@ -55,7 +70,6 @@ export const FinalCheckout = () => {
                   )}
             </div>
             <BlueButton btnText={"Confirm order"} />
-
         </div>
       </div>
     </>

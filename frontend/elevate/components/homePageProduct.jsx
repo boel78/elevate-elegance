@@ -17,12 +17,10 @@ export const HomePageProduct = (props) => {
   }, [product]);
 
   const addToCart = (p) => {
-    console.log(cart)
     let foundMatchingProduct = false
 
     const tempCart = [...cart];
 
-      console.log("HEJ");
       tempCart.forEach((produkt) => {
         if (produkt.product.id === p.id && produkt.size === selectedSize) {
             produkt.quantity++
@@ -31,7 +29,9 @@ export const HomePageProduct = (props) => {
         
       })
       if (!foundMatchingProduct) {
+        console.log(cart.length)
         tempCart.push({
+          id: cart.length,
           product: p,
           size: selectedSize,
           quantity: 1,

@@ -62,6 +62,7 @@ export const ProductPage = () => {
     });
     if (!foundMatchingProduct) {
       tempCart.push({
+        id: cart.length,
         product: p,
         size: selectedSize,
         quantity: 1,
