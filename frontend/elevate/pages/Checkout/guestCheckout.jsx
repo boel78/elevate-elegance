@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { BlueButton } from '../../components/blueButton'
 import { ArrowUp } from '@phosphor-icons/react'
+import { MenuContext } from '../../src/menuContext'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const GuestCheckout = () => {
 
+    const {setFilledOutOrderDetails, filledOutOrderDetails} = useContext(MenuContext)
+    const navigate = useNavigate()
+
     const handleSubmit = (e) => {
+
+        //VALIDERING KRÄVS
         e.preventDefault()
         const formData = new FormData(e.target)
         const orderDetails = Object.fromEntries(formData)
-        console.log(orderDetails)
+        if(orderDetails.address2 === ""){
+            delete orderDetails.address2
+        }
+        setFilledOutOrderDetails(orderDetails)
+        navigate("/checkout")
     }
 
     const inputStyle = 'rounded-lg shadow-md border border-gray-300 block w-full p-2 focus:outline-none focus:ring-2 focus:ring-darkBlue focus:border-darkBlue text-sm font-medium'
@@ -53,8 +64,9 @@ export const GuestCheckout = () => {
                     <input type='checkbox' id='cookie'  required/>
                 </p>
 
-                <BlueButton btnText={"Place order"} />
+                
             </fieldset>
+            <BlueButton btnText={"Place order"}/>
         </form>
     </div>
   )

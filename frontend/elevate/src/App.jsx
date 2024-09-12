@@ -15,6 +15,7 @@ import { Footer } from "../components/footer";
 import { AccountSettings } from "../pages/AccountSettings/accountSettings";
 import { RegisterPage } from "../pages/Register/registerPage";
 import { GuestCheckout } from "../pages/Checkout/guestCheckout";
+import { FinalCheckout } from "../pages/Checkout/finalCheckout";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               <Route path="/Settings" element={<AccountSettings/>}/>
               <Route path="/Register" element={<RegisterPage/>}/>
               <Route path="/guestCheckout" element={<GuestCheckout/>}/>
+              <Route path="/checkout" element={<FinalCheckout/>}/>
             </Routes>
             <Footer />
           </Router>

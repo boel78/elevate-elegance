@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../src/menuContext";
 import { TanButton } from "./button";
 import { ArrowDown } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 export const Cart = () => {
-  const { cart, setCart } = useContext(MenuContext);
+  const { cart, setCart, currentUser } = useContext(MenuContext);
   const [totalCost, setTotalCost] = useState(0);
   const [sizeBarOpen, setSizeBarOpen] = useState(false);
 
@@ -57,6 +58,7 @@ export const Cart = () => {
     console.log(cart)
   };
 
+
   return (
     <div className="flex flex-col fixed right-0 top-12 w-1/3 bg-white border-l-2 border-b-2 border-black font-inter max-h-[400px] overflow-y-scroll gap-4">
       <div className="flex content-center self-center">
@@ -106,7 +108,7 @@ export const Cart = () => {
       </div>
 
       <div className="w-1/2 self-center flex flex-col gap-4">
-        <TanButton btnText={"Checkout"} />
+        <Link to={currentUser === null ? "/guestCheckout" : "/checkout"}><TanButton btnText={"Checkout"}/></Link>
         <TanButton btnText={"View shopping cart"} />
       </div>
     </div>

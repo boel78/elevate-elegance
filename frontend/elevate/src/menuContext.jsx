@@ -8,6 +8,7 @@ export const MenuContextProvider = (props) => {
   const [searchMenuActive, setSearchMenuActive] = useState(false);
   const [profileMenuActive, setProfileMenuActive] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState("Clothing");
+  const [filledOutOrderDetails, setFilledOutOrderDetails] = useState()
   const [focusingHomepageObject, setFocusingHomepageObject] = useState(false)
   const [focusedObject, setFocusedObject] = useState(null)
   const [currentUser, setCurrentUser] = useState(null);
@@ -36,7 +37,9 @@ export const MenuContextProvider = (props) => {
     focusingHomepageObject,
     setFocusingHomepageObject,
     focusedObject,
-    setFocusedObject
+    setFocusedObject,
+    filledOutOrderDetails,
+    setFilledOutOrderDetails
   };
   return (
     <MenuContext.Provider value={contextValue}>
