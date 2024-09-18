@@ -18,6 +18,7 @@ export const FinalCheckout = () => {
         setUserInfo(filteredInfo)
     }
     calculateTotal()
+    
   }, []);
 
   useEffect(() => {
@@ -41,7 +42,7 @@ export const FinalCheckout = () => {
     <>
       <div className="pt-20 flex justify-between px-20 pb-20">
         <div className="flex flex-col gap-5">
-          {cart.map((object, index) => (
+          { cart && cart.map((object, index) => (
             <div
               key={index}
               className="border-solid border-2 border-darkBlue"
@@ -53,14 +54,16 @@ export const FinalCheckout = () => {
         </div>
         <div className="bg-lightTan p-5 rounded-md shadow-md flex flex-col gap-6 ">
             <div className="flex flex-col gap-3">
-              {currentUser !== null
-                ? (Object.entries(userInfo).map(
+              {(currentUser !== null) ?
+                userInfo &&
+                  (Object.entries(userInfo).map(
                     ([key, value], index) => (
                       <p key={index}>
                         {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
                       </p>
                     )
                   ))
+
                 : Object.entries(filledOutOrderDetails).map(
                     ([key, value], index) => (
                       <p key={index}>
