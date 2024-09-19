@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useEffect, useLayoutEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { MenuContext } from "../../src/menuContext";
-import Axios from "axios";
 import { Layout } from "../../components/layout";
 import { FilterBox } from "../../components/filterBox";
 import { useProducts } from "../../hooks/useProducts";
@@ -18,13 +17,12 @@ export const Cataloge = () => {
     setFocusedObject,
   } = useContext(MenuContext);
 
-  const {products, filterProduct} = useProducts()
+  const {products} = useProducts()
   const [shownProducts, setShownProducts] = useState(products)
 
 
   useEffect(() => {
     noMenus();
-    console.log(products)
     setShownProducts(products)
   }, []);
 

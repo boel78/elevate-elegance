@@ -1,34 +1,23 @@
-import { ArrowDown, Cat } from "@phosphor-icons/react";
+import { ArrowDown} from "@phosphor-icons/react";
 import { useContext, useEffect, useState } from "react";
-import { MenuContext } from "../src/menuContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { FilterContext } from "../pages/Cataloge/Cataloge";
 import { useProducts } from "../hooks/useProducts";
 
 export const FilterBox = () => {
   const [showCategory, setShowCategory] = useState(false);
-  const [currentFilter, setCurrentFilter] = useState("none");
   const [showFilters, setShowFilters] = useState(false);
+  const [currentFilter, setCurrentFilter] = useState("none");
 
   const navigate = useNavigate();
 
   const { Category } = useParams();
 
-  const {setShownProducts, shownProducts} = useContext(FilterContext)
+  const {setShownProducts} = useContext(FilterContext)
 
   const {filterProduct, products} = useProducts()
 
 
-    /*useEffect(() => {
-    console.log(currentFilter)
-    console.log(shownProducts)
-    },[currentFilter])*/
-
-
-
-  /*const handleSetShowCategory = () => {
-    setShowCategory(!showCategory);
-  };*/
 
   const handleSetCategory = (category) => {
     if(Category === category){
@@ -36,11 +25,15 @@ export const FilterBox = () => {
         setShownProducts(products)
     }
     else{
-        navigate(`/cataloge/${category}`);
-        
+        navigate(`/cataloge/${category}`); 
     }
     setShowCategory(false);
   };
+
+  const handleSetFilter = (f) => {
+    setCurrentFilter(f)
+  }
+
 
   const handleSetShowFilters = () => {
     if (showFilters === false) {
@@ -57,9 +50,13 @@ export const FilterBox = () => {
     }
   }
 
-  const handleSetFilter = (f) => {
-    setCurrentFilter(f)
-  }
+  useEffect(() => {
+    if(Category){
+    const filteredProducts = filterProduct("category", Category)
+    setShownProducts(filteredProducts)
+    }
+  }, [Category]);
+
 
   const filterOptions = 
   [
@@ -101,24 +98,15 @@ export const FilterBox = () => {
     }
     ]
 
+    const categories = [
+        "Clothing",
+        "Jewellery",
+        "Bags",
+        "Shoes"
+    ]
 
-  useEffect(() => {
-    /*Axios.get("http://localhost:8080/api/product").then((res) => {
-            setProducts(res.data)
-        })
-    if (typeof Category === "undefined") {
-      setProducts(PRODUCTS);
-    } else {
-      const newProducts = PRODUCTS.filter(
-        (product) => product.category === Category
-      );
-      setProducts(newProducts);
-    }*/
-    if(Category){
-    const filteredProducts = filterProduct("category", Category)
-    setShownProducts(filteredProducts)
-    }
-  }, [Category]);
+
+
 
 
   return (
@@ -148,10 +136,9 @@ export const FilterBox = () => {
         /* SHOW CATEGORY CODE */
         showCategory && (
           <ul className="absolute top-full left-0 mt-2 z-10 bg-slate-100">
-            <li onClick={() => handleSetCategory("Clothing")}>Clothing</li>
-            <li onClick={() => handleSetCategory("Jewellery")}>Jewellery</li>
-            <li onClick={() => handleSetCategory("Bags")}>Bags</li>
-            <li onClick={() => handleSetCategory("Shoes")}>Shoes</li>
+            {categories.map((category) => (
+                <li key={category} onClick={() => handleSetCategory(category)}>{category}</li>
+            ))}
           </ul>
         )
       }
