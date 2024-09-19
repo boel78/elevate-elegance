@@ -132,6 +132,7 @@ export const HomePage = () => {
         ))}
       </div>
 
+        {/*   Services  */ }
       <div className="flex-col items-center pb-[220px]">
         <p className="text-5xl underline text-darkBlue text-center pb-[111px] pt-[54px] font-inter">
           Services
@@ -155,7 +156,7 @@ export const HomePage = () => {
       </div>
 
       
-
+      {/* Newsletter */}
       <div className="w-full bg-lightTan flex flex-col items-center gap-20 py-60">
         <h3 className="text-6xl text-darkBlue font-inter">
           Subscribe to our newsletter!
