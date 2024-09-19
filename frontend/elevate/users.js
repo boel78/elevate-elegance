@@ -9,6 +9,8 @@ export const USERS = [
         zipcode: "70876",
         phone: "019-108765",
         email: "cool@live.se",
+        dateofbirth: "1999-02-27",
+        gender: "Male",
         likedItems: ["1"]
     },
     {
