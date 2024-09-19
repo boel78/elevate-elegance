@@ -1,14 +1,18 @@
 import Axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MenuContext } from "../../src/menuContext";
 import { Link } from "react-router-dom";
 import { Layout } from "../../components/layout";
 import { TanButton } from "../../components/button";
 import { BlueButton } from "../../components/blueButton";
-import { useTopProducts } from "../../hooks/useTopProducts";
+import { useProducts } from "../../hooks/useProducts";
 
 export const HomePage = () => {
-  const {topProducts} = useTopProducts()
+  const {filterProduct} = useProducts()
+
+  const topSellers = filterProduct("isTopSeller", true)
+
+
   const {
     focusingHomepageObject,
     setFocusedObject,
@@ -95,16 +99,15 @@ export const HomePage = () => {
           Best Sellers
         </p>
         <div className="flex justify-center gap-7">
-          {topProducts.map(
-            (element) =>
-              element.isTopSeller && (
+          {topSellers.map(
+            (element) => (
                 <img
                   src={element.image}
                   key={element.id}
                   className="rounded-lg max-w-44 lg:max-w-64 shadow-md"
                   onClick={() => handleFocusObject(element)}
-                />
-              )
+                />)
+              
           )}
         </div>
       </div>
