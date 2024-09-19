@@ -7,7 +7,9 @@ export const AccountSettings = () => {
   const {noMenus, currentUser, setCurrentUser} = useContext(MenuContext)
 
   const [isEditing, setIsEditing] = useState(false)
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState(
+    currentUser &&
+    {
     email: currentUser.email,
     gender: currentUser.gender,
     firstname: currentUser.firstname,
@@ -21,12 +23,9 @@ export const AccountSettings = () => {
     noMenus()
   },[])
 
-  useEffect(() => {
-    console.log(currentUser)
-  },[currentUser])
-
   const userInfoField = [
-    {
+    currentUser &&
+    ({
       text: "Email",
       value: currentUser.email,
       type: "email",
@@ -61,7 +60,7 @@ export const AccountSettings = () => {
       value:currentUser.phone,
       type:"text",
       name:"phone"
-    }
+    })
   ]
 
   const handleInputChange = (e) => {

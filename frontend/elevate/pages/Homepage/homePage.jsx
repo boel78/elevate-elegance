@@ -1,23 +1,19 @@
 import Axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { MenuContext } from "../../src/menuContext";
-import { PRODUCTS } from "../../products";
 import { Link } from "react-router-dom";
 import { Layout } from "../../components/layout";
 import { TanButton } from "../../components/button";
 import { BlueButton } from "../../components/blueButton";
+import { useTopProducts } from "../../hooks/useTopProducts";
 
 export const HomePage = () => {
-  const [topProducts, setTopProducts] = useState([]);
+  const {topProducts} = useTopProducts()
   const {
     focusingHomepageObject,
     setFocusedObject,
     setFocusingHomepageObject,
   } = useContext(MenuContext);
-
-  useEffect(() => {
-    setTopProducts(PRODUCTS);
-  }, []);
 
   const handleFocusObject = (element) => {
     setFocusingHomepageObject(!focusingHomepageObject);
