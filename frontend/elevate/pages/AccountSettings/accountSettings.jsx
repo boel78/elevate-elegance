@@ -11,15 +11,19 @@ export const AccountSettings = () => {
     email: currentUser.email,
     gender: currentUser.gender,
     firstname: currentUser.firstname,
-    zipcode: currentUser.zipcode,
     lastname: currentUser.lastname,
     dateofbirth: currentUser.dateofbirth,
     phone: currentUser.phone,
+    addresses: currentUser.addresses
   });
 
   useEffect(() => {
     noMenus()
   },[])
+
+  useEffect(() => {
+    console.log(currentUser)
+  },[currentUser])
 
   const userInfoField = [
     {
@@ -39,12 +43,6 @@ export const AccountSettings = () => {
       value: currentUser.firstname,
       type:"text",
       name:"firstname"
-    },
-    {
-      text: "ZIPCODE",
-      value: currentUser.zipcode,
-      type:"text",
-      name:"zipcode"
     },
     {
       text:"Last name",
@@ -70,7 +68,7 @@ export const AccountSettings = () => {
     const { name, value } = e.target;
     setUserInfo((prevInfo) => ({
       ...prevInfo,
-      [name]: value, // Uppdatera fältet som ändras
+      [name]: value,
     }));
   };
 
@@ -78,6 +76,21 @@ export const AccountSettings = () => {
     const newUser = userInfo
     setCurrentUser(newUser)
   }
+
+  const handleInputChangeAddress = (index, event, name) => {
+    const {value}= event.target
+    const newAddresses = userInfo.addresses.map((item, i) => {
+      if(i === index){
+        return {...item, [name]: value}
+      }
+      return item
+    })
+    setUserInfo((prevInfo) => ({
+      ...prevInfo,
+      addresses: newAddresses
+    }))
+  };
+
 
 
 
@@ -109,11 +122,32 @@ export const AccountSettings = () => {
             <div className="bg-lightTan w-1/2 px-6">
               <div className="flex justify-between">
                 <h2 className="font-medium text-xl">Adress</h2>
-                <a className="underline cursor-pointer">Edit</a>
+                <a className="underline cursor-pointer" onClick={() => setIsEditing(!isEditing)}>Edit</a>
                 
               </div>
               <p>You can also add and edit delivery address here</p>
-                <p>No home address saved</p>
+              {currentUser.addresses.length === 0 ?
+              
+                <p>No home address saved</p> : 
+                <div className="flex flex-col gap-6 w-1/4">
+                  {userInfo.addresses.map((address, index) => {
+                    return(
+                    <div key={index} className="flex flex-col">
+                      <h3>Address: {index+1}</h3>
+
+                      <div className="flex flex-col">
+                        <input type="text" value={address.address} onChange={(event) => handleInputChangeAddress(index, event, "address")} readOnly={!isEditing}/>
+                        <input type="text" value={address.town} onChange={(event) => handleInputChangeAddress(index, event, "town")} readOnly={!isEditing}/>
+                        <input type="text" value={address.zipcode} onChange={(event) => handleInputChangeAddress(index, event, "zipcode")} readOnly={!isEditing}/>
+  
+                      </div>
+                    </div>)
+                    
+})}
+</div>
+                }
+                
+                <button onClick={handleSave}>save</button>
             </div>
             <div className="bg-lightTan w-1/2 px-6">
               <div className="flex justify-between">
