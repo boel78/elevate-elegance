@@ -47,6 +47,33 @@ export const HomePage = () => {
     },
   ];
 
+  const services = [
+    {
+      title: "Premium Quality",
+      image: "/images/quality.jpeg",
+      text: "At Elevate Elegance, we offer a carefully curated collection of premium quality products renowned for their exquisite             craftsmanship and timeless elegance. From luxurious leather handbags to designer jewelry and silk scarves each item is crafted with meticulous attention to detail and made from the finest materials. Discover the epitome of luxury with Elevate Elegance.",
+    },
+    {
+      title: "Customer Service",
+      image: "/images/customer.jpeg",
+      text: `At Elevate Elegance, we're dedicated to delivering exceptional
+      customer service. Our team is committed to providing personalized
+      assistance and prompt responses to your inquiries. Experience
+      unparalleled support with Elevate Elegance.`
+    },
+    {
+      title: "Gift Wrapping",
+      image:"/images/gift.jpeg",
+      text: `At Elevate Elegance, we understand the importance of presentation,
+      which is why we offer exquisite gift wrapping services. Elevate
+      your gifting experience with our beautifully curated packaging,
+      designed to add an extra touch of luxury to every purchase.
+      Whether it's a special occasion or a thoughtful gesture, let us
+      take care of the details with our premium gift wrapping options.
+      Make every gift truly memorable with Elevate Elegance.`
+    }
+  ];
+
   return (
     <Layout>
       <div className="z-200 flex  flex-col justify-center pb-60 text-white bg-hero bg-fixed w-full h-[600px] xl:h-[950px] bg-cover">
@@ -85,6 +112,7 @@ export const HomePage = () => {
           )}
         </div>
       </div>
+
       {/*    Kategori länkar */}
       <div className="flex flex-wrap 2xl:flex-nowrap w-full h-1/2">
         {categoryLinkObjects.map((obj, index) => (
@@ -103,63 +131,30 @@ export const HomePage = () => {
           </div>
         ))}
       </div>
+
       <div className="flex-col items-center pb-[220px]">
         <p className="text-5xl underline text-darkBlue text-center pb-[111px] pt-[54px] font-inter">
           Services
         </p>
         <div className="flex justify-center gap-[80px]">
-          <div className="flex flex-col items-center w-1/4 gap-4">
-            <p className="text-3xl text-darkBlue font-inter text-nowrap">
-              Premium Quality
-            </p>
-            <img
-              src="/images/quality.jpeg"
-              className="h-[201px] w-auto rounded-full"
+        {services.map((obj, index) => (
+        <div className="flex flex-col items-center w-1/4 gap-4" key={index}>
+          <p className="text-3xl text-darkBlue font-inter text-nowrap">
+            {obj.title}
+          </p>
+          <img
+              src={obj.image}
+              className="h-1/4 w-auto rounded-full"
             />
             <p className="text-darkBlue font-inter text-wrap pt-4">
-              At Elevate Elegance, we offer a carefully curated collection of
-              premium quality products renowned for their exquisite
-              craftsmanship and timeless elegance. From luxurious leather
-              handbags to designer jewelry and silk scarves each item is crafted
-              with meticulous attention to detail and made from the finest
-              materials. Discover the epitome of luxury with Elevate Elegance.
+              {obj.text}
             </p>
-          </div>
-          <div className="flex flex-col items-center w-1/4 gap-4">
-            <p className="text-3xl text-darkBlue font-inter text-nowrap">
-              Customer Service
-            </p>
-            <img
-              src="/images/customer.jpeg"
-              className="h-[201px] w-auto rounded-full"
-            />
-            <p className="text-darkBlue font-inter text-wrap pt-4">
-              At Elevate Elegance, we're dedicated to delivering exceptional
-              customer service. Our team is committed to providing personalized
-              assistance and prompt responses to your inquiries. Experience
-              unparalleled support with Elevate Elegance.
-            </p>
-          </div>
-          <div className="flex flex-col items-center w-1/4 gap-4">
-            <p className="text-3xl text-darkBlue font-inter text-nowrap">
-              Gift Wrapping
-            </p>
-            <img
-              src="/images/gift.jpeg"
-              className="h-[201px] w-auto rounded-full"
-            />
-            <p className="text-darkBlue font-inter text-wrap pt-4">
-              At Elevate Elegance, we understand the importance of presentation,
-              which is why we offer exquisite gift wrapping services. Elevate
-              your gifting experience with our beautifully curated packaging,
-              designed to add an extra touch of luxury to every purchase.
-              Whether it's a special occasion or a thoughtful gesture, let us
-              take care of the details with our premium gift wrapping options.
-              Make every gift truly memorable with Elevate Elegance.
-            </p>
-          </div>
+        </div>
+      ))}
         </div>
       </div>
+
+      
 
       <div className="w-full bg-lightTan flex flex-col items-center gap-20 py-60">
         <h3 className="text-6xl text-darkBlue font-inter">
@@ -173,5 +168,7 @@ export const HomePage = () => {
         <BlueButton btnText={"Subscribe"} />
       </div>
     </Layout>
+
+    
   );
 };
