@@ -19,12 +19,33 @@ export const HomePage = () => {
     setTopProducts(PRODUCTS);
   }, []);
 
-  
-
   const handleFocusObject = (element) => {
     setFocusingHomepageObject(!focusingHomepageObject);
     setFocusedObject(element);
   };
+
+  const categoryLinkObjects = [
+    {
+      src: "/images/Effortless Charm.jpeg",
+      link: "cataloge/Jewellery",
+      btnText: "Shop Jewellery",
+    },
+    {
+      src: "/images/Modern Classic.jpeg",
+      link: "cataloge/Bags",
+      btnText: "Shop Bags",
+    },
+    {
+      src: "/images/Sculpted Sophistication.jpeg",
+      link: "cataloge/Shoes",
+      btnText: "Shop Shoes",
+    },
+    {
+      src: "/images/Regal Splendor.jpeg",
+      link: "cataloge/Clothing",
+      btnText: "Shop Clothing",
+    },
+  ];
 
   return (
     <Layout>
@@ -33,10 +54,14 @@ export const HomePage = () => {
           <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
           <h3 className="text-3xl">"Sophistication Redefined,</h3>
           <h3 className="text-3xl mb-12">Style Elevated"</h3>
-          <Link to="/cataloge" onClick={() => {
-            window.scroll(0,0)
-          }}>
-            <TanButton btnText={"To products"}
+          <Link
+            to="/cataloge"
+            onClick={() => {
+              window.scroll(0, 0);
+            }}
+          >
+            <TanButton
+              btnText={"To products"}
               className="z-200 bottom-1/3 left-12 "
             />
           </Link>
@@ -58,61 +83,26 @@ export const HomePage = () => {
                 />
               )
           )}
-          {/*<img src="/images/ClassicSophistication.jpeg" className="w-1/5 h-auto rounded-xl border-solid border-2 border-black"/>
-          <img src="/images/EternalGrace.jpeg" className="w-1/5 h-auto rounded-xl border-solid border-2 border-black"/>
-          <img src="/images/Timeless Chic.jpeg" className="w-1/5 h-auto rounded-xl border-solid border-2 border-black"/>
-          <img src="/images/Graceful Glamour.jpeg" className="w-1/5 h-auto rounded-xl border-solid border-2 border-black"/>*/}
         </div>
       </div>
+      {/*    Kategori länkar */}
       <div className="flex flex-wrap 2xl:flex-nowrap w-full h-1/2">
-        <div className="w-1/2 h-1/4 relative">
-          <img
-            src="/images/Effortless Charm.jpeg"
-            className="h-full w-full object-cover"
-          />
-          <Link to="cataloge/Jewellery" onClick={() => {
-            window.scroll(0,0)
-          }}>
-            <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
-              <TanButton btnText={"Shop Jewellery"}/>
-            </div>
-          </Link>
-        </div>
-        <div className="w-1/2 h-1/4 relative">
-          <img src="/images/Modern Classic.jpeg" className="h-full w-full" />
-          <Link to="cataloge/Bags" onClick={() => {
-            window.scroll(0,0)
-          }}>
-          <div className="absolute inset-0 w-40 h-12 m-auto flex justify-center items-center">
-              <TanButton btnText={"Shop Bags"}/>
-            </div>
-          </Link>
-        </div>
-        <div className="w-1/2 h-1/4 relative">
-          <img
-            src="/images/Sculpted Sophistication.jpeg"
-            className="h-full w-full"
-          />
-          <Link to="cataloge/Shoes" onClick={() => {
-            window.scroll(0,0)
-          }}>
-          <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
-              <TanButton btnText={"Shop Shoes"}/>
-            </div>
-          </Link>
-        </div>
-        <div className="w-1/2 h-1/4 relative">
-          <img src="/images/Regal Splendor.jpeg" className="h-full w-full" />
-          <Link to="cataloge/Clothing" onClick={() => {
-            window.scroll(0,0)
-          }}>
-          <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
-              <TanButton btnText={"Shop Clothing"}/>
-            </div>
-          </Link>
-        </div>
+        {categoryLinkObjects.map((obj, index) => (
+          <div className="w-1/2 h-1/4 relative" key={index}>
+            <img src={obj.src} className="h-full w-full" />
+            <Link
+              to={obj.link}
+              onClick={() => {
+                window.scroll(0, 0);
+              }}
+            >
+              <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
+                <TanButton btnText={obj.btnText} />
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
-
       <div className="flex-col items-center pb-[220px]">
         <p className="text-5xl underline text-darkBlue text-center pb-[111px] pt-[54px] font-inter">
           Services
@@ -180,8 +170,8 @@ export const HomePage = () => {
           placeholder="Email"
           className="w-1/3 h-8 border-solid border-2 border-black rounded"
         />
-        <BlueButton btnText={"Subscribe"}/>
+        <BlueButton btnText={"Subscribe"} />
       </div>
-      </Layout>
+    </Layout>
   );
 };
