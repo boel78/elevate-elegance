@@ -5,7 +5,7 @@ import { MenuContext } from "../../src/menuContext";
 export const AccountSettings = () => {
 
   const {noMenus, currentUser, setCurrentUser} = useContext(MenuContext)
-
+  const [userInfoField, setUserInfoField] = useState()
   const [isEditing, setIsEditing] = useState(false)
   const [userInfo, setUserInfo] = useState(
     currentUser &&
@@ -23,46 +23,49 @@ export const AccountSettings = () => {
     noMenus()
   },[])
 
-  const userInfoField = [
-    currentUser &&
-    ({
-      text: "Email",
-      value: currentUser.email,
-      type: "email",
-      name: "email"
-    },
-    {
-      text: "Gender",
-      value: currentUser.gender,
-      type: "text",
-      name: "gender"
-    },
-    {
-      text: "First name",
-      value: currentUser.firstname,
-      type:"text",
-      name:"firstname"
-    },
-    {
-      text:"Last name",
-      value: currentUser.lastname,
-      type:"text",
-      name:"lastname"
-    },
-    {
-      text: "Date of Birth",
-      value: currentUser.dateofbirth,
-      type:"text",
-      name:"dateofbirth"
-    },
-    {
-      text: "Phone number",
-      value:currentUser.phone,
-      type:"text",
-      name:"phone"
-    })
-  ]
+  useEffect(() => {
+    if(currentUser){
+    setUserInfoField( [
+      {
+        text: "Email",
+        value: currentUser.email,
+        type: "email",
+        name: "email"
+      },
+      {
+        text: "Gender",
+        value: currentUser.gender,
+        type: "text",
+        name: "gender"
+      },
+      {
+        text: "First name",
+        value: currentUser.firstname,
+        type:"text",
+        name:"firstname"
+      },
+      {
+        text:"Last name",
+        value: currentUser.lastname,
+        type:"text",
+        name:"lastname"
+      },
+      {
+        text: "Date of Birth",
+        value: currentUser.dateofbirth,
+        type:"text",
+        name:"dateofbirth"
+      },
+      {
+        text: "Phone number",
+        value:currentUser.phone,
+        type:"text",
+        name:"phone"
+      }
+    ])}
+  },[currentUser])
 
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInfo((prevInfo) => ({
@@ -105,7 +108,7 @@ export const AccountSettings = () => {
                 <a className="underline cursor-pointer" onClick={() => setIsEditing(!isEditing)}>Edit</a>
               </div>
               <div className="grid grid-cols-2">
-                  {userInfoField.map((obj, index) => (
+                  {userInfoField && userInfoField.map((obj, index) => (
                     <div key={index}>
                       <h3>{obj.text}</h3>
                       <input type={obj.type} name={obj.name} value={userInfo[obj.name]} readOnly={!isEditing} onChange={handleInputChange}/>
