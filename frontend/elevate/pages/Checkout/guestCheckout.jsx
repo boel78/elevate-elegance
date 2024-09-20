@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 export const GuestCheckout = () => {
 
-    const {setFilledOutOrderDetails, filledOutOrderDetails} = useContext(MenuContext)
+    const {setFilledOutOrderDetails} = useContext(MenuContext)
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {

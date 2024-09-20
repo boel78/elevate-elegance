@@ -10,8 +10,11 @@ public class Customer {
     private String id;
     private String firstName;
     private String lastName;
+    private String gender;
+    private String dateofbirth;
     private String email;
     private String phone;
+    private String zipcode;
     private String password;
     private String address;
 
@@ -29,6 +32,24 @@ public class Customer {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+    public void setGender(String gender){
+        this.gender = gender;
+    }
+    public void setZipcode(String zipcode){
+        this.zipcode = zipcode;
+    }
+    public void setDateOfBirth(String dateofbirth){
+        this.dateofbirth = dateofbirth;
+    }
+    public String getGender(){
+        return gender;
+    }
+    public String getZipcode(){
+        return zipcode;
+    }
+    public String getDateOfBirth(){
+        return dateofbirth;
     }
 
     public String getLastName() {

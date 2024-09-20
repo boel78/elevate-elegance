@@ -17,10 +17,15 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity createCustomer(@RequestBody Customer customer) {
-        customerService.addCustomer(customer);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        try {
+            customerService.addCustomer(customer);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Customer registered successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @GetMapping

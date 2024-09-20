@@ -16,13 +16,19 @@ import { AccountSettings } from "../pages/AccountSettings/accountSettings";
 import { RegisterPage } from "../pages/Register/registerPage";
 import { GuestCheckout } from "../pages/Checkout/guestCheckout";
 import { FinalCheckout } from "../pages/Checkout/finalCheckout";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
         <MenuContextProvider>
+
           <Router>
             <Navbar />
+            <Toaster
+  position="bottom-right"
+  reverseOrder={false}
+/>
             <Routes>
               <Route path="/" element = {<HomePage/>} />
               <Route path="/cart" />
@@ -38,7 +44,9 @@ function App() {
               <Route path="/checkout" element={<FinalCheckout/>}/>
             </Routes>
             <Footer />
+           
           </Router>
+
         </MenuContextProvider>
     </>
   );

@@ -9,12 +9,19 @@ import java.util.List;
 @Service
 public class CustomerService {
 
+    public boolean emailExists(String email) {
+        return customerRepository.existsByEmail(email);
+    }
+
     private final CustomerRepository customerRepository;
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
     public void addCustomer(Customer customer) {
+        if (emailExists(customer.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
         customerRepository.insert(customer);
     }
 

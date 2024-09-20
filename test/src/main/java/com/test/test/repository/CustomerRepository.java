@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface CustomerRepository extends MongoRepository<Customer, String> {
     @Query("{'firstName': ?0}")
     Optional<Customer> findByFirstName(String name);
+    boolean existsByEmail(String email);
 }
