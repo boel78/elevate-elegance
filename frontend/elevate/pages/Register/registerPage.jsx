@@ -46,10 +46,9 @@ export const RegisterPage = () => {
             toast.success("Registration successful!");
           }
         } catch(error){
-          toast.error("An error occurred while registering.");
+          toast.error(error.response?.data);
         }
         
-
         setFormError({})
     }
 
