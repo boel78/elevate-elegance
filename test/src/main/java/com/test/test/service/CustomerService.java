@@ -54,4 +54,17 @@ public class CustomerService {
         return customerRepository.findByFirstName(name)
                 .orElseThrow(()-> new RuntimeException("customer not found"));
     }
+    public Customer getCustomerByEmail(String email) {
+        return customerRepository.findByEmail(email)
+                .orElseThrow(()-> new RuntimeException("email not found"));
+    }
+
+    public boolean getCustomerPasswordConfirm(String email, String password){
+        Customer currentCustomer = customerRepository.findByEmail(email).orElseThrow(()-> new RuntimeException("email not found"));
+        boolean isMatching = false;
+        if(currentCustomer.getPassword().equals(password)){
+            isMatching = true;
+        }
+        return isMatching;
+    }
 }

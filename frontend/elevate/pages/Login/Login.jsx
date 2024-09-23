@@ -4,6 +4,8 @@ import { MenuContext } from "../../src/menuContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Layout } from "../../components/layout";
 import { TanButton } from "../../components/button";
+import axios from "axios";
+import {toast} from "react-hot-toast"
 
 export const Login = () => {
   const [nameInput, setNameInput] = useState("");
@@ -11,8 +13,8 @@ export const Login = () => {
   const { setCurrentUser, noMenus } = useContext(MenuContext);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    let foundUser = false;
+  const handleLogin = async () => {
+    /*let foundUser = false;
     console.log(nameInput + passwordInput);
     USERS.map((user) => {
       if (user.email == nameInput && user.password == passwordInput) {
@@ -26,7 +28,28 @@ export const Login = () => {
     });
     if (!foundUser) {
       alert("Check your login details");
+    }*/
+   try{
+    const checkObject = {
+      email: nameInput,
+      password: passwordInput
     }
+    const {data} = await axios.post("http://localhost:8080/api/customer/login", checkObject)
+    if(data.error){
+      toast.error(data.error)
+    }
+    else{
+      toast.success("You have successfully logged in")
+      const user = await (await axios.get(`http://localhost:8080/api/customer/email/${nameInput}`)).data
+      setCurrentUser(user);
+      window.scroll(0, 0);
+      navigate("/");
+      noMenus();
+    }
+   }
+   catch(error){
+    toast.error(error.response?.data)
+   }
   };
 
   useEffect(() => {

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerController {
@@ -17,7 +19,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @CrossOrigin
+    
     @PostMapping
     public ResponseEntity createCustomer(@RequestBody Customer customer) {
         try {
@@ -44,10 +46,32 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getCustomerById(id));
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(customerService.getCustomerByEmail(email));
+    }
+
     @GetMapping("/name/{name}")
     public ResponseEntity<Customer> getCustomerByName(@PathVariable String name) {
         return ResponseEntity.ok(customerService.getCustomerByName(name));
     }
+
+    
+    @PostMapping("/login")
+    public ResponseEntity getLoginRquest(@RequestBody Customer customer) {
+        try {
+            customerService.emailExists(customer.getEmail());
+            
+            if(!customerService.getCustomerPasswordConfirm(customer.getEmail(), customer.getPassword())){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Wrong password or email");
+            }
+
+            return ResponseEntity.status(HttpStatus.CREATED).body("Logged in successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer with that email does not exist");
+        }
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCustomer(@PathVariable String id) {

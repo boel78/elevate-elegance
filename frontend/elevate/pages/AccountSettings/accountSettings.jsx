@@ -141,7 +141,7 @@ export const AccountSettings = () => {
                 </a>
               </div>
               <p>You can also add and edit delivery address here</p>
-              {currentUser.addresses.length === 0 ? (
+              {currentUser.address == null || currentUser.address.length === 0 ? (
                 <p>No home address saved</p>
               ) : (
                 <div className="flex flex-col gap-6 w-1/4">
