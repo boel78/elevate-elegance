@@ -1,4 +1,4 @@
-import { ArrowDown} from "@phosphor-icons/react";
+import { ArrowDown, CodeSimple} from "@phosphor-icons/react";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FilterContext } from "../pages/Cataloge/Cataloge";
@@ -10,6 +10,7 @@ export const FilterBox = () => {
   const [showSorting, setShowSorting] = useState(false)
   const [currentFilter, setCurrentFilter] = useState("none");
   const [currentSorting, setCurrentSorting] = useState("A-Z")
+  const [filteredProducts, setFilteredProducts] = useState([])
 
   const navigate = useNavigate();
 
@@ -49,17 +50,21 @@ export const FilterBox = () => {
   const handleSetFilterProducts = (option) => {
     if(currentFilter !== "none"){
     const filteredProducts = filterProduct(currentFilter, option)
+    setFilteredProducts(filteredProducts)
     setShownProducts(filteredProducts)
     }
   }
 
   const handleSortProducts = () => {
-    const sortedProducts = sortProducts()
-    
+    let sortedProducts = sortProducts(shownProducts)
+    if(filteredProducts.length !== 0){
+      sortedProducts = sortProducts("",filteredProducts)
+    }
+      setShownProducts(sortedProducts)
+  
+      setForceRender(!forceRender)
 
-    setShownProducts(sortedProducts)
-    setForceRender(!forceRender)
-    console.log(shownProducts)
+    
     
   }
 

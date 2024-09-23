@@ -21,8 +21,9 @@ export function useProducts(){
         }       
     },[])
 
-    const sortProducts = (productArray) => {
+    const sortProducts = (sortOption, productArray) => {  
         if(productArray){
+            console.log("ifprodaray")
             const newArray = productArray.sort((a, b) => {
                 const nameA = a.name.toUpperCase()
                 const nameB = b.name.toUpperCase()
