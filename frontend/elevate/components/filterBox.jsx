@@ -9,7 +9,6 @@ export const FilterBox = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [showSorting, setShowSorting] = useState(false)
   const [currentFilter, setCurrentFilter] = useState("none");
-  const [currentSorting, setCurrentSorting] = useState("A-Z")
   const [filteredProducts, setFilteredProducts] = useState([])
 
   const navigate = useNavigate();
@@ -52,13 +51,16 @@ export const FilterBox = () => {
     const filteredProducts = filterProduct(currentFilter, option)
     setFilteredProducts(filteredProducts)
     setShownProducts(filteredProducts)
+
     }
+
   }
 
-  const handleSortProducts = () => {
-    let sortedProducts = sortProducts(shownProducts)
+  const handleSortProducts = (displayedText, attributeName) => {
+    
+    let sortedProducts = sortProducts(displayedText, shownProducts)
     if(filteredProducts.length !== 0){
-      sortedProducts = sortProducts("",filteredProducts)
+      sortedProducts = sortProducts(displayedText,filteredProducts)
     }
       setShownProducts(sortedProducts)
   
@@ -125,8 +127,12 @@ export const FilterBox = () => {
 
     const sortingOptions = [
       {
-        displayedText: "A - Z",
+        displayedText: "A-Z",
         attributeName: "name" 
+      },
+      {
+        displayedText: "Z-A",
+        attributeName: "name"
       }
     ]
 
@@ -204,7 +210,7 @@ export const FilterBox = () => {
         showSorting && (
           <ul>
             {sortingOptions.map((option) => (
-              <li key={option.attributeName} onClick={handleSortProducts}>{option.displayedText}</li>
+              <li key={option.displayedText} onClick={() =>handleSortProducts(option.displayedText)}>{option.displayedText}</li>
             ))}
           </ul>
         )

@@ -23,19 +23,38 @@ export function useProducts(){
 
     const sortProducts = (sortOption, productArray) => {  
         if(productArray){
-            console.log("ifprodaray")
-            const newArray = productArray.sort((a, b) => {
-                const nameA = a.name.toUpperCase()
-                const nameB = b.name.toUpperCase()
-                if(nameA < nameB){
-                    return -1
-                }
-                if(nameA > nameB){
-                    return 1
-                }
-
-                return 0
-            })
+            let newArray = productArray
+            switch(sortOption){
+                case "A-Z":
+                    newArray = productArray.sort((a, b) => {
+                        const nameA = a.name.toUpperCase()
+                        const nameB = b.name.toUpperCase()
+                        if(nameA < nameB){
+                            return -1
+                        }
+                        if(nameA > nameB){
+                            return 1
+                        }
+        
+                        return 0
+                    });
+                    break;
+                case "Z-A":
+                    newArray = productArray.sort((a, b) => {
+                        const nameA = a.name.toUpperCase()
+                        const nameB = b.name.toUpperCase()
+                        if(nameA < nameB){
+                            return 1
+                        }
+                        if(nameA > nameB){
+                            return -1
+                        }
+        
+                        return 0
+                    });
+                    break;
+            }
+            
             return newArray
         }else{
             const newArray = products.sort((a, b) => {
