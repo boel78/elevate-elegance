@@ -216,7 +216,7 @@ export const FilterBox = () => {
       {
         //SORTING CODE
         showSorting && (
-          <ul>
+          <ul className="absolute top-full left-32 mt-2 z-10 bg-slate-100">
             {sortingOptions.map((option) => (
               <li key={option.displayedText} onClick={() =>handleSortProducts(option.displayedText, option.attributeName)}>{option.displayedText}</li>
             ))}
