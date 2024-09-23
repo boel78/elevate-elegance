@@ -1,10 +1,8 @@
 package com.test.test.service;
 
 import com.test.test.model.Cart;
-import com.test.test.model.Product;
 import com.test.test.repository.CartRepository;
 import org.springframework.stereotype.Service;
-import java.util.HashMap;
 
 @Service
 public class CartService {

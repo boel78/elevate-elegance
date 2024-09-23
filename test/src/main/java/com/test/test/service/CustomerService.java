@@ -33,7 +33,7 @@ public class CustomerService {
         foundObject.setEmail(customer.getEmail());
         foundObject.setPhone(customer.getPhone());
         foundObject.setPassword(customer.getPassword());
-        foundObject.setAddress(customer.getAddress());
+        foundObject.setAddresses(customer.getAddresses());
         customerRepository.save(foundObject);
     }
 

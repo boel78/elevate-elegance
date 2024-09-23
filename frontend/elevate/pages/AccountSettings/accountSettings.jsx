@@ -10,9 +10,9 @@ export const AccountSettings = () => {
     currentUser && {
       email: currentUser.email,
       gender: currentUser.gender,
-      firstname: currentUser.firstname,
-      lastname: currentUser.lastname,
-      dateofbirth: currentUser.dateofbirth,
+      firstName: currentUser.firstName,
+      lastName: currentUser.lastName,
+      dateOfBirth: currentUser.dateofbirth,
       phone: currentUser.phone,
       addresses: currentUser.addresses,
     }
@@ -39,21 +39,21 @@ export const AccountSettings = () => {
         },
         {
           text: "First name",
-          value: currentUser.firstname,
+          value: currentUser.firstName,
           type: "text",
-          name: "firstname",
+          name: "firstName",
         },
         {
           text: "Last name",
-          value: currentUser.lastname,
+          value: currentUser.lastName,
           type: "text",
-          name: "lastname",
+          name: "lastName",
         },
         {
           text: "Date of Birth",
-          value: currentUser.dateofbirth,
-          type: "text",
-          name: "dateofbirth",
+          value: currentUser.dateOfBirth,
+          type: "date",
+          name: "dateOfBirth",
         },
         {
           text: "Phone number",
@@ -130,6 +130,8 @@ export const AccountSettings = () => {
                 </button>
               )}
             </div>
+
+
             <div className="bg-lightTan w-1/2 px-6">
               <div className="flex justify-between">
                 <h2 className="font-medium text-xl">Adress</h2>
@@ -141,7 +143,7 @@ export const AccountSettings = () => {
                 </a>
               </div>
               <p>You can also add and edit delivery address here</p>
-              {currentUser.address == null || currentUser.address.length === 0 ? (
+              {userInfo.addresses == null || userInfo.addresses.length === 0 ? (
                 <p>No home address saved</p>
               ) : (
                 <div className="flex flex-col gap-6 w-1/4">

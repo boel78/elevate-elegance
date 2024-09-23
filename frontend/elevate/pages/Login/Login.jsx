@@ -10,7 +10,8 @@ import {toast} from "react-hot-toast"
 export const Login = () => {
   const [nameInput, setNameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const { setCurrentUser, noMenus } = useContext(MenuContext);
+  const { setCurrentUser, noMenus, currentUser } = useContext(MenuContext);
+  const [isUserSet, setIsUserSet] = useState(false)
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -34,27 +35,50 @@ export const Login = () => {
       email: nameInput,
       password: passwordInput
     }
+    
     const {data} = await axios.post("http://localhost:8080/api/customer/login", checkObject)
     if(data.error){
       toast.error(data.error)
     }
     else{
+      //user login kod. Hämta information och gör ett objekt
+      const user = await axios.get(`http://localhost:8080/api/customer/email/${nameInput}`)
+      const addresses = user.data.addresses
+
+      const addressesResponse = await axios.get(`http://localhost:8080/api/address/getAll`, {
+        params: { addresses: addresses.join(",") }
+      })
+      user.data.addresses = addressesResponse.data
+
+      
+      
+      setCurrentUser(user.data);
+      console.log("USER")
+      console.log(currentUser)
+      setIsUserSet(true)
       toast.success("You have successfully logged in")
-      const user = await (await axios.get(`http://localhost:8080/api/customer/email/${nameInput}`)).data
-      setCurrentUser(user);
-      window.scroll(0, 0);
-      navigate("/");
-      noMenus();
+
     }
    }
    catch(error){
     toast.error(error.response?.data)
+
    }
   };
 
   useEffect(() => {
     noMenus();
   }, []);
+
+  useEffect(() => {
+    console.log(currentUser)
+    if(isUserSet){
+      window.scroll(0, 0);
+      navigate("/");
+      noMenus();
+    }
+    
+  },[currentUser])
 
   return (
     <Layout>

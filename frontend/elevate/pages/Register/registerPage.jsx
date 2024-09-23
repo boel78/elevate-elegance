@@ -35,6 +35,8 @@ export const RegisterPage = () => {
         }
         delete newUser.cnfpassword
         newUser.likedProducts = []
+        newUser.addresses = []
+        newUser.zipCode = ""
         //ERSÄTTA MED POST LOGIK SENARE
         console.log(newUser)
         try{
@@ -95,10 +97,7 @@ export const RegisterPage = () => {
               <input type="date" id="dateOfBirth" name="dateofbirth" required />
             </p>
 
-            <p>
-              <label htmlFor="zipCode">Zip code </label>
-              <input type="text" id="zipCode" name="zipcode" required />
-            </p>
+            
 
             <p>
               <label htmlFor="phone">Phone number: </label>

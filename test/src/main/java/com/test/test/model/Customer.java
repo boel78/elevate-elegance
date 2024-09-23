@@ -11,12 +11,13 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String gender;
-    private String dateofbirth;
+    private String dateOfBirth;
     private String email;
     private String phone;
-    private String zipcode;
+    private String[] addresses;
+    
     private String password;
-    private String address;
+    
 
     public String getId() {
         return id;
@@ -36,20 +37,16 @@ public class Customer {
     public void setGender(String gender){
         this.gender = gender;
     }
-    public void setZipcode(String zipcode){
-        this.zipcode = zipcode;
-    }
+
     public void setDateOfBirth(String dateofbirth){
-        this.dateofbirth = dateofbirth;
+        this.dateOfBirth = dateofbirth;
     }
     public String getGender(){
         return gender;
     }
-    public String getZipcode(){
-        return zipcode;
-    }
+
     public String getDateOfBirth(){
-        return dateofbirth;
+        return dateOfBirth;
     }
 
     public String getLastName() {
@@ -84,23 +81,24 @@ public class Customer {
         this.password = password;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    public Customer(String id, String firstName, String lastName, String email, String phone, String password, String address) {
+    public Customer(String id, String firstName, String lastName, String email, String phone, String password, String[] addresses) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.address = address;
+        this.addresses = addresses;
     }
     public Customer() {
 
+    }
+
+    public String[] getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(String[] addresses) {
+        this.addresses = addresses;
     }
 }
