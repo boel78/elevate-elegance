@@ -21,8 +21,41 @@ export function useProducts(){
         }       
     },[])
 
+    const sortProducts = (productArray) => {
+        if(productArray){
+            const newArray = productArray.sort((a, b) => {
+                const nameA = a.name.toUpperCase()
+                const nameB = b.name.toUpperCase()
+                if(nameA < nameB){
+                    return -1
+                }
+                if(nameA > nameB){
+                    return 1
+                }
+
+                return 0
+            })
+            return newArray
+        }else{
+            const newArray = products.sort((a, b) => {
+                const nameA = a.name.toUpperCase()
+                const nameB = b.name.toUpperCase()
+                if(nameA < nameB){
+                    return -1
+                }
+                if(nameA > nameB){
+                    return 1
+                }
+
+                return 0
+            })
+            return newArray
+        }
+    }
+
     return{
         products,
-        filterProduct
+        filterProduct,
+        sortProducts
     }
 }

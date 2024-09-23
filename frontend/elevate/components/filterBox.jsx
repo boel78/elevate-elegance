@@ -7,15 +7,16 @@ import { useProducts } from "../hooks/useProducts";
 export const FilterBox = () => {
   const [showCategory, setShowCategory] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
+  const [showSorting, setShowSorting] = useState(false)
   const [currentFilter, setCurrentFilter] = useState("none");
+  const [currentSorting, setCurrentSorting] = useState("A-Z")
 
   const navigate = useNavigate();
 
   const { Category } = useParams();
+  const {setShownProducts, shownProducts, setForceRender, forceRender} = useContext(FilterContext)
 
-  const {setShownProducts} = useContext(FilterContext)
-
-  const {filterProduct, products} = useProducts()
+  const {filterProduct, products, sortProducts} = useProducts()
 
 
 
@@ -43,11 +44,23 @@ export const FilterBox = () => {
     setShowFilters(!showFilters);
   };
 
+
+
   const handleSetFilterProducts = (option) => {
     if(currentFilter !== "none"){
     const filteredProducts = filterProduct(currentFilter, option)
     setShownProducts(filteredProducts)
     }
+  }
+
+  const handleSortProducts = () => {
+    const sortedProducts = sortProducts()
+    
+
+    setShownProducts(sortedProducts)
+    setForceRender(!forceRender)
+    console.log(shownProducts)
+    
   }
 
   useEffect(() => {
@@ -105,6 +118,13 @@ export const FilterBox = () => {
         "Shoes"
     ]
 
+    const sortingOptions = [
+      {
+        displayedText: "A - Z",
+        attributeName: "name" 
+      }
+    ]
+
 
 
 
@@ -127,7 +147,7 @@ export const FilterBox = () => {
           <p>Filters</p>
           <ArrowDown size="15" />
         </span>
-        <span className="flex items-center justify-center">
+        <span className="flex items-center justify-center" onClick={() => setShowSorting(!showSorting)}>
           <p>Sort by</p>
           <ArrowDown size="15" />
         </span>
@@ -170,6 +190,17 @@ export const FilterBox = () => {
                 </ul>
               )
             )}
+          </ul>
+        )
+      }
+
+      {
+        //SORTING CODE
+        showSorting && (
+          <ul>
+            {sortingOptions.map((option) => (
+              <li key={option.attributeName} onClick={handleSortProducts}>{option.displayedText}</li>
+            ))}
           </ul>
         )
       }

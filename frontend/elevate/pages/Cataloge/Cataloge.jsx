@@ -19,12 +19,18 @@ export const Cataloge = () => {
 
   const {products} = useProducts()
   const [shownProducts, setShownProducts] = useState(products)
+  const [forceRender, setForceRender] = useState(false)
+  
 
 
   useEffect(() => {
     noMenus();
     setShownProducts(products)
   }, []);
+
+  useEffect(() => {
+
+  },[shownProducts])
 
 
 
@@ -33,9 +39,13 @@ export const Cataloge = () => {
     setFocusedObject(element);
   };
 
+
+
   const contextValue = {
     setShownProducts,
-    shownProducts
+    shownProducts,
+    setForceRender,
+    forceRender
   }
 
   
