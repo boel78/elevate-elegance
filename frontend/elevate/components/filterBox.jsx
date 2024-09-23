@@ -37,6 +37,8 @@ export const FilterBox = () => {
 
 
   const handleSetShowFilters = () => {
+    setShowCategory(false)
+    setShowSorting(false)
     if (showFilters === false) {
       handleSetFilter("none");
       setShownProducts(products)
@@ -51,7 +53,7 @@ export const FilterBox = () => {
     const filteredProducts = filterProduct(currentFilter, option)
     setFilteredProducts(filteredProducts)
     setShownProducts(filteredProducts)
-
+    setShowFilters(!showFilters)
     }
 
   }
@@ -63,7 +65,7 @@ export const FilterBox = () => {
       sortedProducts = sortProducts(displayedText,filteredProducts, attributeName)
     }
       setShownProducts(sortedProducts)
-  
+      setShowSorting(!showSorting)
       setForceRender(!forceRender)
 
     
@@ -153,7 +155,11 @@ export const FilterBox = () => {
       {/* SIDOMENY */}
       <div className="flex">
         <span
-          onClick={() => setShowCategory(!showCategory)}
+          onClick={() => {
+            setShowCategory(!showCategory)
+            setShowFilters(false)
+            setShowSorting(false)
+          }}
           className="flex items-center justify-center"
         >
           <p>Category</p>
@@ -166,7 +172,11 @@ export const FilterBox = () => {
           <p>Filters</p>
           <ArrowDown size="15" />
         </span>
-        <span className="flex items-center justify-center" onClick={() => setShowSorting(!showSorting)}>
+        <span className="flex items-center justify-center" onClick={() => {
+          setShowSorting(!showSorting)
+          setShowCategory(false)
+          setShowFilters(false)
+        }}>
           <p>Sort by</p>
           <ArrowDown size="15" />
         </span>
