@@ -13,7 +13,8 @@ export const PRODUCTS = [
         size: ["One fit"],
         fitting: "Kind of loose",
         material: "Silk",
-        careadvice: "Brush with a brush"
+        careadvice: "Brush with a brush",
+        added: "2024-02-25"
     },
     {
         id: 2,
@@ -26,7 +27,8 @@ export const PRODUCTS = [
         size: ["One fit"],
         fitting: "Kind of loose",
         material: "Silk",
-        careadvice: "Brush with a brush"
+        careadvice: "Brush with a brush",
+         added: "2024-06-25"
     },
     {
         id: 3,
@@ -43,6 +45,7 @@ export const PRODUCTS = [
         ],
         fitting: "Baggy",
         material: "Leather",
-        careadvice: "Polish with oil"
+        careadvice: "Polish with oil",
+         added: "2022-02-25"
     }
 ]

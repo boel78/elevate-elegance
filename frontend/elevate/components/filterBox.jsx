@@ -58,9 +58,9 @@ export const FilterBox = () => {
 
   const handleSortProducts = (displayedText, attributeName) => {
     
-    let sortedProducts = sortProducts(displayedText, shownProducts)
+    let sortedProducts = sortProducts(displayedText, shownProducts, attributeName)
     if(filteredProducts.length !== 0){
-      sortedProducts = sortProducts(displayedText,filteredProducts)
+      sortedProducts = sortProducts(displayedText,filteredProducts, attributeName)
     }
       setShownProducts(sortedProducts)
   
@@ -133,6 +133,14 @@ export const FilterBox = () => {
       {
         displayedText: "Z-A",
         attributeName: "name"
+      },
+      {
+        displayedText: "New first",
+        attributeName: "added"
+      },
+      {
+        displayedText: "Old first",
+        attributeName: "added"
       }
     ]
 
@@ -210,7 +218,7 @@ export const FilterBox = () => {
         showSorting && (
           <ul>
             {sortingOptions.map((option) => (
-              <li key={option.displayedText} onClick={() =>handleSortProducts(option.displayedText)}>{option.displayedText}</li>
+              <li key={option.displayedText} onClick={() =>handleSortProducts(option.displayedText, option.attributeName)}>{option.displayedText}</li>
             ))}
           </ul>
         )

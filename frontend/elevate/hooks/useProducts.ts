@@ -21,14 +21,14 @@ export function useProducts(){
         }       
     },[])
 
-    const sortProducts = (sortOption, productArray) => {  
+    const sortProducts = (sortOption, productArray, attributeName) => {  
         if(productArray){
             let newArray = productArray
             switch(sortOption){
                 case "A-Z":
                     newArray = productArray.sort((a, b) => {
-                        const nameA = a.name.toUpperCase()
-                        const nameB = b.name.toUpperCase()
+                        const nameA = a[attributeName].toUpperCase()
+                        const nameB = b[attributeName].toUpperCase()
                         if(nameA < nameB){
                             return -1
                         }
@@ -41,8 +41,8 @@ export function useProducts(){
                     break;
                 case "Z-A":
                     newArray = productArray.sort((a, b) => {
-                        const nameA = a.name.toUpperCase()
-                        const nameB = b.name.toUpperCase()
+                        const nameA = a[attributeName].toUpperCase()
+                        const nameB = b[attributeName].toUpperCase()
                         if(nameA < nameB){
                             return 1
                         }
@@ -53,8 +53,21 @@ export function useProducts(){
                         return 0
                     });
                     break;
+                case "New first":
+                    newArray = productArray.sort((a, b) => {
+                        const dateA = new Date(a.added)
+                        const dateB = new Date(b.added)
+                        return Number(dateB) - Number(dateA)
+                    })
+                    break;
+                case "Old first":
+                    newArray = productArray.sort((a, b) => {
+                        const dateA = new Date(a.added)
+                        const dateB = new Date(b.added)
+                        return Number(dateA) - Number(dateB)
+                    })
+                    break;
             }
-            
             return newArray
         }else{
             const newArray = products.sort((a, b) => {

@@ -65,6 +65,7 @@ export const HomePageProduct = (props) => {
           <div className="flex flex-col items-center gap-10">
             <p className="text-lg">{product.description}</p>
             <p className="text-lg">{product.price} SEK</p>
+            <p className="text-lg">{product.added}</p>
             <div className="flex gap-5">
                     <p>Size: {(selectedSize && !sizeBarOpen) && selectedSize}</p>
                     {product.size.length === 1 ? (
