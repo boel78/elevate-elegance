@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Layout } from "../../components/layout";
 import { MenuContext } from "../../src/menuContext";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export const AccountSettings = () => {
   const { noMenus, currentUser, setCurrentUser } = useContext(MenuContext);
@@ -73,9 +75,25 @@ export const AccountSettings = () => {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const newUser = userInfo;
-    setCurrentUser(newUser);
+    
+    try{
+      const {data} = await axios.put("http://localhost:8080/api/customer", newUser)
+      if(data.error){
+        toast.error(data.error)
+      }else{
+        toast.success("Your details have now been updated")
+        console.log("NEWUSER")
+    console.log(newUser)
+        setCurrentUser(newUser);
+      }
+    }
+    catch(error){
+      toast.error(error.response?.data || "ajaja")
+    }
+    
+    
   };
 
   const handleInputChangeAddress = (index, event, name) => {
