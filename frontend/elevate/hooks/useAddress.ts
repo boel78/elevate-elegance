@@ -13,36 +13,20 @@ function initializeAddress(addressIDs){
 
 
 export function useAddress () {
-    const [currentAddresses, setCurrentAddresses] = useState([])
     const {currentUser} = useContext(MenuContext)
 
   
-    const fetchAddressObjects = async (addressIDs) => {
-
-        try {
-            const response = await initializeAddress(addressIDs)
-            const addresses = response.data
-            
-            return addresses
-        } catch(error){
-            console.log(error)
-            return []
-        }
-        
-        
-    }
 
     const fetchAddresses = async () => {
         if (currentUser && currentUser.addresses) {
              try {
-               const fetchedAddresses = await fetchAddressObjects(currentUser.addresses);
-               console.log("fetchedaddreseses");
-               
-               console.log(fetchedAddresses);
-               
-               return fetchedAddresses
+                const response = await initializeAddress(currentUser.addresses)
+                const addresses = response.data
+                
+                return addresses
              } catch (error) {
                console.error("Failed to fetch addresses:", error);
+               return []
              }
            }
        };
@@ -52,7 +36,6 @@ export function useAddress () {
   
   
     return {
-        fetchAddressObjects,
         fetchAddresses
     }
     

@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Layout } from "../../components/layout";
 import { MenuContext } from "../../src/menuContext";
-import toast from "react-hot-toast";
-import axios from "axios";
 import { useAddress } from "../../hooks/useAddress";
 import { useUser } from "../../hooks/useUser";
 
 export const AccountSettings = () => {
-  const { noMenus, currentUser, setCurrentUser } = useContext(MenuContext);
+  const { noMenus, currentUser } = useContext(MenuContext);
   const [userInfoField, setUserInfoField] = useState();
   const [isEditing, setIsEditing] = useState(false);
   const [addressObjects, setAddressObjects] = useState([])
