@@ -9,6 +9,7 @@ export const AccountSettings = () => {
   const [userInfoField, setUserInfoField] = useState();
   const [isEditing, setIsEditing] = useState(false);
   const [addressObjects, setAddressObjects] = useState([])
+  const [showPasswordError, setShowPasswordError] = useState(false)
   const [userInfo, setUserInfo] = useState(
     currentUser && {
       email: currentUser.email,
@@ -18,6 +19,7 @@ export const AccountSettings = () => {
       dateOfBirth: currentUser.dateOfBirth,
       phone: currentUser.phone,
       addresses: currentUser.addresses,
+      password: currentUser.password
       
     }
   );
@@ -69,6 +71,18 @@ export const AccountSettings = () => {
           type: "text",
           name: "phone",
         },
+        {
+          text: "Password",
+          value: currentUser.password,
+          type: "password",
+          name: "password",
+        },
+        {
+          text: "Confirm Password",
+          value: "",
+          type: "password",
+          name: "cnfPassword",
+        },
       ]);
       
     }
@@ -79,9 +93,18 @@ export const AccountSettings = () => {
 }, [currentUser]);
 
 
+  const handleSaveConfirm = () => {
+    if(userInfo.cnfPassword === userInfo.password){
+      handleSave(userInfo)
+    }
+    else {
+      setShowPasswordError(true)
+    }
+  }
 
   
   const handleInputChange = (e) => {
+    setShowPasswordError(false)
     const { name, value } = e.target;
     setUserInfo((prevInfo) => ({
       ...prevInfo,
@@ -131,14 +154,17 @@ export const AccountSettings = () => {
                         name={obj.name}
                         value={userInfo[obj.name]}
                         readOnly={!isEditing}
-                        onKeyUp={handleInputChange}
+                        onChange={handleInputChange}
                       />
+                      {(obj.name === "cnfPassword" && showPasswordError) &&
+                       <p className="text-red-600">Password does not match</p>}
                     </div>
+                    
                   ))}
               </div>
 
               {isEditing && (
-                <button className="self-end" onClick={() => handleSave(userInfo)}>
+                <button className="self-end" onClick={handleSaveConfirm}>
                   Save
                 </button>
               )}

@@ -9,7 +9,6 @@ export function useUser () {
   
     const handleSave = async (userInfo) => {
         const newUser = userInfo;
-        newUser.password = ""
         newUser.id = currentUser.id
         
         try{
