@@ -3,7 +3,6 @@ package com.test.test.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Address {
-    @JsonIgnore
     private String id;
     private String zipcode;
     private String address;

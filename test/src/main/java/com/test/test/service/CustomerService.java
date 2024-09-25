@@ -3,6 +3,7 @@ package com.test.test.service;
 import com.test.test.model.Customer;
 import com.test.test.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -71,4 +72,5 @@ public class CustomerService {
         }
         return isMatching;
     }
+
 }

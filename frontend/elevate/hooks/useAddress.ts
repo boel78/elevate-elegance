@@ -22,7 +22,7 @@ export function useAddress () {
              try {
                 const response = await initializeAddress(currentUser.addresses)
                 const addresses = response.data
-                
+                console.log(addresses)
                 return addresses
              } catch (error) {
                console.error("Failed to fetch addresses:", error);

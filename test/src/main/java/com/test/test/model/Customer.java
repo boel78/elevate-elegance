@@ -1,5 +1,7 @@
 package com.test.test.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,7 +16,7 @@ public class Customer {
     private String dateOfBirth;
     private String email;
     private String phone;
-    private String[] addresses;
+    private List<String> addresses;
     
     private String password;
     
@@ -81,7 +83,7 @@ public class Customer {
         this.password = password;
     }
 
-    public Customer(String id, String firstName, String lastName, String email, String phone, String password, String[] addresses, String gender, String dateOfBirth) {
+    public Customer(String id, String firstName, String lastName, String email, String phone, String password, List<String> addresses, String gender, String dateOfBirth) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -96,11 +98,11 @@ public class Customer {
 
     }
 
-    public String[] getAddresses() {
+    public List<String> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(String[] addresses) {
+    public void setAddresses(List<String> addresses) {
         this.addresses = addresses;
     }
 }

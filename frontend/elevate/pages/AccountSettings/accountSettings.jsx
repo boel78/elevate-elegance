@@ -3,6 +3,7 @@ import { Layout } from "../../components/layout";
 import { MenuContext } from "../../src/menuContext";
 import { useAddress } from "../../hooks/useAddress";
 import { useUser } from "../../hooks/useUser";
+import { X } from "@phosphor-icons/react";
 
 export const AccountSettings = () => {
   const { noMenus, currentUser } = useContext(MenuContext);
@@ -112,6 +113,12 @@ export const AccountSettings = () => {
     }));
   };
 
+  const handleRemoveAddress = (id) => {
+    const newUserInfoAddresses = userInfo.addresses.filter((address) => address !== id)
+    userInfo.addresses = newUserInfoAddresses
+    handleSave(userInfo)
+  }
+
   
 
   const handleInputChangeAddress = (index, event, name) => {
@@ -171,6 +178,7 @@ export const AccountSettings = () => {
             </div>
 
 
+              {/*ADDRESS*/}
             <div className="bg-lightTan w-1/2 px-6">
               <div className="flex justify-between">
                 <h2 className="font-medium text-xl">Adress</h2>
@@ -189,9 +197,9 @@ export const AccountSettings = () => {
                   {addressObjects.map((address, index) => {
                     return (
                       <div key={index} className="flex flex-col">
-                        <h3>Address: {index + 1}</h3>
-
-                        <div className="flex flex-col">
+                        <h3 className="flex items-center justify-between font-semibold">Address: {index + 1} <X size={25} color="#eb0000" weight="duotone" onClick={() => handleRemoveAddress(address.id)}/></h3>
+                          
+                        {/*<div className="flex flex-col">
                           <input
                             type="text"
                             value={address.address || ""}
@@ -216,7 +224,26 @@ export const AccountSettings = () => {
                             }
                             readOnly={!isEditing}
                           />
-                        </div>
+                        </div>*/}
+                        {Object.entries(address).map(([key, value]) => (
+                          
+                          key !== "id" &&
+                            <div key={key}>
+                            
+                            <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
+                            <input type="text"
+                            value={value}
+                            onChange={(event) =>
+                              handleInputChangeAddress(index, event, "zipcode")
+                            }
+                            readOnly={!isEditing}
+                            />
+                          </div>
+                          
+                          
+                        ))
+                          
+                          }
                       </div>
                     );
                   })}
