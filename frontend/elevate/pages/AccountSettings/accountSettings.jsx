@@ -131,14 +131,14 @@ export const AccountSettings = () => {
                         name={obj.name}
                         value={userInfo[obj.name]}
                         readOnly={!isEditing}
-                        onChange={handleInputChange}
+                        onKeyUp={handleInputChange}
                       />
                     </div>
                   ))}
               </div>
 
               {isEditing && (
-                <button className="self-end" onClick={handleSave(userInfo)}>
+                <button className="self-end" onClick={() => handleSave(userInfo)}>
                   Save
                 </button>
               )}
@@ -197,7 +197,7 @@ export const AccountSettings = () => {
                 </div>
               )}
 
-              <button onClick={handleSave}>save</button>
+              <button>save</button>
             </div>
             <div className="bg-lightTan w-1/2 px-6">
               <div className="flex justify-between">
