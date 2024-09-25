@@ -15,7 +15,7 @@ export const AccountSettings = () => {
       gender: currentUser.gender,
       firstName: currentUser.firstName,
       lastName: currentUser.lastName,
-      dateOfBirth: currentUser.dateofbirth,
+      dateOfBirth: currentUser.dateOfBirth,
       phone: currentUser.phone,
       addresses: currentUser.addresses,
       
