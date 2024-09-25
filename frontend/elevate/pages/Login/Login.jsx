@@ -48,7 +48,7 @@ export const Login = () => {
       const addressesResponse = await axios.get(`http://localhost:8080/api/address/getAll`, {
         params: { addresses: addresses.join(",") }
       })
-      user.data.addresses = addressesResponse.data
+      user.data.addressObjects = addressesResponse.data
 
       
       

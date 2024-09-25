@@ -81,7 +81,7 @@ public class Customer {
         this.password = password;
     }
 
-    public Customer(String id, String firstName, String lastName, String email, String phone, String password, String[] addresses) {
+    public Customer(String id, String firstName, String lastName, String email, String phone, String password, String[] addresses, String gender, String dateOfBirth) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -89,6 +89,8 @@ public class Customer {
         this.phone = phone;
         this.password = password;
         this.addresses = addresses;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
     }
     public Customer() {
 

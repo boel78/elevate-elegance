@@ -30,10 +30,14 @@ public class CustomerService {
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
         foundObject.setFirstName(customer.getFirstName());
         foundObject.setLastName(customer.getLastName());
+        foundObject.setGender(customer.getGender());
         foundObject.setEmail(customer.getEmail());
         foundObject.setPhone(customer.getPhone());
-        foundObject.setPassword(customer.getPassword());
+        if(!customer.getPassword().equals("")){
+            foundObject.setPassword(customer.getPassword());
+        }
         foundObject.setAddresses(customer.getAddresses());
+        foundObject.setDateOfBirth(customer.getDateOfBirth());
         customerRepository.save(foundObject);
     }
 

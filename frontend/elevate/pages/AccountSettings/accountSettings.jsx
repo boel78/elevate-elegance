@@ -3,11 +3,14 @@ import { Layout } from "../../components/layout";
 import { MenuContext } from "../../src/menuContext";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useAddress } from "../../hooks/useAddress";
+import { useUser } from "../../hooks/useUser";
 
 export const AccountSettings = () => {
   const { noMenus, currentUser, setCurrentUser } = useContext(MenuContext);
   const [userInfoField, setUserInfoField] = useState();
   const [isEditing, setIsEditing] = useState(false);
+  const [addressObjects, setAddressObjects] = useState([])
   const [userInfo, setUserInfo] = useState(
     currentUser && {
       email: currentUser.email,
@@ -17,11 +20,16 @@ export const AccountSettings = () => {
       dateOfBirth: currentUser.dateofbirth,
       phone: currentUser.phone,
       addresses: currentUser.addresses,
+      
     }
   );
 
+  const {fetchAddresses} = useAddress()
+  const {handleSave} = useUser()
+
   useEffect(() => {
     noMenus();
+    
   }, []);
 
   useEffect(() => {
@@ -64,9 +72,17 @@ export const AccountSettings = () => {
           name: "phone",
         },
       ]);
+      
     }
-  }, [currentUser]);
+    fetchAddresses().then(
+      addresses => { setAddressObjects(addresses); 
+      }
+    ) 
+}, [currentUser]);
 
+
+
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInfo((prevInfo) => ({
@@ -75,30 +91,11 @@ export const AccountSettings = () => {
     }));
   };
 
-  const handleSave = async () => {
-    const newUser = userInfo;
-    
-    try{
-      const {data} = await axios.put("http://localhost:8080/api/customer", newUser)
-      if(data.error){
-        toast.error(data.error)
-      }else{
-        toast.success("Your details have now been updated")
-        console.log("NEWUSER")
-    console.log(newUser)
-        setCurrentUser(newUser);
-      }
-    }
-    catch(error){
-      toast.error(error.response?.data || "ajaja")
-    }
-    
-    
-  };
+  
 
   const handleInputChangeAddress = (index, event, name) => {
     const { value } = event.target;
-    const newAddresses = userInfo.addresses.map((item, i) => {
+    const newAddresses = userInfo.addressObjects.map((item, i) => {
       if (i === index) {
         return { ...item, [name]: value };
       }
@@ -106,7 +103,7 @@ export const AccountSettings = () => {
     });
     setUserInfo((prevInfo) => ({
       ...prevInfo,
-      addresses: newAddresses,
+      addressObjects: newAddresses,
     }));
   };
 
@@ -143,7 +140,7 @@ export const AccountSettings = () => {
               </div>
 
               {isEditing && (
-                <button className="self-end" onClick={handleSave}>
+                <button className="self-end" onClick={handleSave(userInfo)}>
                   Save
                 </button>
               )}
@@ -161,11 +158,11 @@ export const AccountSettings = () => {
                 </a>
               </div>
               <p>You can also add and edit delivery address here</p>
-              {userInfo.addresses == null || userInfo.addresses.length === 0 ? (
+              {addressObjects === null || addressObjects === undefined || addressObjects.length === 0 ? (
                 <p>No home address saved</p>
               ) : (
                 <div className="flex flex-col gap-6 w-1/4">
-                  {userInfo.addresses.map((address, index) => {
+                  {addressObjects.map((address, index) => {
                     return (
                       <div key={index} className="flex flex-col">
                         <h3>Address: {index + 1}</h3>
@@ -173,7 +170,7 @@ export const AccountSettings = () => {
                         <div className="flex flex-col">
                           <input
                             type="text"
-                            value={address.address}
+                            value={address.address || ""}
                             onChange={(event) =>
                               handleInputChangeAddress(index, event, "address")
                             }
@@ -181,7 +178,7 @@ export const AccountSettings = () => {
                           />
                           <input
                             type="text"
-                            value={address.town}
+                            value={address.town || ""}
                             onChange={(event) =>
                               handleInputChangeAddress(index, event, "town")
                             }
@@ -189,7 +186,7 @@ export const AccountSettings = () => {
                           />
                           <input
                             type="text"
-                            value={address.zipcode}
+                            value={address.zipcode || ""}
                             onChange={(event) =>
                               handleInputChangeAddress(index, event, "zipcode")
                             }
