@@ -19,6 +19,7 @@ export function useUser () {
             toast.success("Your details have now been updated")
             
             setCurrentUser(newUser);
+            checkAddresses()
           }
         }
         catch(error){
@@ -28,7 +29,21 @@ export function useUser () {
         
       };
   
-      
+      const checkAddresses = async () => {
+        try{
+        const response = await axios.get("http://localhost:8080/api/customer")
+        const users = response.data
+        console.log("RESPONSE")
+        console.log(users);
+        let addressArray = [new Set(users.flatMap(user => user.addresses))];
+        console.log(addressArray);
+        
+        }
+        catch(error){
+          console.log(error);
+          
+        }
+      }
   
     return {
         handleSave
