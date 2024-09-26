@@ -31,16 +31,30 @@ export function useAddress () {
            }
        };
 
-       const removeAddress = async () => {
-        
+
+       const fetchAllAddresses = async () => {
+        try{
+          const response = await axios.get("http://localhost:8080/api/address")
+          const addresses = response.data
+          return addresses
+        } catch(error){
+          console.log(error)
+        }
        }
+
+       const removeAddress = async () => {
+
+       }
+
+
   
   
   
   
   
     return {
-        fetchAddresses
+        fetchAddresses,
+        fetchAllAddresses
     }
     
   

@@ -30,6 +30,11 @@ public class AddressController {
         return ResponseEntity.ok(addressService.getAddresses(addresses));
     }
 
+    @GetMapping
+    public ResponseEntity<List<Address>> getAddresses(){
+        return ResponseEntity.ok(addressService.getAllAddresses());
+    }
+
     @PostMapping
     public ResponseEntity createAddress(@RequestBody Address address) {
         try {
@@ -39,4 +44,6 @@ public class AddressController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+
 }

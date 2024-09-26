@@ -35,6 +35,10 @@ public class AddressService {
         addressRepository.save(address);
     }
 
+    public List<Address> getAllAddresses(){
+        return addressRepository.findAll();
+    }
+
 }
 
 
