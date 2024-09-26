@@ -117,7 +117,7 @@ export const AccountSettings = () => {
     const newUserInfoAddresses = userInfo.addresses.filter((address) => address !== id)
     userInfo.addresses = newUserInfoAddresses
     handleSave(userInfo)
-    
+    setAddressObjects(userInfo.addresses)
     //LÄGG TILL KOD FÖR ATT TA BORT ADDRESSEN FRÅN DB OM ADDRESSEN INTE HAR NÅGON ANVÄNDARE
   }
 
