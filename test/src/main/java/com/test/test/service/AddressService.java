@@ -39,6 +39,10 @@ public class AddressService {
         return addressRepository.findAll();
     }
 
+    public void deleteAddress(String id){
+        addressRepository.deleteById(id);
+    }
+
 }
 
 

@@ -36,18 +36,25 @@ export function useUser () {
         const response = await axios.get("http://localhost:8080/api/customer")
         const users = response.data
         const allAddresses = await fetchAllAddresses()
-        console.log("RESPONSE")
-        console.log(users);
-        console.log("All addresses");
-        console.log(allAddresses);
         
         
         let addressArray = Array.from(new Set(users.flatMap(customer => customer.addresses)));
-        console.log(addressArray);
-        const addressesToKeep = allAddresses.filter(address => addressArray.some(customerAddress => customerAddress === address.id))
-        console.log("ADDRESSES TO KEEP");
+        const addressesToKeep = allAddresses.filter(address => addressArray.some(customerAddress => customerAddress !== address.id))
+        
+        console.log("Addressess to delete");
         
         console.log(addressesToKeep)
+
+          try{
+            addressesToKeep.map((address) => {
+              axios.delete(`http://localhost:8080/api/address/${address.id}`)
+            })
+          }
+          catch(error){
+            console.log(error);
+            
+          }
+
         }
         catch(error){
           console.log(error);
