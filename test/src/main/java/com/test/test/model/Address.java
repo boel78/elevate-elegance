@@ -2,9 +2,12 @@ package com.test.test.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.springframework.data.mongodb.core.index.Indexed;
+
 public class Address {
     private String id;
     private String zipcode;
+    @Indexed(unique = true)
     private String address;
     private String town;
     public String getId() {

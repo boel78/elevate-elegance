@@ -4,6 +4,7 @@ import { MenuContext } from "../../src/menuContext";
 import { useAddress } from "../../hooks/useAddress";
 import { useUser } from "../../hooks/useUser";
 import { X } from "@phosphor-icons/react";
+import { BlueButton } from "../../components/blueButton";
 
 export const AccountSettings = () => {
   const { noMenus, currentUser } = useContext(MenuContext);
@@ -11,6 +12,7 @@ export const AccountSettings = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [addressObjects, setAddressObjects] = useState([])
   const [showPasswordError, setShowPasswordError] = useState(false)
+  const [isEditingAddress, setIsEditingAddress] = useState(false)
   const [userInfo, setUserInfo] = useState(
     currentUser && {
       email: currentUser.email,
@@ -25,7 +27,7 @@ export const AccountSettings = () => {
     }
   );
 
-  const {fetchAddresses} = useAddress()
+  const {fetchAddresses, addAddress} = useAddress()
   const {handleSave} = useUser()
 
   useEffect(() => {
@@ -118,7 +120,7 @@ export const AccountSettings = () => {
     userInfo.addresses = newUserInfoAddresses
     handleSave(userInfo)
     setAddressObjects(userInfo.addresses)
-    //LÄGG TILL KOD FÖR ATT TA BORT ADDRESSEN FRÅN DB OM ADDRESSEN INTE HAR NÅGON ANVÄNDARE
+    
   }
 
   
@@ -181,78 +183,73 @@ export const AccountSettings = () => {
 
 
               {/*ADDRESS*/}
-            <div className="bg-lightTan w-1/2 px-6">
+            <div className="bg-lightTan w-1/2 px-6 flex flex-col">
               <div className="flex justify-between">
-                <h2 className="font-medium text-xl">Adress</h2>
+                <div>
+                  <h2 className="font-medium text-xl">Address</h2>
+                  <p>You can also add and edit delivery address here</p>
+                  
+                </div>
                 <a
                   className="underline cursor-pointer"
-                  onClick={() => setIsEditing(!isEditing)}
+                  onClick={() => setIsEditingAddress(!isEditing)}
                 >
                   Edit
                 </a>
-              </div>
-              <p>You can also add and edit delivery address here</p>
-              {addressObjects === null || addressObjects === undefined || addressObjects.length === 0 ? (
-                <p>No home address saved</p>
-              ) : (
-                <div className="flex flex-col gap-6 w-1/4">
-                  {addressObjects.map((address, index) => {
-                    return (
-                      <div key={index} className="flex flex-col">
-                        <h3 className="flex items-center justify-between font-semibold">Address: {index + 1} <X size={25} color="#eb0000" weight="duotone" onClick={() => handleRemoveAddress(address.id)}/></h3>
-                          
-                        {/*<div className="flex flex-col">
-                          <input
-                            type="text"
-                            value={address.address || ""}
-                            onChange={(event) =>
-                              handleInputChangeAddress(index, event, "address")
-                            }
-                            readOnly={!isEditing}
-                          />
-                          <input
-                            type="text"
-                            value={address.town || ""}
-                            onChange={(event) =>
-                              handleInputChangeAddress(index, event, "town")
-                            }
-                            readOnly={!isEditing}
-                          />
-                          <input
-                            type="text"
-                            value={address.zipcode || ""}
-                            onChange={(event) =>
-                              handleInputChangeAddress(index, event, "zipcode")
-                            }
-                            readOnly={!isEditing}
-                          />
-                        </div>*/}
-                        {Object.entries(address).map(([key, value]) => (
-                          
-                          key !== "id" &&
-                            <div key={key}>
-                            
-                            <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
-                            <input type="text"
-                            value={value}
-                            onChange={(event) =>
-                              handleInputChangeAddress(index, event, "zipcode")
-                            }
-                            readOnly={!isEditing}
-                            />
-                          </div>
-                          
-                          
-                        ))
-                          
-                          }
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+                
+                
 
-              <button>save</button>
+              </div>
+              
+              <div className="flex gap-56">
+                
+                {addressObjects === null || addressObjects === undefined || addressObjects.length === 0 ? (
+                  <p>No home address saved</p>
+                ) : (
+                  <div className="flex gap-6 w-1/4">
+                    {addressObjects.map((address, index) => {
+                      return (
+                        <div key={index} className="flex flex-col">
+                          <h3 className="flex font-semibold justify-between">Address {index + 1} <span><X size={25} color="#eb0000" weight="duotone" onClick={() => handleRemoveAddress(address.id)}/></span></h3>
+                          
+                          {/*itererar igenom addressobjekten och skapar input fields */}
+                          {Object.entries(address).map(([key, value]) => (
+                            key !== "id" &&
+                              <div key={key}>
+                              
+                              <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
+                              <input type="text"
+                              value={value}
+                              onChange={(event) =>
+                                handleInputChangeAddress(index, event, "zipcode")
+                              }
+                              readOnly={!isEditing}
+                              />
+                            </div>
+                            
+                            
+                          ))
+                            
+                            }
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+                
+                {isEditingAddress && <form className="flex flex-col gap-4" onSubmit={addAddress}>
+                  <h3 className="font-semibold">New Address</h3>
+                <input placeholder="Address" name="address" id="address"/>
+                <input placeholder="Town" name="town" id="town"/>
+                <input placeholder="Zipcode" name="zipcode" id="zipcode"/>
+                <BlueButton btnText={"Add address"}/>
+              </form>}
+
+              </div>
+              
+              
+
+              {isEditingAddress && <span className="self-end"><BlueButton btnText={"Save"}/></span>}
             </div>
             <div className="bg-lightTan w-1/2 px-6">
               <div className="flex justify-between">

@@ -5,9 +5,11 @@ import org.springframework.data.mongodb.repository.Query;
 
 import com.test.test.model.Address;
 
+
 public interface AddressRepository extends MongoRepository<Address, String>{
 
     @Query("{'id' : ?0}")
     Address findByAddressId(String id);
+    boolean existsByAddress(String address);
     
 }

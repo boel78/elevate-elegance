@@ -22,6 +22,10 @@ public class AddressService {
                 .orElseThrow(() -> new RuntimeException("Cart not found"));
     }
 
+    public boolean addressNameExists(String address) {
+        return addressRepository.existsByAddress(address);
+    }
+
     public ArrayList<Address> getAddresses(String[] idn){
         ArrayList<Address> addresser = new ArrayList<>();
         for(String id : idn){
@@ -31,8 +35,11 @@ public class AddressService {
     }
 
     public void addAddress(Address address) {
+
+        if (!addressNameExists(address.getAddress())) {
+            addressRepository.insert(address);
+        }
         
-        addressRepository.save(address);
     }
 
     public List<Address> getAllAddresses(){
@@ -41,6 +48,18 @@ public class AddressService {
 
     public void deleteAddress(String id){
         addressRepository.deleteById(id);
+    }
+
+    public void deleteMultipleAddresses(String[] addresses){
+            for(Address addressToRemove : addressRepository.findAll()){
+                for(String addressName : addresses){
+                    if(addressToRemove.getAddress().equals(addressName)){
+                        addressRepository.delete(addressToRemove);
+                    }
+
+                }
+            }
+        
     }
 
 }

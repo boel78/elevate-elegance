@@ -1,5 +1,6 @@
 package com.test.test.controller;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +53,14 @@ public class AddressController {
         addressService.deleteAddress(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @DeleteMapping("/multiple")
+    public ResponseEntity deleteAddresses(@RequestParam("addresses") String[] addresses){
+           addressService.deleteMultipleAddresses(addresses);
+           return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
+    }
+    
 
 
 }
