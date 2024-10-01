@@ -102,7 +102,7 @@ export const HomePage = () => {
           {topSellers.map(
             (element) => (
                 <img
-                  src={element.image}
+                  src={`data:image/jpeg;base64,${element.image}`}
                   key={element.id}
                   className="rounded-lg max-w-44 lg:max-w-64 shadow-md"
                   onClick={() => handleFocusObject(element)}

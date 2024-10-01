@@ -25,11 +25,15 @@ export const Cataloge = () => {
 
   useEffect(() => {
     noMenus();
-    setShownProducts(products)
+    
   }, []);
 
   useEffect(() => {
+    setShownProducts(products)
+  },[products])
 
+  useEffect(() => {
+    
   },[shownProducts])
 
 
@@ -62,9 +66,9 @@ export const Cataloge = () => {
           {shownProducts.map((element) =>
             (
               <img
-                src={element.image}
+                src={`data:image/jpeg;base64,${element.image}`}
                 key={element.id}
-                className="rounded-lg max-w-64"
+                className="rounded-lg max-w-64 shadow-sm"
                 onClick={() => handleFocusObject(element)}
               />
             )

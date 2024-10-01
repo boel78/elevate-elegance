@@ -1,5 +1,6 @@
 package com.test.test.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.test.model.Product;
 import com.test.test.service.MaterialService;
 import com.test.test.service.ProductService;
@@ -7,6 +8,7 @@ import org.apache.coyote.Response;
 import org.bson.types.Binary;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,9 +48,24 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProductsByIsTopSeller());
     }
 
-    @PostMapping
-    public ResponseEntity createProduct(@RequestBody Product product) {
-        productService.createProduct(product);
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity createProduct(@RequestPart("product") String productJson, @RequestPart("file") MultipartFile file) {
+        // Använd ObjectMapper för att konvertera JSON-strängen till ett Product-objekt
+        ObjectMapper objectMapper = new ObjectMapper();
+        Product product;
+
+        try {
+            
+            product = objectMapper.readValue(productJson, Product.class); // Konvertera till Product-objekt
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // Hantera fel
+        }
+        
+        
+        
+        
+        productService.createProduct(product, file);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -57,11 +74,7 @@ public class ProductController {
         productService.updateProduct(product);
         return ResponseEntity.ok().build();
     }
-    @PutMapping("/updateImage/{name}")
-    public ResponseEntity updateProductImage(@PathVariable String name, @RequestBody String image) {
-        productService.updateProductImage(name, image);
-        return ResponseEntity.ok().build();
-    }
+    
 
     @DeleteMapping
     public ResponseEntity deleteProduct(@RequestBody Product product) {

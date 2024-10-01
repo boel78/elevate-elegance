@@ -4,6 +4,8 @@ import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Document("product")
 public class Product {
 
@@ -13,8 +15,15 @@ public class Product {
     private String description;
     private double price;
     private String material;
+    @JsonProperty("isTopSeller")
     private boolean isTopSeller;
-    private String imageLink;
+    private String image;
+    private String category;
+    private String[] size;
+    private String fitting;
+    private String careAdvice;
+    private String dateAdded;
+    
 
     public String getId() {
         return id;
@@ -64,11 +73,55 @@ public class Product {
         isTopSeller = topSeller;
     }
 
-    public String getImageLink() {
-        return imageLink;
+    public String getCategory() {
+        return category;
     }
 
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
+    public void setCategory(String category) {
+        this.category = category;
     }
+
+    public String[] getSize() {
+        return size;
+    }
+
+    public void setSize(String[] size) {
+        this.size = size;
+    }
+
+    public String getFitting() {
+        return fitting;
+    }
+
+    public void setFitting(String fitting) {
+        this.fitting = fitting;
+    }
+
+    public String getCareAdvice() {
+        return careAdvice;
+    }
+
+    public void setCareAdvice(String careAdvice) {
+        this.careAdvice = careAdvice;
+    }
+
+    public String getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Product() { }
+    
+   
 }

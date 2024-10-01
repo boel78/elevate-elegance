@@ -17,6 +17,7 @@ import { RegisterPage } from "../pages/Register/registerPage";
 import { GuestCheckout } from "../pages/Checkout/guestCheckout";
 import { FinalCheckout } from "../pages/Checkout/finalCheckout";
 import { Toaster } from "react-hot-toast";
+import { Admin } from "../pages/adminPage/Admin";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
               <Route path="/Register" element={<RegisterPage/>}/>
               <Route path="/guestCheckout" element={<GuestCheckout/>}/>
               <Route path="/checkout" element={<FinalCheckout/>}/>
+              <Route path="/admin" element={<Admin/>}/>
             </Routes>
             <Footer />
            
