@@ -123,6 +123,13 @@ export const AccountSettings = () => {
     
   }
 
+  const handleAddAddress = () => {
+    addAddress
+
+    userInfo.addresses = currentUser.addresses
+    setAddressObjects(userInfo.addresses)
+  }
+
   
 
   const handleInputChangeAddress = (index, event, name) => {
@@ -145,7 +152,8 @@ export const AccountSettings = () => {
         <div className="pt-14">
           <p>breadcrumbs</p>
           <div className="flex flex-col items-center gap-20">
-            <div className="bg-lightTan w-1/2 px-6 pb-6 flex flex-col self-center ">
+            {/*userinfo */}
+            <div className="bg-lightTan w-1/2 px-6 py-5 flex flex-col self-center ">
               <div className="flex justify-between">
                 <h2 className="font-medium text-xl">My Details</h2>
                 <a
@@ -175,15 +183,13 @@ export const AccountSettings = () => {
               </div>
 
               {isEditing && (
-                <button className="self-end" onClick={handleSaveConfirm}>
-                  Save
-                </button>
+                <span className="self-end"><BlueButton btnText={"Save"} onClick={handleSaveConfirm}/></span>
               )}
             </div>
 
 
               {/*ADDRESS*/}
-            <div className="bg-lightTan w-1/2 px-6 flex flex-col">
+            <div className="bg-lightTan w-1/2 px-6 flex flex-col py-5">
               <div className="flex justify-between">
                 <div>
                   <h2 className="font-medium text-xl">Address</h2>
@@ -192,7 +198,7 @@ export const AccountSettings = () => {
                 </div>
                 <a
                   className="underline cursor-pointer"
-                  onClick={() => setIsEditingAddress(!isEditing)}
+                  onClick={() => setIsEditingAddress(!isEditingAddress)}
                 >
                   Edit
                 </a>
@@ -201,12 +207,12 @@ export const AccountSettings = () => {
 
               </div>
               
-              <div className="flex gap-56">
+              <div className="flex gap-36">
                 
                 {addressObjects === null || addressObjects === undefined || addressObjects.length === 0 ? (
                   <p>No home address saved</p>
                 ) : (
-                  <div className="flex gap-6 w-1/4">
+                  <div className="flex flex-wrap w-2/3 gap-10">
                     {addressObjects.map((address, index) => {
                       return (
                         <div key={index} className="flex flex-col">
@@ -237,7 +243,7 @@ export const AccountSettings = () => {
                   </div>
                 )}
                 
-                {isEditingAddress && <form className="flex flex-col gap-4" onSubmit={addAddress}>
+                {isEditingAddress && <form className="flex flex-col gap-4" onSubmit={handleAddAddress}>
                   <h3 className="font-semibold">New Address</h3>
                 <input placeholder="Address" name="address" id="address"/>
                 <input placeholder="Town" name="town" id="town"/>
@@ -249,16 +255,9 @@ export const AccountSettings = () => {
               
               
 
-              {isEditingAddress && <span className="self-end"><BlueButton btnText={"Save"}/></span>}
+              {isEditingAddress && <span className="self-end mt-4"><BlueButton btnText={"Save"}/></span>}
             </div>
-            <div className="bg-lightTan w-1/2 px-6">
-              <div className="flex justify-between">
-                <h2 className="font-medium text-xl">Newsletter Subscription</h2>
-                <a className="underline cursor-pointer">Edit</a>
-              </div>
-              <p>Newsletter subscription</p>
-              <p>Direct mail marketing</p>
-            </div>
+
           </div>
         </div>
       ) : (
