@@ -10,9 +10,9 @@ export const AccountSettings = () => {
   const { noMenus, currentUser } = useContext(MenuContext);
   const [userInfoField, setUserInfoField] = useState();
   const [isEditing, setIsEditing] = useState(false);
-  const [addressObjects, setAddressObjects] = useState([])
-  const [showPasswordError, setShowPasswordError] = useState(false)
-  const [isEditingAddress, setIsEditingAddress] = useState(false)
+  const [addressObjects, setAddressObjects] = useState([]);
+  const [showPasswordError, setShowPasswordError] = useState(false);
+  const [isEditingAddress, setIsEditingAddress] = useState(false);
   const [userInfo, setUserInfo] = useState(
     currentUser && {
       email: currentUser.email,
@@ -22,17 +22,15 @@ export const AccountSettings = () => {
       dateOfBirth: currentUser.dateOfBirth,
       phone: currentUser.phone,
       addresses: currentUser.addresses,
-      password: currentUser.password
-      
+      password: currentUser.password,
     }
   );
 
-  const {fetchAddresses, addAddress} = useAddress()
-  const {handleSave} = useUser()
+  const { fetchAddresses, addAddress } = useAddress();
+  const { handleSave } = useUser();
 
   useEffect(() => {
     noMenus();
-    
   }, []);
 
   useEffect(() => {
@@ -87,27 +85,22 @@ export const AccountSettings = () => {
           name: "cnfPassword",
         },
       ]);
-      
     }
-    fetchAddresses().then(
-      addresses => { setAddressObjects(addresses); 
-      }
-    ) 
-}, [currentUser]);
-
+    fetchAddresses().then((addresses) => {
+      setAddressObjects(addresses);
+    });
+  }, [currentUser]);
 
   const handleSaveConfirm = () => {
-    if(userInfo.cnfPassword === userInfo.password){
-      handleSave(userInfo)
+    if (userInfo.cnfPassword === userInfo.password) {
+      handleSave(userInfo);
+    } else {
+      setShowPasswordError(true);
     }
-    else {
-      setShowPasswordError(true)
-    }
-  }
+  };
 
-  
   const handleInputChange = (e) => {
-    setShowPasswordError(false)
+    setShowPasswordError(false);
     const { name, value } = e.target;
     setUserInfo((prevInfo) => ({
       ...prevInfo,
@@ -116,21 +109,20 @@ export const AccountSettings = () => {
   };
 
   const handleRemoveAddress = (id) => {
-    const newUserInfoAddresses = userInfo.addresses.filter((address) => address !== id)
-    userInfo.addresses = newUserInfoAddresses
-    handleSave(userInfo)
-    setAddressObjects(userInfo.addresses)
-    
-  }
+    const newUserInfoAddresses = userInfo.addresses.filter(
+      (address) => address !== id
+    );
+    userInfo.addresses = newUserInfoAddresses;
+    handleSave(userInfo);
+    setAddressObjects(userInfo.addresses);
+  };
 
   const handleAddAddress = () => {
-    addAddress
+    addAddress;
 
-    userInfo.addresses = currentUser.addresses
-    setAddressObjects(userInfo.addresses)
-  }
-
-  
+    userInfo.addresses = currentUser.addresses;
+    setAddressObjects(userInfo.addresses);
+  };
 
   const handleInputChangeAddress = (index, event, name) => {
     const { value } = event.target;
@@ -150,7 +142,7 @@ export const AccountSettings = () => {
     <Layout>
       {currentUser ? (
         <div className="pt-14">
-          <p>breadcrumbs</p>
+          <span><a href="/">Home</a>/<a>Account settings</a></span>
           <div className="flex flex-col items-center gap-20">
             {/*userinfo */}
             <div className="bg-lightTan w-1/2 px-6 py-5 flex flex-col self-center ">
@@ -174,27 +166,28 @@ export const AccountSettings = () => {
                         value={userInfo[obj.name]}
                         readOnly={!isEditing}
                         onChange={handleInputChange}
+                        className="p-1"
                       />
-                      {(obj.name === "cnfPassword" && showPasswordError) &&
-                       <p className="text-red-600">Password does not match</p>}
+                      {obj.name === "cnfPassword" && showPasswordError && (
+                        <p className="text-red-600">Password does not match</p>
+                      )}
                     </div>
-                    
                   ))}
               </div>
 
               {isEditing && (
-                <span className="self-end"><BlueButton btnText={"Save"} onClick={handleSaveConfirm}/></span>
+                <span className="self-end">
+                  <BlueButton btnText={"Save"} onClick={handleSaveConfirm} />
+                </span>
               )}
             </div>
 
-
-              {/*ADDRESS*/}
+            {/*ADDRESS*/}
             <div className="bg-lightTan w-1/2 px-6 flex flex-col py-5">
               <div className="flex justify-between">
                 <div>
                   <h2 className="font-medium text-xl">Address</h2>
                   <p>You can also add and edit delivery address here</p>
-                  
                 </div>
                 <a
                   className="underline cursor-pointer"
@@ -202,62 +195,80 @@ export const AccountSettings = () => {
                 >
                   Edit
                 </a>
-                
-                
-
               </div>
-              
+
               <div className="flex gap-36">
-                
-                {addressObjects === null || addressObjects === undefined || addressObjects.length === 0 ? (
+                {addressObjects === null ||
+                addressObjects === undefined ||
+                addressObjects.length === 0 ? (
                   <p>No home address saved</p>
                 ) : (
                   <div className="flex flex-wrap w-2/3 gap-10">
                     {addressObjects.map((address, index) => {
                       return (
                         <div key={index} className="flex flex-col">
-                          <h3 className="flex font-semibold justify-between">Address {index + 1} <span><X size={25} color="#eb0000" weight="duotone" onClick={() => handleRemoveAddress(address.id)}/></span></h3>
-                          
-                          {/*itererar igenom addressobjekten och skapar input fields */}
-                          {Object.entries(address).map(([key, value]) => (
-                            key !== "id" &&
-                              <div key={key}>
-                              
-                              <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
-                              <input type="text"
-                              value={value}
-                              onChange={(event) =>
-                                handleInputChangeAddress(index, event, "zipcode")
-                              }
-                              readOnly={!isEditing}
+                          <h3 className="flex font-semibold justify-between">
+                            Address {index + 1}{" "}
+                            <span>
+                              <X
+                                size={25}
+                                color="#eb0000"
+                                weight="duotone"
+                                onClick={() => handleRemoveAddress(address.id)}
                               />
-                            </div>
-                            
-                            
-                          ))
-                            
-                            }
+                            </span>
+                          </h3>
+
+                          {/*itererar igenom addressobjekten och skapar input fields */}
+                          {Object.entries(address).map(
+                            ([key, value]) =>
+                              key !== "id" && (
+                                <div key={key}>
+                                  <h3>
+                                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                                  </h3>
+                                  <input
+                                    type="text"
+                                    value={value}
+                                    onChange={(event) =>
+                                      handleInputChangeAddress(
+                                        index,
+                                        event,
+                                        "zipcode"
+                                      )
+                                    }
+                                    readOnly={!isEditing}
+                                    className="p-1"
+                                  />
+                                </div>
+                              )
+                          )}
                         </div>
                       );
                     })}
                   </div>
                 )}
-                
-                {isEditingAddress && <form className="flex flex-col gap-4" onSubmit={handleAddAddress}>
-                  <h3 className="font-semibold">New Address</h3>
-                <input placeholder="Address" name="address" id="address"/>
-                <input placeholder="Town" name="town" id="town"/>
-                <input placeholder="Zipcode" name="zipcode" id="zipcode"/>
-                <BlueButton btnText={"Add address"}/>
-              </form>}
 
+                {isEditingAddress && (
+                  <form
+                    className="flex flex-col gap-4"
+                    onSubmit={handleAddAddress}
+                  >
+                    <h3 className="font-semibold">New Address</h3>
+                    <input placeholder="Address" name="address" id="address" />
+                    <input placeholder="Town" name="town" id="town" />
+                    <input placeholder="Zipcode" name="zipcode" id="zipcode" />
+                    <BlueButton btnText={"Add address"} />
+                  </form>
+                )}
               </div>
-              
-              
 
-              {isEditingAddress && <span className="self-end mt-4"><BlueButton btnText={"Save"}/></span>}
+              {isEditingAddress && (
+                <span className="self-end mt-4">
+                  <BlueButton btnText={"Save"} />
+                </span>
+              )}
             </div>
-
           </div>
         </div>
       ) : (

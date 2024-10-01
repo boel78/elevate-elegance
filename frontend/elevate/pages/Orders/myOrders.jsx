@@ -4,10 +4,12 @@ import { MenuContext } from "../../src/menuContext";
 import { PRODUCTS } from "../../products";
 import { Layout } from "../../components/layout";
 import { TanButton } from "../../components/button";
+import { useNavigate } from "react-router-dom";
 
 export const MyOrders = () => {
   const { currentUser, noMenus } = useContext(MenuContext);
   const [userOrders, setUserOrders] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (currentUser != null) {
@@ -20,6 +22,9 @@ export const MyOrders = () => {
     noMenus();
   }, []);
 
+  const visitCataloge = () => {
+    navigate("/cataloge")
+  }
   
 
   return (
@@ -27,6 +32,7 @@ export const MyOrders = () => {
       <div>
         <div className="flex flex-col gap-5 pt-16">
           {currentUser != null ? (
+            userOrders.length > 0 ?
             userOrders.map((order) => (
               <div
                 className="flex py-20 items-start border-solid border-2 border-gray-300 ml-40 mr-40 justify-around shadow-lg"
@@ -54,7 +60,11 @@ export const MyOrders = () => {
                   <TanButton btnText={"View Order Details"}/>
                 </div>
               </div>
-            ))
+            )):
+            <div className="self-center flex flex-col justify-center pt-60 gap-8">
+              <p>You have no orders yet. Visit our products to place an order now</p>
+              <TanButton btnText={"Products"} onClick={visitCataloge}/>
+            </div>
           ) : (
             <div className="">
               <h2 className="pt-20">Please login</h2>
