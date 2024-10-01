@@ -3,6 +3,7 @@ import { MenuContext } from "../../src/menuContext";
 import { Layout } from "../../components/layout";
 import { FilterBox } from "../../components/filterBox";
 import { useProducts } from "../../hooks/useProducts";
+import { useParams } from "react-router-dom";
 
 
 export const FilterContext = createContext(null)
@@ -17,16 +18,29 @@ export const Cataloge = () => {
     setFocusedObject,
   } = useContext(MenuContext);
 
-  const {products} = useProducts()
-  const [shownProducts, setShownProducts] = useState(products)
+  const {products, filterProduct} = useProducts()
+  const [shownProducts, setShownProducts] = useState([])
   const [forceRender, setForceRender] = useState(false)
+  const [currentCategory, setCurrentCategory] = useState({})
+
+  const {Category} = useParams()
   
 
 
   useEffect(() => {
     noMenus();
+    const filteredProducts = filterProduct("category", Category)
+    setShownProducts(filteredProducts)
+    console.log(Category);
     
   }, []);
+
+  useEffect(() => {
+    setShownProducts(filterProduct("category", currentCategory))
+    
+    
+  },[currentCategory])
+
 
   useEffect(() => {
     setShownProducts(products)
@@ -49,7 +63,8 @@ export const Cataloge = () => {
     setShownProducts,
     shownProducts,
     setForceRender,
-    forceRender
+    forceRender,
+    setCurrentCategory
   }
 
   

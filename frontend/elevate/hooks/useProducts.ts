@@ -22,16 +22,19 @@ export function useProducts() {
     initializeProducts();
   }, []);
 
-  const filterProduct = useCallback((filterType, filterValue) => {
+  const filterProduct = useCallback((filterType, filterValue) => {      
     if (filterType === "" && filterValue === "") {
       return products;
     } else {
+      
       const filteredArray = products.filter(
         (produkt) => produkt[filterType] === filterValue
       );
+      console.log(filteredArray);
+      
       return filteredArray.length > 0 ? filteredArray : [];
     }
-  }, []);
+  }, [products]);
 
   const sortProducts = (sortOption, productArray, attributeName) => {
     if (productArray) {

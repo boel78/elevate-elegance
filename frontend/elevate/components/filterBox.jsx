@@ -14,7 +14,7 @@ export const FilterBox = () => {
   const navigate = useNavigate();
 
   const { Category } = useParams();
-  const {setShownProducts, shownProducts, setForceRender, forceRender} = useContext(FilterContext)
+  const {setShownProducts, shownProducts, setForceRender, forceRender, setCurrentCategory} = useContext(FilterContext)
 
   const {filterProduct, products, sortProducts} = useProducts()
 
@@ -27,6 +27,9 @@ export const FilterBox = () => {
     }
     else{
         navigate(`/cataloge/${category}`); 
+        setCurrentCategory(category)
+
+        
     }
     setShowCategory(false);
   };

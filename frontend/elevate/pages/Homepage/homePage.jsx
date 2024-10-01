@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../../src/menuContext";
 import { Link } from "react-router-dom";
 import { Layout } from "../../components/layout";
@@ -8,9 +8,13 @@ import { BlueButton } from "../../components/blueButton";
 import { useProducts } from "../../hooks/useProducts";
 
 export const HomePage = () => {
-  const {filterProduct} = useProducts()
-
-  const topSellers = filterProduct("isTopSeller", true)
+  const {filterProduct, products} = useProducts()
+  const [topSellers, setTopSellers] = useState([])
+  
+  useEffect(() => {
+    const filteredProducts = filterProduct("isTopSeller", true)
+    setTopSellers(filteredProducts)
+  },[products])
 
 
   const {

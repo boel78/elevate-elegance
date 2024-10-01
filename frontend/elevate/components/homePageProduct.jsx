@@ -13,7 +13,7 @@ export const HomePageProduct = (props) => {
   const product = props.data
 
   useEffect(() => {
-    setImg(product.image);
+    setImg(`data:image/jpeg;base64,${product.image}`);
   }, [product]);
 
   const addToCart = (p) => {
