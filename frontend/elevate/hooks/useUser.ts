@@ -39,36 +39,22 @@ export function useUser() {
       let addressArray = Array.from(
         new Set(users.flatMap((customer) => customer.addresses))
       );
-      
-      const addressesToDelete = allAddresses.filter((address) =>
-        !addressArray.includes(address.id)).map((address) => address.id);
 
-         await axios.delete(`http://localhost:8080/api/address/multiple`, {
-            params: { addresses: addressesToDelete.join(",") }
-          })
-          
-        
-    } catch (error) {
-      console.log(error);
-    }
-    
-  };
+      const addressesToDelete = allAddresses
+        .filter((address) => !addressArray.includes(address.id))
+        .map((address) => address.id);
 
-  const updateAddresses = async (newAddress) => {
-    if (!currentUser) {
-      console.log("No current user found");
-      return;
-    }
-    currentUser.addresses.push(newAddress);
-    try {
-      axios.put("http://localhost:8080/api/customer", currentUser);
+      await axios.delete(`http://localhost:8080/api/address/multiple`, {
+        params: { addresses: addressesToDelete.join(",") },
+      });
     } catch (error) {
       console.log(error);
     }
   };
+
+  
 
   return {
     handleSave,
-    updateAddresses
   };
 }
