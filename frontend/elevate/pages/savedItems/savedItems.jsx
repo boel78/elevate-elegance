@@ -10,47 +10,57 @@ export const SavedItems = () => {
   const { currentUser, noMenus } = useContext(MenuContext);
   const [likedProducts, setLikedProducts] = useState([]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const savedItems = SAVEDITEMS.filter(
-      (likedProduct) => currentUser.id === likedProduct.u_id
-    );
-    console.log(savedItems);
-    const savedProductIds = savedItems.flatMap((item) => item.p_id);
-    const likedProductsByUser = PRODUCTS.filter((product) =>
-      savedProductIds.includes(product.id)
-    );
-    setLikedProducts(likedProductsByUser);
+    if(currentUser != null){
+
+      const savedItems = SAVEDITEMS.filter(
+        (likedProduct) => currentUser.id === likedProduct.u_id
+      );
+      console.log(savedItems);
+      const savedProductIds = savedItems.flatMap((item) => item.p_id);
+      const likedProductsByUser = PRODUCTS.filter((product) =>
+        savedProductIds.includes(product.id)
+      );
+      setLikedProducts(likedProductsByUser);
+    }
   }, [currentUser]);
 
   useEffect(() => {
     noMenus();
+    console.log(currentUser);
   }, []);
 
   const visitCataloge = () => {
-    navigate("/cataloge")
-  }
+    navigate("/cataloge");
+  };
 
   return (
     <Layout>
-      <div className="pt-20 flex flex-col">
-        {likedProducts.length > 0 ? (
-          likedProducts.map((likedProduct) => (
-            <div key={likedProduct.id}>
-              <img src={likedProduct.image}></img>
+      {currentUser != null ? (
+        <div className="pt-20 flex flex-col">
+          {likedProducts.length > 0 ? (
+            likedProducts.map((likedProduct) => (
+              <div key={likedProduct.id}>
+                <img src={likedProduct.image}></img>
+              </div>
+            ))
+          ) : (
+            <div className="self-center flex flex-col justify-center pt-60 gap-8">
+              <p>
+                You have no saved products yet. Visit our products to place an
+                order now
+              </p>
+              <TanButton btnText={"Products"} onClick={visitCataloge} />
             </div>
-          ))
-        ) : (
-          <div className="self-center flex flex-col justify-center pt-60 gap-8">
-            <p>
-              You have no saved products yet. Visit our products to place an
-              order now
-            </p>
-            <TanButton btnText={"Products"} onClick={visitCataloge}/>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      ) : (
+        <div className="pt-20">
+          <p>Please Login</p>
+        </div>
+      )}
     </Layout>
   );
 };

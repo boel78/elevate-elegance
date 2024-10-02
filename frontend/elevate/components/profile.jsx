@@ -1,14 +1,17 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MenuContext } from '../src/menuContext'
 
 export const Profile = () => {
+
+  const navigate = useNavigate()
 
     const { currentUser, setCurrentUser } = useContext(MenuContext)
 
     const logout = () =>{
         setCurrentUser(null)
         alert("You logged out")
+        navigate("/")
     }
 
   return (
