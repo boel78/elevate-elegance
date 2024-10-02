@@ -17,6 +17,7 @@ public class Customer {
     private String email;
     private String phone;
     private List<String> addresses;
+    private List<String> likedProducts;
     
     private String password;
     
@@ -104,5 +105,13 @@ public class Customer {
 
     public void setAddresses(List<String> addresses) {
         this.addresses = addresses;
+    }
+
+    public List<String> getLikedProducts() {
+        return likedProducts;
+    }
+
+    public void setLikedProducts(List<String> likedProducts) {
+        this.likedProducts = likedProducts;
     }
 }

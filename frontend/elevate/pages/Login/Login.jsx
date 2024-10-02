@@ -54,7 +54,7 @@ export const Login = () => {
       
       setCurrentUser(user.data);
       console.log("USER")
-      console.log(currentUser)
+      console.log(user.data)
       setIsUserSet(true)
       toast.success("You have successfully logged in")
 

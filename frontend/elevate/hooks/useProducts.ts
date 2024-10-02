@@ -122,12 +122,23 @@ export function useProducts() {
     
     
     
+
+
+  }
+
+  const getMultipleProducts = (ids) => {
+    console.log(ids);
+    
+    const multipleProducts = products.filter((product) => ids.includes(product.id)) 
+    console.log(multipleProducts);
+    
   }
 
   return {
     products,
     filterProduct,
     sortProducts,
-    searchProduct
+    searchProduct,
+    getMultipleProducts
   };
 }

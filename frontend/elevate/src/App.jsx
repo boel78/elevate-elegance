@@ -18,6 +18,7 @@ import { GuestCheckout } from "../pages/Checkout/guestCheckout";
 import { FinalCheckout } from "../pages/Checkout/finalCheckout";
 import { Toaster } from "react-hot-toast";
 import { Admin } from "../pages/adminPage/Admin";
+import { AboutUs } from "../pages/Aboutus/AboutUs";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
               <Route path="/guestCheckout" element={<GuestCheckout/>}/>
               <Route path="/checkout" element={<FinalCheckout/>}/>
               <Route path="/admin" element={<Admin/>}/>
+              <Route path="/aboutUs" element={<AboutUs/>}/>
             </Routes>
             <Footer />
            

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/product")
@@ -47,6 +50,12 @@ public class ProductController {
     public ResponseEntity<List<Product>> getProductByTopSeller() {
         return ResponseEntity.ok(productService.getProductsByIsTopSeller());
     }
+
+    @PostMapping("/multiple")
+    public ResponseEntity<List<Product>> getMethodName(@RequestBody String[] ids) {
+        return ResponseEntity.ok(productService.getMultipleProducts(ids));
+    }
+    
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity createProduct(@RequestPart("product") String productJson, @RequestPart("file") MultipartFile file) {

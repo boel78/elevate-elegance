@@ -34,6 +34,7 @@ public class CustomerService {
         foundObject.setGender(customer.getGender());
         foundObject.setEmail(customer.getEmail());
         foundObject.setPhone(customer.getPhone());
+        foundObject.setLikedProducts(customer.getLikedProducts());
         if(!customer.getPassword().equals("")){
             foundObject.setPassword(customer.getPassword());
         }

@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class ProductService {
@@ -57,6 +58,14 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    public List<Product> getMultipleProducts(String[] ids){
+        List<Product> newList = new ArrayList<Product>();
+        for(String productID : ids){
+            newList.add(getProductById(productID));
+        }
+        return newList;
     }
 
     public Product getProductByName(String name) {

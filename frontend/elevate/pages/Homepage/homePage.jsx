@@ -17,6 +17,18 @@ export const HomePage = () => {
   },[products])
 
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const section = document.getElementById(hash.substring(1));
+      if (section) {
+        window.scrollTo(0, document.body.scrollHeight)
+      }
+    }
+
+  },[])
+
+
   const {
     focusingHomepageObject,
     setFocusedObject,
@@ -80,7 +92,7 @@ export const HomePage = () => {
 
   return (
     <Layout>
-      <div className="z-200 flex  flex-col justify-center pb-60 text-white bg-hero bg-fixed w-full h-[600px] xl:h-[950px] bg-cover">
+      <div className="z-200 flex  flex-col justify-center pb-60 text-white bg-hero bg-fixed w-full h-[600px] xl:h-[950px] bg-cover" id="hero">
         <div className="pl-12">
           <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
           <h3 className="text-3xl">"Sophistication Redefined,</h3>

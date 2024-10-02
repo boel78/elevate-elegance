@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { MenuContext } from '../src/menuContext'
 
@@ -6,6 +6,8 @@ export const Sidemenu = () => {
 
     const {currentUser, setCurrentUser} = useContext(MenuContext)
     const navigate = useNavigate()
+
+   
 
     const handleLogout = () => {
         setCurrentUser(null)
@@ -32,7 +34,9 @@ export const Sidemenu = () => {
                 :
                     <p onClick={handleLogout} className='cursor-pointer'>Sign out</p>}
                     <Link to={"/Orders"}><p>My Orders</p></Link>
-                    <p>Contact Us</p>
+                    <Link to={"/#footer"} onClick={() => {
+                window.scroll(0, 20000);
+              }}><p>Contact Us</p></Link>
                 </div>
             </div>
         </div>

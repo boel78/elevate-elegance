@@ -5,10 +5,13 @@ import { PRODUCTS } from "../../products";
 import { Layout } from "../../components/layout";
 import { TanButton } from "../../components/button";
 import { useNavigate } from "react-router-dom";
+import { useProducts } from "../../hooks/useProducts";
 
 export const SavedItems = () => {
   const { currentUser, noMenus } = useContext(MenuContext);
   const [likedProducts, setLikedProducts] = useState([]);
+
+  const {getMultipleProducts} = useProducts()
 
   const navigate = useNavigate();
 
@@ -29,7 +32,9 @@ export const SavedItems = () => {
 
   useEffect(() => {
     noMenus();
-    console.log(currentUser);
+    getMultipleProducts(currentUser.likedProducts);
+    
+    
   }, []);
 
   const visitCataloge = () => {
