@@ -9,6 +9,7 @@ export function useProducts() {
     try {
       const { data } = await axios.get("http://localhost:8080/api/product");
 
+      const sortedProducts = sortProducts("New first", data, "dateAdded")
         setProducts(data);
       
     } catch (error) {

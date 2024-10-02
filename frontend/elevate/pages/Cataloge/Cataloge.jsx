@@ -31,8 +31,7 @@ export const Cataloge = () => {
     noMenus();
     const filteredProducts = filterProduct("category", Category)
     setShownProducts(filteredProducts)
-    console.log(Category);
-    
+      
   }, []);
 
   useEffect(() => {

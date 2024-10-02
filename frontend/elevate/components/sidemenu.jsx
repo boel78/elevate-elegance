@@ -12,10 +12,6 @@ export const Sidemenu = () => {
         navigate("/")
     }
 
-    const handleNewInNavigation = () => {
-        navigate("/cataloge")
-    }
-
   return (
     <div className='fixed right-0 top-12 w-1/4 bg-white h-5/6 border-l-2 border-b-2 border-black font-inter'>
         <div className='flex flex-col'>
