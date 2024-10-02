@@ -18,12 +18,14 @@ export const Cataloge = () => {
     setFocusedObject,
   } = useContext(MenuContext);
 
-  const {products, filterProduct} = useProducts()
+  const {products, filterProduct, searchProduct} = useProducts()
   const [shownProducts, setShownProducts] = useState([])
   const [forceRender, setForceRender] = useState(false)
   const [currentCategory, setCurrentCategory] = useState({})
 
   const {Category} = useParams()
+
+  const {sortProducts} = useProducts()
   
 
 
@@ -48,6 +50,29 @@ export const Cataloge = () => {
   useEffect(() => {
     
   },[shownProducts])
+
+  useEffect(() => {
+    noMenus();
+    console.log("category");
+    
+    console.log(Category);
+    
+
+    // Kör sökning eller filtrering baserat på URL-parametern när komponenten laddas
+    if (products.length > 0 && Category) {
+      if (Category.includes("search")) {
+        const searchQuery = Category.substring(6); // Extrahera sökordet
+        const searchedProducts = searchProduct(searchQuery); // Hämta sökresultaten
+        setShownProducts(searchedProducts); // Uppdatera visade produkter
+        console.log("Searched products:", searchedProducts);
+      } 
+      else {
+        const filteredProducts = filterProduct("category", Category); // Filtrera baserat på kategori
+        setShownProducts(filteredProducts); // Uppdatera visade produkter
+        console.log("Filtered products by category:", filteredProducts);
+      }
+    }
+  }, [products, Category]);
 
 
 

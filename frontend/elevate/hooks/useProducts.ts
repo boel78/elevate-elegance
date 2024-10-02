@@ -105,9 +105,29 @@ export function useProducts() {
     }
   };
 
+  const searchProduct = (searchWord) => {
+
+    if(products.length > 0){
+      const lowerCaseSearchWord = searchWord.toLowerCase().trim()
+    
+    
+
+    const searchResult = products.filter((product) => product.name.toLowerCase().includes(lowerCaseSearchWord))
+
+    return searchResult
+    }
+    else{
+      return []
+    }
+    
+    
+    
+  }
+
   return {
     products,
     filterProduct,
     sortProducts,
+    searchProduct
   };
 }
