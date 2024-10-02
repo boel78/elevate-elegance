@@ -23,7 +23,7 @@ export const Search = () => {
         <h3>What are you searching for?</h3>
         <input
           type="text"
-          className="border-solid border-b-2 border-black"
+          className="border-solid border-y-2 border-grey shadow-md rounded-sm p-1 outline-none"
           onKeyDown={(e) => {
             e.key === "Enter" &&
             handleSearch(e.target.value);
@@ -31,26 +31,26 @@ export const Search = () => {
           }}
         ></input>
       </div>
-      <div className="flex flex-row">
-        <div className="flex flex-col">
-          <h3>Trending searches</h3>
+      <div className="flex justify-between px-6">
+        <div className="flex flex-col items-start">
+          <h3 className="font-semibold">Trending searches</h3>
           <ul>
-            <li className="flex justify-center content-center">
+            <li className="flex content-center gap-2">
               <MagnifyingGlass size="15" />
               <p>Bags</p>
             </li>
-            <li className="flex justify-center content-center">
+            <li className="flex content-center gap-2">
               <MagnifyingGlass size="15" />
-              <p>Bags</p>
+              <p>Gold</p>
             </li>
-            <li className="flex justify-center content-center">
+            <li className="flex content-center gap-2">
               <MagnifyingGlass size="15" />
-              <p>Bags</p>
+              <p>Shoes</p>
             </li>
           </ul>
         </div>
         <div className="flex flex-col">
-          <h3>Whats new</h3>
+          <h3 className="font-semibold">Whats new</h3>
           <a>
             <p>Clothing</p>
           </a>
