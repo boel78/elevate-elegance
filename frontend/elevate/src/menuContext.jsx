@@ -23,6 +23,7 @@ export const MenuContextProvider = (props) => {
     setSideMenuActive(false);
     setCartMenuActive(false);
     setProfileMenuActive(false);
+    setSearchMenuActive(false)
   };
   const contextValue = {
     sideMenuActive,
