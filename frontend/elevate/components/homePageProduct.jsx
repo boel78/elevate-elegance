@@ -87,10 +87,10 @@ export const HomePageProduct = (props) => {
         <img src={img} className="rounded-l-lg" />
         <div className="flex flex-col gap-12 mx-24 w-56">
           <span className="flex items-center justify-between pl-9">
-            <h2 className="font-medium text-3xl text-center flex-1">
+            <h2 className="font-medium text-3xl text-center flex-1 pt-2">
               {product.name}
             </h2>
-            <Heart
+            {currentUser && <Heart
               size={35}
               onClick={() => handleLikeProduct(product.id)}
               weight={
@@ -101,9 +101,9 @@ export const HomePageProduct = (props) => {
                   ? "#be3c3c"
                   : "#000"
               }
-            />
+            />}
           </span>
-          <div className="flex flex-col items-center gap-10">
+          <div className="flex flex-col items-center gap-10 pb-10">
             <p className="text-lg">{product.description}</p>
             <p className="text-lg">{product.price} SEK</p>
             <p className="text-lg">{product.added}</p>
