@@ -49,7 +49,7 @@ export const CartObject = ({obj}) => {
   return (
     <div>
             <div className='flex gap-4'>
-                <img src={item.product.image} className="w-36 rounded-xl" />
+                <img src={`data:image/jpeg;base64,${item.product.image}`} className="w-36 rounded-xl" />
                 <div>
                   <h3 className="font-medium text-xl">{item.product.name}</h3>
                   <p>{item.product.price} SEK</p>

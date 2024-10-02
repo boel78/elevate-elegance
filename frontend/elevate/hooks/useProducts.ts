@@ -37,6 +37,7 @@ export function useProducts() {
   }, [products]);
 
   const sortProducts = (sortOption, productArray, attributeName) => {
+    
     if (productArray) {
       let newArray = productArray;
       switch (sortOption) {
@@ -70,19 +71,21 @@ export function useProducts() {
           break;
         case "New first":
           newArray = productArray.sort((a, b) => {
-            const dateA = new Date(a.added);
-            const dateB = new Date(b.added);
+            const dateA = new Date(a.dateAdded);
+            const dateB = new Date(b.dateAdded);
             return Number(dateB) - Number(dateA);
           });
           break;
         case "Old first":
           newArray = productArray.sort((a, b) => {
-            const dateA = new Date(a.added);
-            const dateB = new Date(b.added);
+            const dateA = new Date(a.dateAdded);
+            const dateB = new Date(b.dateAdded);
             return Number(dateA) - Number(dateB);
           });
           break;
       }
+      
+      
       return newArray;
     } else {
       const newArray = products.sort((a, b) => {

@@ -83,7 +83,7 @@ export const Cataloge = () => {
               <img
                 src={`data:image/jpeg;base64,${element.image}`}
                 key={element.id}
-                className="rounded-lg max-w-64 shadow-sm"
+                className="rounded-lg max-w-64 shadow-md"
                 onClick={() => handleFocusObject(element)}
               />
             )

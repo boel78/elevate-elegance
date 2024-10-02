@@ -61,7 +61,7 @@ export const HomePageProduct = (props) => {
       >
         <img src={img} className="rounded-l-lg" />
         <div className="flex flex-col gap-12 mx-24 w-56">
-          <h2 className="font-medium text-3xl ">{product.name}</h2>
+          <h2 className="font-medium text-3xl text-center">{product.name}</h2>
           <div className="flex flex-col items-center gap-10">
             <p className="text-lg">{product.description}</p>
             <p className="text-lg">{product.price} SEK</p>

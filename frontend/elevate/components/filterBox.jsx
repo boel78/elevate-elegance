@@ -141,7 +141,7 @@ export const FilterBox = () => {
       },
       {
         displayedText: "New first",
-        attributeName: "added"
+        attributeName: "dateAdded"
       },
       {
         displayedText: "Old first",
