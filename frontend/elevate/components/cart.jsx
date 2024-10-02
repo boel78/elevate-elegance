@@ -18,27 +18,27 @@ export const Cart = () => {
         total += prodcut.product.price;
       }
     });
-    setTotalCost(total);
+    setTotalCost(Number(total).toFixed(1));
   }, [cart]);
 
 
   return (
-    <div className="flex flex-col fixed right-0 top-12 w-1/3 bg-white border-l-2 border-b-2 border-black font-inter max-h-[400px] overflow-y-scroll gap-4">
+    <div className="flex flex-col fixed right-0 top-12 w-1/4 pt-14 h-1/2 bg-white border-l-2 border-b-2 border-black font-inter overflow-y-scroll gap-4">
       <div className="flex content-center self-center">
         <h2 className="font-medium text-2xl">Added to shopping cart</h2>
       </div>
       <div className="flex-col flex gap-2">
         {cart.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className="pl-4 border-2 border-y-gray shadow-md ">
             <CartObject obj={item} />
           </div>
         ))}
       </div>
-      <div>
-        <p>Total Cost: {totalCost}</p>
+      <div className="pl-4 text-lg">
+        <p>Total Cost: {totalCost} SEK</p>
       </div>
 
-      <div className="w-1/2 self-center flex flex-col gap-4">
+      <div className="w-1/2 self-center flex flex-col gap-4 items-center">
         <Link to={currentUser === null ? "/guestCheckout" : "/checkout"}><TanButton btnText={"Checkout"}/></Link>
         <TanButton btnText={"View shopping cart"} />
       </div>

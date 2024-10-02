@@ -15,7 +15,7 @@ export const Profile = () => {
     }
 
   return (
-    <div className='fixed right-0 top-12 w-1/4 bg-white h-5/6 border-l-2 border-b-2 border-black font-inter'>
+    <div className='fixed right-0 top-12 w-1/4 bg-white h-1/2 border-l-2 border-b-2 text-xl border-black font-inter pl-12 pt-14 flex flex-col gap-3'>
         { currentUser == null && <Link to='/Login'><h3>Sign in</h3></Link>}
         <Link to='/Orders'><h3>Orders</h3></Link>
         <Link to='/Settings'><h3>Account settings</h3></Link>

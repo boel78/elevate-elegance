@@ -18,7 +18,7 @@ export const Search = () => {
     }
 
   return (
-    <div className="flex flex-col fixed right-0 top-12 w-1/4 bg-white h-2/6 border-l-2 border-b-2 border-black font-inter shadow-md rounded-b-md">
+    <div className="flex flex-col fixed right-0 top-12 w-1/4 bg-white h-1/2 border-l-2 border-b-2 border-black font-inter shadow-md rounded-b-md pt-14 gap-10">
       <div className="flex flex-col">
         <h3 className="text-center font-bold text-lg">What are you searching for?</h3>
         <input
