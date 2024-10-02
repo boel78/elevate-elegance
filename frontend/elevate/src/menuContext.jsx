@@ -12,6 +12,13 @@ export const MenuContextProvider = (props) => {
   const [focusedObject, setFocusedObject] = useState(null)
   const [currentUser, setCurrentUser] = useState(null);
   const [cart, setCart] = useState([]);
+
+  const categories = [
+    "Clothing",
+    "Jewellery",
+    "Bags",
+    "Shoes"
+]
   const noMenus = () => {
     setSideMenuActive(false);
     setCartMenuActive(false);
@@ -36,7 +43,8 @@ export const MenuContextProvider = (props) => {
     focusedObject,
     setFocusedObject,
     filledOutOrderDetails,
-    setFilledOutOrderDetails
+    setFilledOutOrderDetails,
+    categories
   };
   return (
     <MenuContext.Provider value={contextValue}>
