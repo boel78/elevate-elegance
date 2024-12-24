@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <div className="bg-gray-800" id="footer">
+    <div className="bg-gray-800 w-full" id="footer">
       <div className="flex flex-col gap-20 font-inter text-white">
         <div className="flex justify-center space-x-20 pt-12">
           <div>

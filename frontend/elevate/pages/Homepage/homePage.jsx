@@ -92,96 +92,98 @@ export const HomePage = () => {
 
   return (
     <Layout>
-      <div className="z-200 flex  flex-col justify-center pb-60 text-white bg-hero bg-fixed w-full h-[600px] xl:h-[950px] bg-cover" id="hero">
-        <div className="pl-12">
-          <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
-          <h3 className="text-3xl">"Sophistication Redefined,</h3>
-          <h3 className="text-3xl mb-12">Style Elevated"</h3>
-          <Link
-            to="/cataloge"
-            onClick={() => {
-              window.scroll(0, 0);
-            }}
-          >
-            <TanButton
-              btnText={"To products"}
-              className="z-200 bottom-1/3 left-12 "
-            />
-          </Link>
-        </div>
-      </div>
-      <div className="flex-col pb-[284px]">
-        <p className="text-5xl underline text-darkBlue text-center pb-[131px] pt-[54px]">
-          Best Sellers
-        </p>
-        <div className="flex justify-center gap-7">
-          {topSellers.map(
-            (element) => (
-                <img
-                  src={`data:image/jpeg;base64,${element.image}`}
-                  key={element.id}
-                  className="rounded-lg max-w-44 lg:max-w-64 shadow-md"
-                  onClick={() => handleFocusObject(element)}
-                />)
-              
-          )}
-        </div>
-      </div>
-
-      {/*    Kategori länkar */}
-      <div className="flex flex-wrap 2xl:flex-nowrap w-full h-1/2">
-        {categoryLinkObjects.map((obj, index) => (
-          <div className="w-1/2 h-1/4 relative" key={index}>
-            <img src={obj.src} className="h-full w-full" />
+      <div className="grid grid-rows-6">
+        <div className="z-200 flex flex-col justify-center pb-60 text-white bg-hero bg-fixed bg-cover row-span-1" id="hero">
+          <div className="pl-12">
+            <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
+            <h3 className="text-3xl">"Sophistication Redefined,</h3>
+            <h3 className="text-3xl mb-12">Style Elevated"</h3>
             <Link
-              to={obj.link}
+              to="/cataloge"
               onClick={() => {
                 window.scroll(0, 0);
               }}
             >
-              <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
-                <TanButton btnText={obj.btnText} />
-              </div>
+              <TanButton
+                btnText={"To products"}
+                className="z-200 bottom-1/3 left-12 "
+              />
             </Link>
           </div>
-        ))}
-      </div>
-
-        {/*   Services  */ }
-      <div className="flex-col items-center pb-[220px]">
-        <p className="text-5xl underline text-darkBlue text-center pb-[111px] pt-[54px] font-inter">
-          Services
-        </p>
-        <div className="flex justify-center gap-[80px]">
-        {services.map((obj, index) => (
-        <div className="flex flex-col items-center w-1/4 gap-4" key={index}>
-          <p className="text-3xl text-darkBlue font-inter text-nowrap">
-            {obj.title}
+        </div>
+        <div className="flex-col">
+          <p className="text-5xl underline text-darkBlue text-center row-span-1">
+            Best Sellers
           </p>
-          <img
-              src={obj.image}
-              className="h-1/4 w-auto rounded-full"
-            />
-            <p className="text-darkBlue font-inter text-wrap pt-4">
-              {obj.text}
+          <div className="flex justify-center gap-7">
+            {topSellers.map(
+              (element) => (
+                  <img
+                    src={`data:image/jpeg;base64,${element.image}`}
+                    key={element.id}
+                    className="rounded-lg max-w-44 lg:max-w-64 shadow-md"
+                    onClick={() => handleFocusObject(element)}
+                  />)
+                
+            )}
+          </div>
+        </div>
+  
+        {/*    Kategori länkar */}
+        <div className="flex flex-wrap 2xl:flex-nowrap w-full row-span-2">
+          {categoryLinkObjects.map((obj, index) => (
+            <div className="w-1/2 relative" key={index}>
+              <img src={obj.src} className="h-full w-full" />
+              <Link
+                to={obj.link}
+                onClick={() => {
+                  window.scroll(0, 0);
+                }}
+              >
+                <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
+                  <TanButton btnText={obj.btnText} />
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+  
+          {/*   Services  */ }
+        <div className="flex-col items-center row-span-1">
+          <p className="text-5xl underline text-darkBlue text-center pb-[111px] pt-[54px] font-inter">
+            Services
+          </p>
+          <div className="flex justify-center gap-[80px]">
+          {services.map((obj, index) => (
+          <div className="flex flex-col items-center w-1/4 gap-4" key={index}>
+            <p className="text-3xl text-darkBlue font-inter text-nowrap">
+              {obj.title}
             </p>
+            <img
+                src={obj.image}
+                className="h-1/4 w-auto rounded-full"
+              />
+              <p className="text-darkBlue font-inter text-wrap pt-4">
+                {obj.text}
+              </p>
+          </div>
+        ))}
+          </div>
         </div>
-      ))}
+  
+        
+        {/* Newsletter */}
+        <div className="w-full bg-lightTan flex flex-col items-center gap-20 py-60 row-span-1">
+          <h3 className="text-6xl text-darkBlue font-inter">
+            Subscribe to our newsletter!
+          </h3>
+          <input
+            type="text"
+            placeholder="Email"
+            className="w-1/3 h-8 border-solid border-2 border-black rounded"
+          />
+          <BlueButton btnText={"Subscribe"} />
         </div>
-      </div>
-
-      
-      {/* Newsletter */}
-      <div className="w-full bg-lightTan flex flex-col items-center gap-20 py-60">
-        <h3 className="text-6xl text-darkBlue font-inter">
-          Subscribe to our newsletter!
-        </h3>
-        <input
-          type="text"
-          placeholder="Email"
-          className="w-1/3 h-8 border-solid border-2 border-black rounded"
-        />
-        <BlueButton btnText={"Subscribe"} />
       </div>
     </Layout>
 
