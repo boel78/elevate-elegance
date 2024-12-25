@@ -79,7 +79,7 @@ export const HomePageProduct = (props) => {
 
   return (
     <div
-      className="w-full h-auto flex fixed z-50 inset-0 items-center justify-center bg-white bg-opacity-55"
+      className="w-screen h-auto flex fixed z-50 inset-0 items-center justify-center bg-white bg-opacity-55"
       onClick={() => setFocusingHomepageObject(false)}
     >
       <div

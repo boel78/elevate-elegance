@@ -92,8 +92,8 @@ export const HomePage = () => {
 
   return (
     <Layout>
-      <div className="grid grid-rows-6 w-screen">
-        <div className="z-200 flex flex-col justify-center pb-60 text-white bg-hero bg-fixed bg-cover row-span-1 w-screen" id="hero">
+      <div className="flex flex-col w-screen gap-56">
+        <div className="z-200 flex flex-col justify-center pb-60 text-white bg-hero bg-fixed bg-cover h-auto w-screen pt-24" id="hero">
           <div className="pl-12">
             <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
             <h3 className="text-3xl">"Sophistication Redefined,</h3>
@@ -112,7 +112,7 @@ export const HomePage = () => {
           </div>
         </div>
         <div className="flex flex-col pt-12 w-screen">
-          <p className="text-5xl underline text-darkBlue text-center row-span-1">
+          <p className="text-5xl underline text-darkBlue text-center">
             Best Sellers
           </p>
           <div className="flex justify-center gap-7 pt-28 w-screen flex-wrap">
@@ -130,7 +130,7 @@ export const HomePage = () => {
         </div>
   
         {/*    Kategori länkar */}
-        <div className="flex flex-wrap 2xl:flex-nowrap w-screen row-span-2">
+        <div className="flex flex-wrap 2xl:flex-nowrap w-screen">
           {categoryLinkObjects.map((obj, index) => (
             <div className="w-1/2 relative" key={index}>
               <img src={obj.src} className="h-full w-full" />
