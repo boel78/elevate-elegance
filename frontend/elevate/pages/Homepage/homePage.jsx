@@ -92,8 +92,8 @@ export const HomePage = () => {
 
   return (
     <Layout>
-      <div className="grid grid-rows-6">
-        <div className="z-200 flex flex-col justify-center pb-60 text-white bg-hero bg-fixed bg-cover row-span-1" id="hero">
+      <div className="grid grid-rows-6 w-screen">
+        <div className="z-200 flex flex-col justify-center pb-60 text-white bg-hero bg-fixed bg-cover row-span-1 w-screen" id="hero">
           <div className="pl-12">
             <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
             <h3 className="text-3xl">"Sophistication Redefined,</h3>
@@ -111,17 +111,17 @@ export const HomePage = () => {
             </Link>
           </div>
         </div>
-        <div className="flex-col">
+        <div className="flex flex-col pt-12 w-screen">
           <p className="text-5xl underline text-darkBlue text-center row-span-1">
             Best Sellers
           </p>
-          <div className="flex justify-center gap-7">
+          <div className="flex justify-center gap-7 pt-28 w-screen flex-wrap">
             {topSellers.map(
               (element) => (
                   <img
                     src={`data:image/jpeg;base64,${element.image}`}
                     key={element.id}
-                    className="rounded-lg max-w-44 lg:max-w-64 shadow-md"
+                    className="rounded-lg max-w-44 lg:max-w-64 shadow-md hover:scale-125 transition ease-in-out"
                     onClick={() => handleFocusObject(element)}
                   />)
                 
@@ -130,7 +130,7 @@ export const HomePage = () => {
         </div>
   
         {/*    Kategori länkar */}
-        <div className="flex flex-wrap 2xl:flex-nowrap w-full row-span-2">
+        <div className="flex flex-wrap 2xl:flex-nowrap w-screen row-span-2">
           {categoryLinkObjects.map((obj, index) => (
             <div className="w-1/2 relative" key={index}>
               <img src={obj.src} className="h-full w-full" />
@@ -149,21 +149,21 @@ export const HomePage = () => {
         </div>
   
           {/*   Services  */ }
-        <div className="flex-col items-center row-span-1">
+        <div className="flex-col items-center row-span-1 w-screen">
           <p className="text-5xl underline text-darkBlue text-center pb-[111px] pt-[54px] font-inter">
             Services
           </p>
-          <div className="flex justify-center gap-[80px]">
+          <div className="flex justify-center gap-52 flex-wrap text-center">
           {services.map((obj, index) => (
-          <div className="flex flex-col items-center w-1/4 gap-4" key={index}>
-            <p className="text-3xl text-darkBlue font-inter text-nowrap">
+          <div className="flex flex-col items-center w-1/2 gap-4" key={index}>
+            <p className="text-3xl text-darkBlue font-inter">
               {obj.title}
             </p>
             <img
                 src={obj.image}
-                className="h-1/4 w-auto rounded-full"
+                className="h-40 w-auto rounded-full"
               />
-              <p className="text-darkBlue font-inter text-wrap pt-4">
+              <p className="text-darkBlue font-inter pt-4">
                 {obj.text}
               </p>
           </div>
@@ -173,7 +173,7 @@ export const HomePage = () => {
   
         
         {/* Newsletter */}
-        <div className="w-full bg-lightTan flex flex-col items-center gap-20 py-60 row-span-1">
+        <div className="w-screen bg-lightTan flex flex-col items-center gap-20 py-60 row-span-1">
           <h3 className="text-6xl text-darkBlue font-inter">
             Subscribe to our newsletter!
           </h3>

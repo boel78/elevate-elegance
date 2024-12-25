@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { PRODUCTS } from "../../products";
 import { MenuContext } from "../../src/menuContext";
 import { Layout } from "../../components/layout";
@@ -7,6 +7,8 @@ import { ArrowDown, Heart, ArrowUp } from "@phosphor-icons/react";
 
 export const ProductPage = () => {
   const { id } = useParams();
+
+  const location = useLocation()
 
   const [product, setProduct] = useState();
 
@@ -41,7 +43,7 @@ export const ProductPage = () => {
   
 
   useEffect(() => {
-    const product = PRODUCTS.find((product) => product.id === parseInt(id));
+    const product = location.state?.theproduct
     setProduct(product);
     setSelectedSize("");
     setSizeBarOpen(false);
@@ -53,7 +55,6 @@ export const ProductPage = () => {
 
     const tempCart = [...cart];
 
-    console.log("HEJ");
     tempCart.forEach((produkt) => {
       if (produkt.product.id === p.id && produkt.size === selectedSize) {
         produkt.quantity++;
@@ -111,7 +112,7 @@ export const ProductPage = () => {
         <h3 className="pt-16 ">breadcrumb</h3>
         <div className="flex justify-around gap-80 border-solid border-2 border-black">
           <div>
-            <img src={product.image} className="rounded-lg" />
+            <img src={`data:image/jpeg;base64,${product.image}`} className="rounded-lg" />
           </div>
           <div className="flex">
             {showInfo ? (

@@ -22,7 +22,7 @@ export const Layout = ({children}) => {
  
 
   return (
-    <div className="flex-col bg-superLightTan min-h-screen max-w-full">
+    <div className="flex-col bg-superLightTan min-h-screen w-screen">
         {children}
         {sideMenuActive && <Sidemenu />}
       {cartMenuActive && <Cart />}

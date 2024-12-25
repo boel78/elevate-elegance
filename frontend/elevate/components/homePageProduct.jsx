@@ -54,6 +54,8 @@ export const HomePageProduct = (props) => {
     setSelectedSize(s);
   };
 
+
+
   const handleSizeBarToggle = () => {
     setSizeBarOpen(!sizeBarOpen);
   };
@@ -128,7 +130,8 @@ export const HomePageProduct = (props) => {
             </div>
             <div className="flex flex-col items-center gap-10">
               <Link
-                to={`/product/${product.id}`}
+                to={`/Product/${product.id}`}
+                state= {{theproduct: product}}
                 onClick={() => setFocusingHomepageObject(false)}
               >
                 <TanButton btnText={"To Product"}></TanButton>

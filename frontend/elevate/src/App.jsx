@@ -47,7 +47,7 @@ function App() {
               <Route path="/admin" element={<Admin/>}/>
               <Route path="/aboutUs" element={<AboutUs/>}/>
             </Routes>
-            <Footer />
+            <Footer/>
            
           </Router>
 
