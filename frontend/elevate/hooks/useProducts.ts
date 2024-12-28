@@ -1,9 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { PRODUCTS } from "../products";
 import axios from "axios";
+import { MenuContext } from "../src/menuContext";
+import { useUser } from "./useUser";
 
 export function useProducts() {
   const [products, setProducts] = useState([]);
+  const {currentUser, setCurrentUser} = useContext(MenuContext);
+  const {handleSave} = useUser();
 
   const initializeProducts = async () => {
     try {
@@ -126,6 +130,23 @@ export function useProducts() {
 
   }
 
+  const handleLikeProduct = (productId) => {
+    const newUserData = {
+      ...currentUser,
+      likedProducts: [...currentUser.likedProducts],
+    };
+
+    if (currentUser.likedProducts.includes(productId)) {
+      newUserData.likedProducts = currentUser.likedProducts.filter(
+        (product) => product != productId
+      );
+    } else {
+      newUserData.likedProducts.push(productId);
+    }
+    setCurrentUser(newUserData);
+    handleSave(newUserData);
+  };
+
   const getMultipleProducts = (ids) => {
     console.log(ids);
     
@@ -139,6 +160,7 @@ export function useProducts() {
     filterProduct,
     sortProducts,
     searchProduct,
-    getMultipleProducts
+    getMultipleProducts,
+    handleLikeProduct
   };
 }

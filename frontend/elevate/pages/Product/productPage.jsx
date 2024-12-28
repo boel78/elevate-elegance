@@ -4,6 +4,8 @@ import { PRODUCTS } from "../../products";
 import { MenuContext } from "../../src/menuContext";
 import { Layout } from "../../components/layout";
 import { ArrowDown, Heart, ArrowUp } from "@phosphor-icons/react";
+import { useUser } from "../../hooks/useUser";
+import { useProducts } from "../../hooks/useProducts";
 
 export const ProductPage = () => {
   const { id } = useParams();
@@ -22,6 +24,8 @@ export const ProductPage = () => {
 
   const [extraInfoTitle, setExtraInfoTitle] = useState("");
 
+  const {handleLikeProduct} = useProducts();
+
   const {
     cart,
     setCart,
@@ -29,6 +33,7 @@ export const ProductPage = () => {
     setFocusingHomepageObject,
     focusingHomepageObject,
     setFocusedObject,
+    currentUser
   } = useContext(MenuContext);
 
   useEffect(() => {
@@ -99,7 +104,7 @@ export const ProductPage = () => {
       setExtraInfo(product.material);
       setExtraInfoTitle("Material");
     } else {
-      setExtraInfo(product.careadvice);
+      setExtraInfo(product.careAdvice);
       setExtraInfoTitle("Care Advice");
     }
     setShowInfo(false);
@@ -203,7 +208,19 @@ export const ProductPage = () => {
                 </li>
               </div>
             )}
-            <Heart size="45" />
+            {currentUser && <Heart
+                          size={35}
+                          onClick={() => handleLikeProduct(product.id)}
+                          weight={
+                            currentUser.likedProducts.includes(product.id) ? "fill" : "thin"
+                          }
+                          color={
+                            currentUser.likedProducts.includes(product.id)
+                              ? "#be3c3c"
+                              : "#000"
+                          }
+                          
+                        />}
           </div>
         </div>
         <div className="flex flex-col items-center mt-44">

@@ -5,6 +5,7 @@ import { MenuContext } from "../src/menuContext";
 import { TanButton } from "./button";
 import { ArrowDown, Heart } from "@phosphor-icons/react";
 import { useUser } from "../hooks/useUser";
+import { useProducts } from "../hooks/useProducts";
 
 export const HomePageProduct = (props) => {
   const [img, setImg] = useState();
@@ -15,11 +16,10 @@ export const HomePageProduct = (props) => {
     setCart,
     setFocusingHomepageObject,
     currentUser,
-    setCurrentUser,
   } = useContext(MenuContext);
   const product = props.data;
 
-  const { handleSave } = useUser();
+  const {handleLikeProduct} = useProducts();
 
   useEffect(() => {
     setImg(`data:image/jpeg;base64,${product.image}`);
@@ -58,23 +58,6 @@ export const HomePageProduct = (props) => {
 
   const handleSizeBarToggle = () => {
     setSizeBarOpen(!sizeBarOpen);
-  };
-
-  const handleLikeProduct = (productId) => {
-    const newUserData = {
-      ...currentUser,
-      likedProducts: [...currentUser.likedProducts],
-    };
-
-    if (currentUser.likedProducts.includes(productId)) {
-      newUserData.likedProducts = currentUser.likedProducts.filter(
-        (product) => product != productId
-      );
-    } else {
-      newUserData.likedProducts.push(productId);
-    }
-    setCurrentUser(newUserData);
-    handleSave(newUserData);
   };
 
   return (
