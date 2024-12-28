@@ -147,12 +147,17 @@ export function useProducts() {
     handleSave(newUserData);
   };
 
+  const getSavedItems = async () => {
+    products.filter((product) => currentUser.likedProducts.include(product.id))
+    return products
+  }
+
   const getMultipleProducts = (ids) => {
     console.log(ids);
     
     const multipleProducts = products.filter((product) => ids.includes(product.id)) 
     console.log(multipleProducts);
-    
+    return multipleProducts
   }
 
   return {
@@ -161,6 +166,7 @@ export function useProducts() {
     sortProducts,
     searchProduct,
     getMultipleProducts,
-    handleLikeProduct
+    handleLikeProduct,
+    getSavedItems
   };
 }

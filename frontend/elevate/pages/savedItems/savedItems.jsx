@@ -8,32 +8,42 @@ import { useNavigate } from "react-router-dom";
 import { useProducts } from "../../hooks/useProducts";
 
 export const SavedItems = () => {
-  const { currentUser, noMenus } = useContext(MenuContext);
+  const { currentUser, noMenus, focusingHomepageObject,
+    setFocusedObject,
+    setFocusingHomepageObject } = useContext(MenuContext);
   const [likedProducts, setLikedProducts] = useState([]);
+  const [isInitialLoad, setIsInitialLoad] = useState()
+
 
   const {getMultipleProducts} = useProducts()
+  const {getSavedItems} = useProducts()
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if(currentUser != null){
+  const handleFocusObject = (element) => {
+    setFocusingHomepageObject(!focusingHomepageObject);
+    setFocusedObject(element);
+  };
 
-      const savedItems = SAVEDITEMS.filter(
-        (likedProduct) => currentUser.id === likedProduct.u_id
-      );
-      console.log(savedItems);
-      const savedProductIds = savedItems.flatMap((item) => item.p_id);
-      const likedProductsByUser = PRODUCTS.filter((product) =>
-        savedProductIds.includes(product.id)
-      );
-      setLikedProducts(likedProductsByUser);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 150);
+  }, []);
+  
+  useEffect(() => {
+    if (!isInitialLoad) {
+      const items = getMultipleProducts(currentUser.likedProducts);
+      setLikedProducts(items)
     }
-  }, [currentUser]);
+  }, [isInitialLoad]);
+  
 
   useEffect(() => {
     noMenus();
-    getMultipleProducts(currentUser.likedProducts);
-    
+    const items = getMultipleProducts(currentUser.likedProducts);
+      console.log(items)
+      setLikedProducts(items)
     
   }, []);
 
@@ -48,7 +58,9 @@ export const SavedItems = () => {
           {likedProducts.length > 0 ? (
             likedProducts.map((likedProduct) => (
               <div key={likedProduct.id}>
-                <img src={likedProduct.image}></img>
+                <img src={`data:image/jpeg;base64,${likedProduct.image}`}
+                    onClick={() => handleFocusObject(likedProduct)}></img>
+
               </div>
             ))
           ) : (
