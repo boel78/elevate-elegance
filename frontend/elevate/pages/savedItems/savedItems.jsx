@@ -46,6 +46,13 @@ export const SavedItems = () => {
       setLikedProducts(items)
     
   }, []);
+  useEffect(() => {
+    /*noMenus();
+    const items = getMultipleProducts(currentUser.likedProducts);
+      console.log(items)
+      setLikedProducts(items)*/
+    
+  }, [currentUser]);
 
   const visitCataloge = () => {
     navigate("/cataloge");
@@ -54,13 +61,12 @@ export const SavedItems = () => {
   return (
     <Layout>
       {currentUser != null ? (
-        <div className="pt-20 flex flex-col">
+        <div className="pt-20 flex">
           {likedProducts.length > 0 ? (
             likedProducts.map((likedProduct) => (
-              <div key={likedProduct.id}>
+              <div key={likedProduct.id} className="w-1/4">
                 <img src={`data:image/jpeg;base64,${likedProduct.image}`}
                     onClick={() => handleFocusObject(likedProduct)}></img>
-
               </div>
             ))
           ) : (
