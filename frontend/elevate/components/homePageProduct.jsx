@@ -83,13 +83,13 @@ export const HomePageProduct = (props) => {
       onClick={() => setFocusingHomepageObject(false)}
     >
       <div
-        className="rounded-xl flex border-black border-solid border-2 bg-superLightTan"
+        className="rounded-xl flex h-2/3 border-gray-400 border-solid border-2 bg-superLightTan"
         onClick={(e) => e.stopPropagation()}
       >
-        <img src={img} className="rounded-l-lg" />
-        <div className="flex flex-col gap-12 mx-24 w-56">
+        <img src={img} className="sm:rounded-l-lg sm:w-full sm:h-full w-1/2 h-1/2 self-center sm:self-start" />
+        <div className="flex flex-col gap-2 sm:gap-12 sm:mx-24 w-56">
           <span className="flex items-center justify-between pl-9">
-            <h2 className="font-medium text-3xl text-center flex-1 pt-2">
+            <h2 className="font-medium text-3xl sm:text-center flex-1 pt-2">
               {product.name}
             </h2>
             {currentUser && <Heart
@@ -105,10 +105,10 @@ export const HomePageProduct = (props) => {
               }
             />}
           </span>
-          <div className="flex flex-col items-center gap-10 pb-10">
-            <p className="text-lg">{product.description}</p>
-            <p className="text-lg">{product.price} SEK</p>
-            <p className="text-lg">{product.added}</p>
+          <div className="flex flex-col items-center gap-2 sm:gap-2 pb-10 sm:ml-0 ml-4 sm:text-lg text-sm">
+            <p>{product.description}</p>
+            <p>{product.price} SEK</p>
+            <p>{product.added}</p>
             <div className="flex gap-5">
               <p>Size: {selectedSize && !sizeBarOpen && selectedSize}</p>
               {product.size.length === 1 ? (
@@ -128,7 +128,7 @@ export const HomePageProduct = (props) => {
                 />
               )}
             </div>
-            <div className="flex flex-col items-center gap-10">
+            <div className="flex flex-col items-center gap-2 sm:gap-10">
               <Link
                 to={`/Product/${product.id}`}
                 state= {{theproduct: product}}
