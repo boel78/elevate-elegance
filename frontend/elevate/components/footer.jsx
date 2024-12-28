@@ -6,18 +6,18 @@ export const Footer = () => {
   return (
     <div className="bg-gray-800 w-screen" id="footer">
       <div className="flex flex-col gap-20 font-inter text-white">
-        <div className="flex justify-center pt-12 sm:gap-32 gap-5">
-          <div className="w-1/4">
-            <h3 className="text-2xl pb-4">Contact us</h3>
-            <ul className="flex flex-col gap-4">
+        <div className="flex justify-center pt-12 sm:gap-32 gap-6">
+          <div className="w-1/4 mr-4 sm:mr-0">
+            <h3 className="sm:text-2xl text-xl pb-4">Contact us</h3>
+            <ul className="flex flex-col gap-4 sm:text-lg text-sm">
               <p>Address: 123 Main Street, Cityville, State, ZIP</p>
               <p>Phone: 555-123-4567</p>
               <p>Email: info@example.com</p>
             </ul>
           </div>
           <div className="w-1/4">
-            <h3 className="text-2xl pb-4">Quick Links</h3>
-            <ul className="flex flex-col gap-4">
+            <h3 className="sm:text-2xl text-xl pb-4">Quick Links</h3>
+            <ul className="flex flex-col sm:gap-4 gap-2 sm:text-lg text-sm">
               <a href="#hero">
                 <p>Home</p>
               </a>
@@ -44,8 +44,8 @@ export const Footer = () => {
             </ul>
           </div>
           <div className="w-1/4">
-            <h3 className="text-2xl pb-4 mr-3">Shipping Information</h3>
-            <ul className="flex flex-col gap-4">
+            <h3 className="sm:text-2xl text-xl pb-4">Shipping Information</h3>
+            <ul className="flex flex-col gap-4 sm:text-lg text-sm">
               <p>We offer domestic and international shipping options.</p>
               <p>Estimated delivery times vary by destination.</p>
               <p>Shipping rates calculated at checkout.</p>
