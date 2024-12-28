@@ -6,8 +6,8 @@ export const Footer = () => {
   return (
     <div className="bg-gray-800 w-screen" id="footer">
       <div className="flex flex-col gap-20 font-inter text-white">
-        <div className="flex justify-center pt-12">
-          <div>
+        <div className="flex justify-center pt-12 sm:gap-32 gap-5">
+          <div className="w-1/4">
             <h3 className="text-2xl pb-4">Contact us</h3>
             <ul className="flex flex-col gap-4">
               <p>Address: 123 Main Street, Cityville, State, ZIP</p>
@@ -15,7 +15,7 @@ export const Footer = () => {
               <p>Email: info@example.com</p>
             </ul>
           </div>
-          <div>
+          <div className="w-1/4">
             <h3 className="text-2xl pb-4">Quick Links</h3>
             <ul className="flex flex-col gap-4">
               <a href="#hero">
@@ -44,7 +44,7 @@ export const Footer = () => {
             </ul>
           </div>
           <div className="w-1/4">
-            <h3 className="text-2xl pb-4">Shipping Information</h3>
+            <h3 className="text-2xl pb-4 mr-3">Shipping Information</h3>
             <ul className="flex flex-col gap-4">
               <p>We offer domestic and international shipping options.</p>
               <p>Estimated delivery times vary by destination.</p>

@@ -95,9 +95,9 @@ export const HomePage = () => {
       <div className="flex flex-col w-screen gap-56">
         <div className="z-200 flex flex-col justify-center pb-60 text-white bg-hero bg-fixed bg-cover h-auto w-screen pt-24" id="hero">
           <div className="pl-12">
-            <h1 className="text-8xl italic mb-5">Elevate Elegance</h1>
-            <h3 className="text-3xl">"Sophistication Redefined,</h3>
-            <h3 className="text-3xl mb-12">Style Elevated"</h3>
+            <h1 className="sm:text-8xl text-6xl italic mb-5">Elevate Elegance</h1>
+            <h3 className="sm:text-3xl text-2xl">"Sophistication Redefined,</h3>
+            <h3 className="sm:text-3xl text-2xl mb-12">Style Elevated"</h3>
             <Link
               to="/cataloge"
               onClick={() => {
@@ -174,7 +174,7 @@ export const HomePage = () => {
         
         {/* Newsletter */}
         <div className="w-screen bg-lightTan flex flex-col items-center gap-20 py-60 row-span-1">
-          <h3 className="text-6xl text-darkBlue font-inter">
+          <h3 className="sm:text-6xl text-2xl text-darkBlue font-inter">
             Subscribe to our newsletter!
           </h3>
           <input

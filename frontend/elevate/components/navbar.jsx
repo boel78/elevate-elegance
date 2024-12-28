@@ -69,7 +69,7 @@ export const Navbar = () => {
       <div className="flex h-12 items-center justify-between py-3">
         <div onClick={noMenus}>
           <Link to={"/"}>
-            <p className="text-3xl font-extralight font-inter pl-2">
+            <p className="text-xl sm:text-3xl font-extralight font-inter pl-2">
               Elevate Elegance
             </p>
           </Link>
