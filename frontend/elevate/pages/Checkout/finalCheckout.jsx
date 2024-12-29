@@ -59,7 +59,7 @@ export const FinalCheckout = () => {
 
   return (
     <>
-      <div className="pt-20 flex justify-between px-20 pb-20">
+      <div className="pt-20 flex flex-col sm:flex-row justify-between sm:px-20 pb-20">
         <div className="flex flex-col gap-5">
           {cart &&
             cart.map((object, index) => (
