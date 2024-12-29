@@ -80,12 +80,12 @@ export const Cataloge = () => {
             <FilterBox />
           </FilterContext.Provider>
         </div>
-        <div className="flex gap-12">
+        <div className="flex gap-12 flex-wrap px-8 pb-44">
           {shownProducts.map((element) => (
             <img
               src={`data:image/jpeg;base64,${element.image}`}
               key={element.id}
-              className="rounded-lg max-w-64 shadow-md"
+              className="rounded-lg w-2/5 sm:max-w-64 shadow-md hover:scale-110 transition ease-in-out"
               onClick={() => handleFocusObject(element)}
             />
           ))}

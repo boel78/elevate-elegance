@@ -40,11 +40,13 @@ export const ProductPage = () => {
     console.log(cart);
 
     noMenus();
+    
   }, []);
 
   useEffect(() => {
     console.log(cart);
   }, [cart]);
+
   
 
   useEffect(() => {
