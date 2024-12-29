@@ -48,19 +48,19 @@ export const CartObject = ({obj}) => {
     
   return (
     <div>
-            <div className='flex gap-4'>
-                <img src={`data:image/jpeg;base64,${item.product.image}`} className="w-36 rounded-xl" />
-                <div>
+            <div className='flex gap-4 w-1/3'>
+                <img src={`data:image/jpeg;base64,${item.product.image}`} className="rounded-xl min-w-28" />
+                <div className=''>
                   <h3 className="font-medium text-xl">{item.product.name}</h3>
-                  <p>{item.product.price} SEK</p>
+                  <p className='text-sm'>{item.product.price} SEK</p>
                   <div className="flex">
-                    <p>Size: {!sizeBarOpen && item.size}</p>
+                    <p className='w-full text-sm'>Size: {!sizeBarOpen && item.size}</p>
                     {item.product.size.length === 1 ? (
                       <p>One size</p>
                     ) : sizeBarOpen ? (
-                      <ul className="pl-2">
+                      <ul>
                         {item.product.size.map((s, index) => (
-                          <p key={index} onClick={() => handleSetSize(item, s)}>
+                          <p className="pl-2" key={index} onClick={() => handleSetSize(item, s)}>
                             {s}
                           </p>
                         ))}
@@ -72,7 +72,7 @@ export const CartObject = ({obj}) => {
                       />
                     )}
                   </div>
-                  <span className="flex gap-2">
+                  <span className="flex gap-2 text-sm">
                     <p>Quantity:</p>
                     <input
                       type="number"
