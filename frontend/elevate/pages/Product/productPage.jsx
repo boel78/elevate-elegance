@@ -14,6 +14,8 @@ export const ProductPage = () => {
 
   const [product, setProduct] = useState();
 
+  const [topSellers, setTopSellers] = useState([])
+
   const [sizeBarOpen, setSizeBarOpen] = useState(false);
 
   const [selectedSize, setSelectedSize] = useState("");
@@ -24,7 +26,7 @@ export const ProductPage = () => {
 
   const [extraInfoTitle, setExtraInfoTitle] = useState("");
 
-  const {handleLikeProduct} = useProducts();
+  const {handleLikeProduct, filterProduct} = useProducts();
 
   const {
     cart,
@@ -41,11 +43,13 @@ export const ProductPage = () => {
 
     noMenus();
     
+    
   }, []);
 
   useEffect(() => {
     console.log(cart);
   }, [cart]);
+
 
   
 
@@ -54,6 +58,8 @@ export const ProductPage = () => {
     setProduct(product);
     setSelectedSize("");
     setSizeBarOpen(false);
+    const filteredProducts = filterProduct("isTopSeller", true)
+    setTopSellers(filteredProducts)
   }, [id]);
 
   const addToCart = (p) => {
@@ -117,14 +123,14 @@ export const ProductPage = () => {
     <Layout>
       <div className="flex flex-col gap-12 ">
         <h3 className="pt-16 ">breadcrumb</h3>
-        <div className="flex justify-around gap-80 border-solid border-2 border-black">
+        <div className="flex justify-around gap-80">
           <div>
             <img src={`data:image/jpeg;base64,${product.image}`} className="rounded-lg" />
           </div>
           <div className="flex">
             {showInfo ? (
               /* Ifall show info är true */
-              <div className="flex flex-col border-2 border-solid border-red-400 gap-16 min-w-72">
+              <div className="flex flex-col gap-16 min-w-72">
                 <div className="flex flex-col gap-3">
                   <h2 className="text-2xl font-medium">{product.name}</h2>
                   <p>{product.price} SEK</p>
@@ -149,7 +155,6 @@ export const ProductPage = () => {
                       />
                     )}
                   </div>
-                  <p className="pt-10">SizeGuide</p>
                   <button
                     onClick={() => addToCart(product)}
                     className="text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white transition ease-in-out duration-200 shadow-xl"
@@ -228,11 +233,11 @@ export const ProductPage = () => {
         <div className="flex flex-col items-center mt-44">
           <p className="font-medium text-lg">You may also like</p>
           <div className="flex justify-center py-10 gap-11">
-            {PRODUCTS.map(
+            {topSellers && topSellers.map(
               (element) =>
                 element.isTopSeller && (
                   <img
-                    src={element.image}
+                    src={`data:image/jpeg;base64,${element.image}`}
                     key={element.id}
                     className="rounded-lg max-w-64"
                     onClick={() => handleFocusObject(element)}

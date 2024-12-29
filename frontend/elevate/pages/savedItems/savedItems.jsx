@@ -63,7 +63,7 @@ export const SavedItems = () => {
         <div className="pt-20 flex flex-col">
           {likedProducts.length > 0 ? (
             likedProducts.map((likedProduct) => (
-              <div key={likedProduct.id} className="w-1/4">
+              <div key={likedProduct.id} className=" w-1/2 sm:w-1/4">
                 <img src={`data:image/jpeg;base64,${likedProduct.image}`}
                     onClick={() => handleFocusObject(likedProduct)}></img>
               </div>

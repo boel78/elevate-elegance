@@ -58,7 +58,7 @@ export const RegisterPage = () => {
     <div>
       <div className="flex justify-center items-center py-20">
         <form className="bg-lightTan border-2 border-solid border-darkBlue shadow-lg rounded-lg p-10 flex flex-col items-center gap-5" onSubmit={handleSubmit}> 
-          <fieldset className="flex flex-col items-start gap-3">
+          <fieldset className="flex flex-col items-start gap-3 w-2/3">
             <legend className="text-center text-xl font-medium pb-5">Register</legend>
             <p>
               <label htmlFor="email">Email: </label>

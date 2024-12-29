@@ -83,7 +83,7 @@ export const Login = () => {
   return (
     <Layout>
       <div className="pt-20 flex justify-between px-8">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-1/2 sm:w-1/4">
           <h2 className="font-medium text-xl">Login to your account</h2>
           <input
             type="text"

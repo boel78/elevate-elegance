@@ -147,9 +147,7 @@ export function useProducts() {
     handleSave(newUserData);
   };
 
-  const getMultipleProducts = (ids) => {
-    console.log(ids);
-    
+  const getMultipleProducts = (ids) => {    
     const multipleProducts = products.filter((product) => ids.includes(product.id)) 
     console.log(multipleProducts);
     return multipleProducts

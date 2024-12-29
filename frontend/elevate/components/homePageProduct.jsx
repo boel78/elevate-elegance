@@ -111,7 +111,7 @@ export const HomePageProduct = (props) => {
                 />
               )}
             </div>
-            <div className="flex flex-col items-center gap-2 sm:gap-10">
+            <div className="flex flex-col items-center gap-2 sm:gap-5">
               <Link
                 to={`/Product/${product.id}`}
                 state= {{theproduct: product}}
