@@ -147,11 +147,6 @@ export function useProducts() {
     handleSave(newUserData);
   };
 
-  const getSavedItems = async () => {
-    products.filter((product) => currentUser.likedProducts.include(product.id))
-    return products
-  }
-
   const getMultipleProducts = (ids) => {
     console.log(ids);
     
@@ -167,6 +162,5 @@ export function useProducts() {
     searchProduct,
     getMultipleProducts,
     handleLikeProduct,
-    getSavedItems
   };
 }

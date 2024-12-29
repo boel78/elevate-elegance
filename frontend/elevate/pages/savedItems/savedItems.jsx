@@ -16,7 +16,6 @@ export const SavedItems = () => {
 
 
   const {getMultipleProducts} = useProducts()
-  const {getSavedItems} = useProducts()
 
   const navigate = useNavigate();
 
@@ -41,9 +40,9 @@ export const SavedItems = () => {
 
   useEffect(() => {
     noMenus();
-    const items = getMultipleProducts(currentUser.likedProducts);
+    /*const items = getMultipleProducts(currentUser.likedProducts);
       console.log(items)
-      setLikedProducts(items)
+      setLikedProducts(items)*/
     
   }, []);
   useEffect(() => {
@@ -61,7 +60,7 @@ export const SavedItems = () => {
   return (
     <Layout>
       {currentUser != null ? (
-        <div className="pt-20 flex">
+        <div className="pt-20 flex flex-col">
           {likedProducts.length > 0 ? (
             likedProducts.map((likedProduct) => (
               <div key={likedProduct.id} className="w-1/4">
