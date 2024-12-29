@@ -121,16 +121,13 @@ export const ProductPage = () => {
 
   return (
     <Layout>
-      <div className="flex flex-col gap-12 ">
-        <h3 className="pt-16 ">breadcrumb</h3>
-        <div className="flex justify-around gap-80">
-          <div>
-            <img src={`data:image/jpeg;base64,${product.image}`} className="rounded-lg" />
-          </div>
+      <div className="flex flex-col gap-12">
+        <div className="flex justify-around sm:gap-80 mt-24">
+            <img src={`data:image/jpeg;base64,${product.image}`} className="rounded-lg w-1/2 h-1/2" />
           <div className="flex">
             {showInfo ? (
               /* Ifall show info är true */
-              <div className="flex flex-col gap-16 min-w-72">
+              <div className="flex flex-col gap-16 sm:min-w-72">
                 <div className="flex flex-col gap-3">
                   <h2 className="text-2xl font-medium">{product.name}</h2>
                   <p>{product.price} SEK</p>
@@ -157,7 +154,7 @@ export const ProductPage = () => {
                   </div>
                   <button
                     onClick={() => addToCart(product)}
-                    className="text-black font-bold bg-lightTan py-4 px-6 rounded-xl hover:bg-darkBlue hover:text-white transition ease-in-out duration-200 shadow-xl"
+                    className="text-black font-bold bg-lightTan sm:py-4 px-3 py-2 sm:px-6 rounded-xl hover:bg-darkBlue hover:text-white transition ease-in-out duration-200 shadow-xl"
                   >
                     Add to cart
                   </button>
@@ -196,7 +193,7 @@ export const ProductPage = () => {
               </div>
             ) : (
               /* Ifall show info är false */
-              <div className="flex flex-col border-2 border-solid border-red-400 gap-16 min-w-72">
+              <div className="flex flex-col gap-16 sm:min-w-72">
                 <li className="flex items-center flex-col gap-7">
                   <button
                     className="flex items-center text-2xl font-medium"
@@ -232,14 +229,14 @@ export const ProductPage = () => {
         </div>
         <div className="flex flex-col items-center mt-44">
           <p className="font-medium text-lg">You may also like</p>
-          <div className="flex justify-center py-10 gap-11">
+          <div className="flex justify-center py-10 gap-7 sm:gap-11">
             {topSellers && topSellers.map(
               (element) =>
                 element.isTopSeller && (
                   <img
                     src={`data:image/jpeg;base64,${element.image}`}
                     key={element.id}
-                    className="rounded-lg max-w-64"
+                    className="rounded-lg w-1/4 sm:max-w-64"
                     onClick={() => handleFocusObject(element)}
                   />
                 )
