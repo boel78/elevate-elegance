@@ -52,9 +52,32 @@ export function useUser() {
     }
   };
 
+  const makePurchase = async (currentUser, productIds, price) => {    
+    const newOrder = {
+      customerId: currentUser,
+      productsId: productIds,
+      totalPrice: price
+    }    
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/api/order",
+        newOrder
+      );
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        toast.success("Your Order have now been made");
+      }
+    } catch (error) {
+      toast.error(error.response?.data || "ajaja");
+    }
+  }
+
   
 
   return {
     handleSave,
+    makePurchase
   };
 }

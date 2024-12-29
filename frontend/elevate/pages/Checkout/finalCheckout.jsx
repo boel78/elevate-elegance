@@ -3,6 +3,7 @@ import { MenuContext } from "../../src/menuContext";
 import { BlueButton } from "../../components/blueButton";
 import { CartObject } from "../../components/cartObject";
 import { useAddress } from "../../hooks/useAddress";
+import { useUser } from "../../hooks/useUser";
 
 export const FinalCheckout = () => {
   const { currentUser, cart, filledOutOrderDetails } = useContext(MenuContext);
@@ -11,6 +12,8 @@ export const FinalCheckout = () => {
   const [addressObjects, setAddressObjects] = useState([]);
 
   const { fetchAddresses } = useAddress();
+
+  const {makePurchase} = useUser()
 
   useEffect(() => {
     const keysToPutIn = [
@@ -56,6 +59,11 @@ export const FinalCheckout = () => {
     });
     setTotalCost(total);
   };
+
+  const handlePurchase = () => {    
+    let productIds = cart.map(product => product.product.id);
+    makePurchase(currentUser.id, productIds, totalCost)
+  }
 
   return (
     <>
@@ -107,7 +115,7 @@ export const FinalCheckout = () => {
               )
             )}
           </div>
-          <BlueButton btnText={"Confirm order"} />
+          <BlueButton btnText={"Confirm order"} onClick={() => handlePurchase()}/>
         </div>
       </div>
     </>

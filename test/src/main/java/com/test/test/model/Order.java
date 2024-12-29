@@ -30,11 +30,11 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public List<String> getProducts() {
+    public List<String> getProductsId() {
         return productsId;
     }
 
-    public void setProducts(List<String> products) {
+    public void setProductsId(List<String> products) {
         this.productsId = products;
     }
 
