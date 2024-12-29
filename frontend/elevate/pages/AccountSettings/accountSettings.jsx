@@ -145,7 +145,7 @@ export const AccountSettings = () => {
           <span><a href="/">Home</a>/<a>Account settings</a></span>
           <div className="flex flex-col items-center gap-20">
             {/*userinfo */}
-            <div className="bg-lightTan w-1/2 px-6 py-5 flex flex-col self-center ">
+            <div className="bg-lightTan sm:w-1/2 px-6 py-5 flex flex-col self-center ">
               <div className="flex justify-between">
                 <h2 className="font-medium text-xl">My Details</h2>
                 <a
@@ -166,7 +166,7 @@ export const AccountSettings = () => {
                         value={userInfo[obj.name]}
                         readOnly={!isEditing}
                         onChange={handleInputChange}
-                        className="p-1"
+                        className="sm:p-1 w-4/5"
                       />
                       {obj.name === "cnfPassword" && showPasswordError && (
                         <p className="text-red-600">Password does not match</p>
@@ -183,7 +183,7 @@ export const AccountSettings = () => {
             </div>
 
             {/*ADDRESS*/}
-            <div className="bg-lightTan w-1/2 px-6 flex flex-col py-5">
+            <div className="bg-lightTan sm:w-1/2 px-6 flex flex-col py-5 mb-32">
               <div className="flex justify-between">
                 <div>
                   <h2 className="font-medium text-xl">Address</h2>

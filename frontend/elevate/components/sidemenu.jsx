@@ -15,7 +15,7 @@ export const Sidemenu = () => {
     }
 
   return (
-    <div className='fixed right-0 top-12 w-1/4 bg-white h-1/2 border-l-2 border-b-2 border-black font-inter'>
+    <div className='fixed right-0 top-12 w-2/3 sm:w-1/4 bg-white h-1/2 border-l-2 border-b-2 border-black font-inter'>
         <div className='flex flex-col'>
             <div className='self-end pt-3 pr-3'>
                 

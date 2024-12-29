@@ -23,7 +23,7 @@ export const Cart = () => {
 
 
   return (
-    <div className="flex flex-col fixed right-0 top-12 w-1/4 pt-14 h-1/2 bg-white border-l-2 border-b-2 border-black font-inter overflow-y-scroll gap-4">
+    <div className="flex flex-col fixed right-0 top-12 w-2/3 sm:w-1/4 pt-14 h-1/2 bg-white border-l-2 border-b-2 border-black font-inter overflow-y-scroll gap-4">
       <div className="flex content-center self-center">
         <h2 className="font-medium text-2xl">Added to shopping cart</h2>
       </div>
