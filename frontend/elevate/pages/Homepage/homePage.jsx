@@ -121,7 +121,7 @@ export const HomePage = () => {
                   <img
                     src={`data:image/jpeg;base64,${element.image}`}
                     key={element.id}
-                    className="rounded-lg max-w-44 lg:max-w-64 shadow-md hover:scale-125 transition ease-in-out"
+                    className="rounded-lg max-w-40 lg:max-w-64 shadow-md hover:scale-125 transition ease-in-out"
                     onClick={() => handleFocusObject(element)}
                   />)
                 
@@ -140,7 +140,7 @@ export const HomePage = () => {
                   window.scroll(0, 0);
                 }}
               >
-                <div className="absolute inset-0 w-40 h-12 m-auto justify-center items-center">
+                <div className="absolute inset-0 flex w-40 h-12 m-auto justify-center items-center">
                   <TanButton btnText={obj.btnText} />
                 </div>
               </Link>
