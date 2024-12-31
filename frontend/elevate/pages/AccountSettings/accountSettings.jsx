@@ -166,7 +166,7 @@ export const AccountSettings = () => {
                         value={userInfo[obj.name]}
                         readOnly={!isEditing}
                         onChange={handleInputChange}
-                        className="sm:p-1 w-4/5"
+                        className="sm:p-1 w-4/5 focus:outline-darkBlue "
                       />
                       {obj.name === "cnfPassword" && showPasswordError && (
                         <p className="text-red-600">Password does not match</p>
@@ -238,7 +238,7 @@ export const AccountSettings = () => {
                                       )
                                     }
                                     readOnly={!isEditing}
-                                    className="p-1"
+                                    className="p-1 focus:outline-darkBlue "
                                   />
                                 </div>
                               )
@@ -255,9 +255,9 @@ export const AccountSettings = () => {
                     onSubmit={handleAddAddress}
                   >
                     <h3 className="font-semibold">New Address</h3>
-                    <input placeholder="Address" name="address" id="address" />
-                    <input placeholder="Town" name="town" id="town" />
-                    <input placeholder="Zipcode" name="zipcode" id="zipcode" />
+                    <input placeholder="Address" name="address" id="address" className="focus:outline-darkBlue "/>
+                    <input placeholder="Town" name="town" id="town" className="focus:outline-darkBlue "/>
+                    <input placeholder="Zipcode" name="zipcode" id="zipcode" className="focus:outline-darkBlue "/>
                     <BlueButton btnText={"Add address"} />
                   </form>
                 )}

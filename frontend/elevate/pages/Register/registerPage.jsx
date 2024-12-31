@@ -62,46 +62,46 @@ export const RegisterPage = () => {
             <legend className="text-center text-xl font-medium pb-5">Register</legend>
             <p>
               <label htmlFor="email">Email: </label>
-              <input type="text" id="email" name="email" required />
+              <input type="text" id="email" name="email" required className="focus:outline-darkBlue"/>
               {formError.email && <p className="text-red-700">{formError.email}</p>}
             </p>
 
             <p>
               <label htmlFor="psw">Password: </label>
-              <input type="password" id="psw" name="password" required />
+              <input type="password" id="psw" name="password" required className="focus:outline-darkBlue"/>
             </p>
 
             <div>
               <label htmlFor="cnfmPsw">Confirm password: </label>
-              <input type="password" id="cnfmPsw" name="cnfpassword" required />
+              <input type="password" id="cnfmPsw" name="cnfpassword" required className="focus:outline-darkBlue"/>
               {formError.password && <p className="text-red-700">{formError.password}</p>}
             </div>
 
             <p>
               <label htmlFor="gender">Gender: </label>
-              <input type="text" id="gender" name="gender" />
+              <input type="text" id="gender" name="gender" className="focus:outline-darkBlue"/>
             </p>
 
             <p>
               <label htmlFor="firstName">First name: </label>
-              <input type="text" id="firstName" name="firstName" required />
+              <input type="text" id="firstName" name="firstName" required className="focus:outline-darkBlue"/>
             </p>
 
             <p>
               <label htmlFor="lastName">Last name: </label>
-              <input type="text" id="lastName" name="lastName" required />
+              <input type="text" id="lastName" name="lastName" required className="focus:outline-darkBlue"/>
             </p>
 
             <p>
               <label htmlFor="dateOfBirth">Date of birth: </label>
-              <input type="date" id="dateOfBirth" name="dateofbirth" required />
+              <input type="date" id="dateOfBirth" name="dateofbirth" required className="focus:outline-darkBlue"/>
             </p>
 
             
 
             <p>
               <label htmlFor="phone">Phone number: </label>
-              <input type="text" id="phone" name="phone" required />
+              <input type="text" id="phone" name="phone" required className="focus:outline-darkBlue"/>
             </p>
 
           </fieldset>

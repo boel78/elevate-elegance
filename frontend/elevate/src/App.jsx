@@ -27,10 +27,10 @@ function App() {
 
           <Router>
             <Navbar />
-            {/* <Toaster
+            {<Toaster
   position="bottom-right"
   reverseOrder={false}
-/> */}
+/> }
             <Routes>
               <Route path="/" element = {<HomePage/>} />
               <Route path="/cart" />
