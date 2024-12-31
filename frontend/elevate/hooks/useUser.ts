@@ -74,10 +74,29 @@ export function useUser() {
     }
   }
 
+  const getOrders = async () => {
+    const userId = currentUser.id;
+    let orders = []
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8080/api/order/user/${userId}`
+      );
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        orders = data
+      }
+    } catch (error) {
+      toast.error(error.response?.data || "ajaja");
+    }
+    return orders
+  }
+
   
 
   return {
     handleSave,
-    makePurchase
+    makePurchase,
+    getOrders
   };
 }

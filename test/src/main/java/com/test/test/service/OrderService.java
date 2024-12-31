@@ -20,7 +20,6 @@ public class OrderService {
     }
 
     public List<Order> getOrderByUserId(String id) {
-        return orderRepository.findByCustomerId(id);
-                
+        return orderRepository.findByCustomerId(id);       
     }
 }

@@ -5,18 +5,32 @@ import { PRODUCTS } from "../../products";
 import { Layout } from "../../components/layout";
 import { TanButton } from "../../components/button";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../hooks/useUser";
+import { useProducts } from "../../hooks/useProducts";
 
 export const MyOrders = () => {
   const { currentUser, noMenus } = useContext(MenuContext);
   const [userOrders, setUserOrders] = useState([]);
   const navigate = useNavigate()
+  const {getOrders} = useUser()
+  const {getMultipleProducts} = useProducts();
 
   useEffect(() => {
     if (currentUser != null) {
-      const orders = ORDERS.filter((order) => currentUser.id == order.u_id);
-      setUserOrders(orders);
+      fetchOrders()
+  
+      //const productIds = orderProducts.filter((order) => order.)
+      //setUserOrders(orders);
     }
   }, [currentUser]);
+
+  const fetchOrders = async () => {
+      let orders = await getOrders()    
+      console.log(orders);
+            
+      const orderProducts = getMultipleProducts(orders.productsId)
+      console.log(orderProducts);
+  }
 
   useEffect(() => {
     noMenus();

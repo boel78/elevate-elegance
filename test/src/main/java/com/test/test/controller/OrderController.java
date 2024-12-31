@@ -17,7 +17,6 @@ import com.test.test.model.Order;
 import com.test.test.model.Product;
 import com.test.test.service.OrderService;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
@@ -28,8 +27,8 @@ public class OrderController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<List<Order>> getOrdersByUser(@PathVariable String userId) {
-        return ResponseEntity.ok(orderService.getOrderByUserId(userId));
+    public ResponseEntity<List<Order>> getOrdersByUser(@PathVariable String id) {
+        return ResponseEntity.ok(orderService.getOrderByUserId(id));
     }
 
     @PostMapping
