@@ -2,6 +2,9 @@ package com.test.test.service;
 
 import com.test.test.model.Customer;
 import com.test.test.repository.CustomerRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,6 +12,9 @@ import java.util.List;
 
 @Service
 public class CustomerService {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public boolean emailExists(String email) {
         return customerRepository.existsByEmail(email);
@@ -23,6 +29,8 @@ public class CustomerService {
         if (emailExists(customer.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
+        String hashedPassword = passwordEncoder.encode(customer.getPassword());
+        customer.setPassword(hashedPassword);
         customerRepository.insert(customer);
     }
 
@@ -68,7 +76,7 @@ public class CustomerService {
     public boolean getCustomerPasswordConfirm(String email, String password){
         Customer currentCustomer = customerRepository.findByEmail(email).orElseThrow(()-> new RuntimeException("email not found"));
         boolean isMatching = false;
-        if(currentCustomer.getPassword().equals(password)){
+        if(passwordEncoder.matches(password, currentCustomer.getPassword())){
             isMatching = true;
         }
         return isMatching;
