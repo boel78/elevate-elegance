@@ -51,9 +51,12 @@ export function useAddress() {
   };
 
   const addAddress = async (e) => {
+    
     e.preventDefault();
     const formData = new FormData(e.target);
     const newAddress = Object.fromEntries(formData);
+    console.log(newAddress);
+    
     const addresses = await fetchAddresses();
     addresses.map((address) => {
       if (address.address === newAddress.address) {

@@ -83,18 +83,18 @@ export const Login = () => {
   return (
     <Layout>
       <div className="pt-20 flex justify-between px-8">
-        <div className="flex flex-col gap-4 w-1/2 sm:w-1/4">
+        <div className="flex flex-col gap-4 w-1/2 sm:w-1/4 ">
           <h2 className="font-medium text-xl">Login to your account</h2>
           <input
             type="text"
             placeholder="Email"
-            className="border-black border-2 border-solid"
+            className="border-black border-2 border-solid focus:outline-darkBlue"
             onChange={(e) => setNameInput(e.target.value)}
           ></input>
           <input
             type="password"
             placeholder="Password"
-            className="border-black border-2 border-solid"
+            className="border-black border-2 border-solid focus:outline-darkBlue"
             onChange={(e) => setPasswordInput(e.target.value)}
           ></input>
           <TanButton btnText={"Log in"} onClick={handleLogin} />

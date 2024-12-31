@@ -74,7 +74,7 @@ export const AccountSettings = () => {
         },
         {
           text: "Password",
-          value: currentUser.password,
+          value: "",
           type: "password",
           name: "password",
         },
@@ -117,8 +117,9 @@ export const AccountSettings = () => {
     setAddressObjects(userInfo.addresses);
   };
 
-  const handleAddAddress = () => {
-    addAddress;
+  const handleAddAddress = (e) => {
+    e.preventDefault();
+    addAddress(e);
 
     userInfo.addresses = currentUser.addresses;
     setAddressObjects(userInfo.addresses);
@@ -163,7 +164,7 @@ export const AccountSettings = () => {
                       <input
                         type={obj.type}
                         name={obj.name}
-                        value={userInfo[obj.name]}
+                        value={obj.text === "Password" ? "" : userInfo[obj.name]}
                         readOnly={!isEditing}
                         onChange={handleInputChange}
                         className="sm:p-1 w-4/5 focus:outline-darkBlue "
@@ -252,13 +253,13 @@ export const AccountSettings = () => {
                 {isEditingAddress && (
                   <form
                     className="flex flex-col gap-4"
-                    onSubmit={handleAddAddress}
+                    onSubmit={(e) => handleAddAddress(e)}
                   >
                     <h3 className="font-semibold">New Address</h3>
                     <input placeholder="Address" name="address" id="address" className="focus:outline-darkBlue "/>
                     <input placeholder="Town" name="town" id="town" className="focus:outline-darkBlue "/>
                     <input placeholder="Zipcode" name="zipcode" id="zipcode" className="focus:outline-darkBlue "/>
-                    <BlueButton btnText={"Add address"} />
+                    <BlueButton btnText={"Add address"}/>
                   </form>
                 )}
               </div>
