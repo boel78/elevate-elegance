@@ -52,12 +52,12 @@ export function useUser() {
     }
   };
 
-  const makePurchase = async (currentUser, productIds, price) => {    
+  const makePurchase = async (currentUser, productIds, price) => {
     const newOrder = {
       customerId: currentUser,
       productsId: productIds,
-      totalPrice: price
-    }    
+      totalPrice: price,
+    };
 
     try {
       const { data } = await axios.post(
@@ -72,11 +72,11 @@ export function useUser() {
     } catch (error) {
       toast.error(error.response?.data || "ajaja");
     }
-  }
+  };
 
   const getOrders = async () => {
     const userId = currentUser.id;
-    let orders = []
+    let orders = [];
     try {
       const { data } = await axios.get(
         `http://localhost:8080/api/order/user/${userId}`
@@ -84,19 +84,31 @@ export function useUser() {
       if (data.error) {
         toast.error(data.error);
       } else {
-        orders = data
+        orders = await Promise.all(
+          data.map(async (order) => {
+
+            const productDetails = order.productsId.map((product) =>
+              
+              axios.get(`http://localhost:8080/api/product/id/${product}`)
+            );
+
+            const productResponses = await Promise.all(productDetails);
+
+            order.products = productResponses.map((response) => response.data);
+
+            return order;
+          })
+        );
       }
     } catch (error) {
       toast.error(error.response?.data || "ajaja");
-    }
-    return orders
-  }
-
-  
+    }    
+    return orders;
+  };
 
   return {
     handleSave,
     makePurchase,
-    getOrders
+    getOrders,
   };
 }

@@ -13,23 +13,16 @@ export const MyOrders = () => {
   const [userOrders, setUserOrders] = useState([]);
   const navigate = useNavigate()
   const {getOrders} = useUser()
-  const {getMultipleProducts} = useProducts();
 
   useEffect(() => {
     if (currentUser != null) {
       fetchOrders()
-  
-      //const productIds = orderProducts.filter((order) => order.)
-      //setUserOrders(orders);
     }
   }, [currentUser]);
 
   const fetchOrders = async () => {
-      let orders = await getOrders()    
-      console.log(orders);
-            
-      const orderProducts = getMultipleProducts(orders.productsId)
-      console.log(orderProducts);
+      let orders = await getOrders()                  
+      setUserOrders(orders)  
   }
 
   useEffect(() => {
@@ -53,21 +46,18 @@ export const MyOrders = () => {
                 key={order.id}
               >
                 <div className="flex gap-4 w-1/3">
-                  {order.p_id.map((productID) => {
-                    const product = PRODUCTS.find(
-                      (prod) => prod.id === productID
-                    );
+                  {order.products.map((product) => {
                     return (
                       product && (
                         <div key={product.id}>
-                          <img src={product.image} className="max-w-24 rounded-lg" />
+                          <img src={`data:image/jpeg;base64,${product.image}`} className="max-w-24 rounded-lg" />
                         </div>
                       )
                     );
                   })}
                 </div>
                 <div>
-                  <p className="font-medium text-lg">Arriving: {order.eta}</p>
+                  <p className="font-medium text-lg">Total cost: {order.totalPrice} SEK</p>
                 </div>
                 <div className="flex flex-col gap-6">
                   <TanButton btnText={"Track order"}/>

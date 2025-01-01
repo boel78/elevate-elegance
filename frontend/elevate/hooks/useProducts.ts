@@ -11,15 +11,17 @@ export function useProducts() {
 
   const initializeProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/api/product");
-
+      console.log("init");
+      
+      const { data } = await axios.get("http://localhost:8080/api/product");      
+      setProducts(data);
       const sortedProducts = sortProducts("New first", data, "dateAdded")
-        setProducts(data);
+            
+      
       
     } catch (error) {
       console.log(error);
     }
-    
     
   };
 
@@ -27,7 +29,12 @@ export function useProducts() {
     initializeProducts();
   }, []);
 
-  const filterProduct = useCallback((filterType, filterValue) => {      
+  /*useEffect(() => {
+    console.log("Products updated:", products);
+}, [products]);*/
+
+  const filterProduct = useCallback((filterType, filterValue) => {  
+        
     if (filterType === "" && filterValue === "") {
       return products;
     } else {
@@ -147,9 +154,9 @@ export function useProducts() {
     handleSave(newUserData);
   };
 
-  const getMultipleProducts = (ids) => {    
+  const getMultipleProducts = async (ids) => { 
+    initializeProducts()              
     const multipleProducts = products.filter((product) => ids.includes(product.id)) 
-    console.log(multipleProducts);
     return multipleProducts
   }
 
