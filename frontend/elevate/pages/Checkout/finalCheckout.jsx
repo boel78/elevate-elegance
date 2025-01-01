@@ -6,7 +6,7 @@ import { useAddress } from "../../hooks/useAddress";
 import { useUser } from "../../hooks/useUser";
 
 export const FinalCheckout = () => {
-  const { currentUser, cart, filledOutOrderDetails } = useContext(MenuContext);
+  const { currentUser, cart, filledOutOrderDetails} = useContext(MenuContext);
   const [userInfo, setUserInfo] = useState();
   const [totalCost, setTotalCost] = useState(0);
   const [addressObjects, setAddressObjects] = useState([]);

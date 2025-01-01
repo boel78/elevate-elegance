@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { useAddress } from "./useAddress";
 
 export function useUser() {
-  const { currentUser, setCurrentUser } = useContext(MenuContext);
+  const { currentUser, setCurrentUser, setCart } = useContext(MenuContext);
   const { fetchAllAddresses } = useAddress();
 
   const handleSave = async (userInfo) => {
@@ -68,6 +68,7 @@ export function useUser() {
         toast.error(data.error);
       } else {
         toast.success("Your Order have now been made");
+        setCart([])
       }
     } catch (error) {
       toast.error(error.response?.data || "ajaja");
