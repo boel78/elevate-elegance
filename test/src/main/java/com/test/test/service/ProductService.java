@@ -3,9 +3,6 @@ package com.test.test.service;
 import com.test.test.model.Product;
 import com.test.test.repository.ProductRepository;
 
-
-
-import org.bson.types.Binary;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +22,11 @@ public class ProductService {
 
 
     public void createProduct(Product product, MultipartFile file) {
+        long count = productRepository.count();
+        if(count >= 25){
+            Product productToRemove = productRepository.findFirstByOrderByIdAsc();
+            deleteProduct(productToRemove);
+        }
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         if(fileName.contains("..")){
             System.out.println("Not a valid filename");
@@ -34,6 +36,7 @@ public class ProductService {
         } catch(IOException e){
             e.printStackTrace();
         }
+        
         productRepository.save(product);
     }
 

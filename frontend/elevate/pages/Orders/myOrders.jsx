@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ORDERS } from "../../orders";
 import { MenuContext } from "../../src/menuContext";
-import { PRODUCTS } from "../../products";
 import { Layout } from "../../components/layout";
 import { TanButton } from "../../components/button";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
-import { useProducts } from "../../hooks/useProducts";
 
 export const MyOrders = () => {
   const { currentUser, noMenus } = useContext(MenuContext);

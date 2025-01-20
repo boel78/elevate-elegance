@@ -15,4 +15,6 @@ public interface ProductRepository extends MongoRepository<Product, String> {
     Product findByName(String name);
 
     List<Product> findByIsTopSeller(boolean isTopSeller);
+
+    Product findFirstByOrderByIdAsc();
 }

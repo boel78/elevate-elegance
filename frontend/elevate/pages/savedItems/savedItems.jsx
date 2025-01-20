@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../../src/menuContext";
-import { SAVEDITEMS } from "../../savedItems";
-import { PRODUCTS } from "../../products";
 import { Layout } from "../../components/layout";
 import { TanButton } from "../../components/button";
 import { useNavigate } from "react-router-dom";
@@ -40,18 +38,7 @@ export const SavedItems = () => {
 
   useEffect(() => {
     noMenus();
-    /*const items = getMultipleProducts(currentUser.likedProducts);
-      console.log(items)
-      setLikedProducts(items)*/
-    
   }, []);
-  useEffect(() => {
-    /*noMenus();
-    const items = getMultipleProducts(currentUser.likedProducts);
-      console.log(items)
-      setLikedProducts(items)*/
-    
-  }, [currentUser]);
 
   const visitCataloge = () => {
     navigate("/cataloge");

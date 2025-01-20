@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { USERS } from "../../users";
 import { MenuContext } from "../../src/menuContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Layout } from "../../components/layout";

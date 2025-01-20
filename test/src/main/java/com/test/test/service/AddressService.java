@@ -4,10 +4,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 import com.test.test.model.Address;
-import com.test.test.model.Cart;
-import com.test.test.model.Customer;
 import com.test.test.repository.AddressRepository;
-import com.test.test.repository.CartRepository;
 
 @Service
 public class AddressService {
@@ -37,6 +34,11 @@ public class AddressService {
     public void addAddress(Address address) {
 
         if (!addressNameExists(address.getAddress())) {
+            long count = addressRepository.count();
+            if(count >= 15){
+                Address addressToRemove = addressRepository.findFirstByOrderByIdAsc();
+                deleteAddress(addressToRemove.getId());
+            }
             addressRepository.insert(address);
         }
         

@@ -6,7 +6,6 @@ import com.test.test.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,8 +25,14 @@ public class CustomerService {
     }
 
     public void addCustomer(Customer customer) {
+        long count = customerRepository.count();
+
         if (emailExists(customer.getEmail())) {
             throw new RuntimeException("Email already exists");
+        }
+        if(count >= 15){
+            Customer customerToRemove = customerRepository.findFirstByOrderByIdAsc();
+            deleteCustomer(customerToRemove.getId());
         }
         String hashedPassword = passwordEncoder.encode(customer.getPassword());
         customer.setPassword(hashedPassword);

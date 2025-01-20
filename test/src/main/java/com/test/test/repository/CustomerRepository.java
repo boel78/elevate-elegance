@@ -11,4 +11,5 @@ public interface CustomerRepository extends MongoRepository<Customer, String> {
     Optional<Customer> findByFirstName(String name);
     Optional<Customer> findByEmail(String email);
     boolean existsByEmail(String email);
+    Customer findFirstByOrderByIdAsc();
 }

@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { PRODUCTS } from "../../products";
 import { MenuContext } from "../../src/menuContext";
 import { Layout } from "../../components/layout";
 import { ArrowDown, Heart, ArrowUp } from "@phosphor-icons/react";
-import { useUser } from "../../hooks/useUser";
 import { useProducts } from "../../hooks/useProducts";
 
 export const ProductPage = () => {
@@ -39,17 +37,10 @@ export const ProductPage = () => {
   } = useContext(MenuContext);
 
   useEffect(() => {
-    console.log(cart);
-
     noMenus();
-    
+   
     
   }, []);
-
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
 
   
 

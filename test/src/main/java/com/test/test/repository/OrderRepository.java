@@ -13,4 +13,9 @@ public interface OrderRepository extends MongoRepository<Order, String> {
 
     @Query("{'id' :  ?0}")
     List<Order> findByProductsId(String id);
+
+    @Query("{'id' : ?0}")
+    Order findByOrderId(String id);
+
+    Order findFirstByOrderByIdAsc();
 }

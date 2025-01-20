@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BlueButton } from "../../components/blueButton";
-import { USERS } from "../../users";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
