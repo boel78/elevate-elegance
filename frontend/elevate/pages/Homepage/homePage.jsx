@@ -42,22 +42,22 @@ export const HomePage = () => {
 
   const categoryLinkObjects = [
     {
-      src: "/public/Effortless Charm.jpeg",
+      src: "/Effortless Charm.jpeg",
       link: "cataloge/Jewellery",
       btnText: "Shop Jewellery",
     },
     {
-      src: "/public/Modern Classic.jpeg",
+      src: "/Modern Classic.jpeg",
       link: "cataloge/Bags",
       btnText: "Shop Bags",
     },
     {
-      src: "/public/Sculpted Sophistication.jpeg",
+      src: "/Sculpted Sophistication.jpeg",
       link: "cataloge/Shoes",
       btnText: "Shop Shoes",
     },
     {
-      src: "/public/Regal Splendor.jpeg",
+      src: "/Regal Splendor.jpeg",
       link: "cataloge/Clothing",
       btnText: "Shop Clothing",
     },
@@ -66,12 +66,12 @@ export const HomePage = () => {
   const services = [
     {
       title: "Premium Quality",
-      image: "/public/quality.jpeg",
+      image: "/quality.jpeg",
       text: "At Elevate Elegance, we offer a carefully curated collection of premium quality products renowned for their exquisite             craftsmanship and timeless elegance. From luxurious leather handbags to designer jewelry and silk scarves each item is crafted with meticulous attention to detail and made from the finest materials. Discover the epitome of luxury with Elevate Elegance.",
     },
     {
       title: "Customer Service",
-      image: "/public/customer.jpeg",
+      image: "/customer.jpeg",
       text: `At Elevate Elegance, we're dedicated to delivering exceptional
       customer service. Our team is committed to providing personalized
       assistance and prompt responses to your inquiries. Experience
@@ -79,7 +79,7 @@ export const HomePage = () => {
     },
     {
       title: "Gift Wrapping",
-      image:"/public/gift.jpeg",
+      image:"/gift.jpeg",
       text: `At Elevate Elegance, we understand the importance of presentation,
       which is why we offer exquisite gift wrapping services. Elevate
       your gifting experience with our beautifully curated packaging,
