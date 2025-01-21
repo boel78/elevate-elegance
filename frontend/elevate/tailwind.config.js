@@ -15,7 +15,7 @@ export default {
         'superLightTan': '#FEFAF6'
       },
       backgroundImage: {
-        'hero': "url('images/Heropic.png')",
+        'hero': "url('/public/Heropic.png')",
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif', 'system-ui'],
