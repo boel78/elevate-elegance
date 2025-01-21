@@ -35,16 +35,16 @@ export const Login = () => {
       password: passwordInput
     }
     
-    const {data} = await axios.post("http://localhost:8080/api/customer/login", checkObject)
+    const {data} = await axios.post("https://elevate-elegance.onrender.com/api/customer/login", checkObject)
     if(data.error){
       toast.error(data.error)
     }
     else{
       //user login kod. Hämta information och gör ett objekt
-      const user = await axios.get(`http://localhost:8080/api/customer/email/${nameInput}`)
+      const user = await axios.get(`https://elevate-elegance.onrender.com/api/customer/email/${nameInput}`)
       const addresses = user.data.addresses
 
-      const addressesResponse = await axios.get(`http://localhost:8080/api/address/getAll`, {
+      const addressesResponse = await axios.get(`https://elevate-elegance.onrender.com/api/address/getAll`, {
         params: { addresses: addresses.join(",") }
       })
       user.data.addressObjects = addressesResponse.data

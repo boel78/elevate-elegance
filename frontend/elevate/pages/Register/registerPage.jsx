@@ -39,7 +39,7 @@ export const RegisterPage = () => {
         //ERSÄTTA MED POST LOGIK SENARE
         console.log(newUser)
         try{
-          const {data} = await axios.post('http://localhost:8080/api/customer', newUser)
+          const {data} = await axios.post('https://elevate-elegance.onrender.com/api/customer', newUser)
           if(data.error){
             toast.error(data.error)
           }
