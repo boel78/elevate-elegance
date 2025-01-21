@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { useUser } from "./useUser";
 
 function initializeAddress(addressIDs) {
-  return axios.get("http://localhost:8080/api/address/getAll", {
+  return axios.get("https://elevate-elegance.onrender.com/api/address/getAll", {
     params: { addresses: addressIDs.join(",") },
   });
 }
@@ -34,7 +34,7 @@ export function useAddress() {
     }
     currentUser.addresses.push(newAddress);
     try {
-      await axios.put("http://localhost:8080/api/customer", currentUser);
+      await axios.put("https://elevate-elegance.onrender.com/api/customer", currentUser);
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +42,7 @@ export function useAddress() {
 
   const fetchAllAddresses = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/address");
+      const response = await axios.get("https://elevate-elegance.onrender.com/api/address");
       const addresses = response.data;
       return addresses;
     } catch (error) {
@@ -67,7 +67,7 @@ export function useAddress() {
     });
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/address",
+        "https://elevate-elegance.onrender.com/api/address",
         newAddress
       );
       if (data.error) {
@@ -86,7 +86,7 @@ export function useAddress() {
   const addAddressToUser = async (address) => {
     
     try{
-      const data = await axios.get("http://localhost:8080/api/address")
+      const data = await axios.get("https://elevate-elegance.onrender.com/api/address")
       data.data.map((fetchedAddress) => {
         if(address.address === fetchedAddress.address){
           currentUser.addresses.push(fetchedAddress.id)
@@ -101,7 +101,7 @@ export function useAddress() {
     }
 
     try {
-      await axios.put(`http://localhost:8080/api/customer`, currentUser);
+      await axios.put(`https://elevate-elegance.onrender.com/api/customer`, currentUser);
     } catch (error) {
       console.log(error);
     }

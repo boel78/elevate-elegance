@@ -13,7 +13,7 @@ export function useProducts() {
     try {
       console.log("init");
       
-      const { data } = await axios.get("http://localhost:8080/api/product");      
+      const { data } = await axios.get("https://elevate-elegance.onrender.com/api/product");      
       setProducts(data);
       const sortedProducts = sortProducts("New first", data, "dateAdded")
             

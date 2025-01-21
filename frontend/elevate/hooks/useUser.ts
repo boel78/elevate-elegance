@@ -14,7 +14,7 @@ export function useUser() {
 
     try {
       const { data } = await axios.put(
-        "http://localhost:8080/api/customer",
+        "https://elevate-elegance.onrender.com/api/customer",
         newUser
       );
       if (data.error) {
@@ -32,7 +32,7 @@ export function useUser() {
 
   const checkAddresses = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/customer");
+      const response = await axios.get("https://elevate-elegance.onrender.com/api/customer");
       const users = response.data;
       const allAddresses = await fetchAllAddresses();
 
@@ -44,7 +44,7 @@ export function useUser() {
         .filter((address) => !addressArray.includes(address.id))
         .map((address) => address.id);
 
-      await axios.delete(`http://localhost:8080/api/address/multiple`, {
+      await axios.delete(`https://elevate-elegance.onrender.com/api/address/multiple`, {
         params: { addresses: addressesToDelete.join(",") },
       });
     } catch (error) {
@@ -61,7 +61,7 @@ export function useUser() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/order",
+        "https://elevate-elegance.onrender.com/api/order",
         newOrder
       );
       if (data.error) {
@@ -80,7 +80,7 @@ export function useUser() {
     let orders = [];
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/order/user/${userId}`
+        `https://elevate-elegance.onrender.com/api/order/user/${userId}`
       );
       if (data.error) {
         toast.error(data.error);
@@ -90,7 +90,7 @@ export function useUser() {
 
             const productDetails = order.productsId.map((product) =>
               
-              axios.get(`http://localhost:8080/api/product/id/${product}`)
+              axios.get(`https://elevate-elegance.onrender.com/api/product/id/${product}`)
             );
 
             const productResponses = await Promise.all(productDetails);
