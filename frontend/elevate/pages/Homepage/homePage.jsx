@@ -128,7 +128,8 @@ export const HomePage = () => {
                   />)
                 
             )) : 
-            <p>If you dont see any content here. You might have to wait for the slow API...</p>}
+            <p>If you dont see any content here. You might have to wait for the slow API...
+              This can take a few minutes so feel free to look around while its starting</p>}
           </div>
         </div>
   
