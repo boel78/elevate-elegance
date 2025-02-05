@@ -116,7 +116,9 @@ export const HomePage = () => {
             Best Sellers
           </p>
           <div className="flex justify-center gap-7 pt-28 w-screen flex-wrap">
-            {topSellers.map(
+            {
+            topSellers ? 
+            (topSellers.map(
               (element) => (
                   <img
                     src={`data:image/jpeg;base64,${element.image}`}
@@ -125,7 +127,8 @@ export const HomePage = () => {
                     onClick={() => handleFocusObject(element)}
                   />)
                 
-            )}
+            )) : 
+            <p>If you dont see any content here. You might have to wait for the slow API...</p>}
           </div>
         </div>
   
