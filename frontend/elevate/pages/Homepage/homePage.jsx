@@ -117,7 +117,7 @@ export const HomePage = () => {
           </p>
           <div className="flex justify-center gap-7 pt-28 w-screen flex-wrap">
             {
-            topSellers > 0 ? 
+            topSellers.length > 0 ? 
             (topSellers.map(
               (element) => (
                   <img
